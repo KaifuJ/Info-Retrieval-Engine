@@ -29,15 +29,17 @@ public class PunctuationTokenizer implements Tokenizer {
 
     public List<String> tokenize(String text) {
         List<String> tokens = new ArrayList<>();
-        char[] words = text.toCharArray();
+        char[] words = text.toCharArray(); /** put string into char list*/
         for(int i = 0; i < words.length; i++){
             if(punctuations.contains(String.valueOf(words[i]))) words[i]=' ';
+            /** remove required punctuations*/
         }
         String tmp = new String(words);
-        String [] arr = tmp.split("\\s+");
+        String [] arr = tmp.split("\\s+"); /** split the whole string into words*/
         for(String ss : arr){
             String ls =ss.toLowerCase();
-            if(!StopWords.stopWords.contains(ls)) tokens.add(ls);
+            if(!StopWords.stopWords.contains(ls) && ls.length()>0) tokens.add(ls);
+            /** modify the word to lowercase and remove stopwords*/
         }
         return tokens;
     }
