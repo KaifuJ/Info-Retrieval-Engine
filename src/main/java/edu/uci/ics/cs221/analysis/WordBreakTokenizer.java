@@ -36,7 +36,7 @@ import static edu.uci.ics.cs221.analysis.StopWords.stopWords;
  */
 
 public class WordBreakTokenizer implements Tokenizer {
-    public Map<String, Double> dict;
+    private Map<String, Double> dict;
 
     public WordBreakTokenizer() {
         this.dict = new HashMap<>();
@@ -72,7 +72,7 @@ public class WordBreakTokenizer implements Tokenizer {
         // so we can safely give "curPos" initial value 1.0
         tokenize(str, this.dict, res, maxPos, path, 1.0, 0);
 
-        if(maxPos[0] == 0.0){ // not dividable
+        if(maxPos[0] == 0.0){ // not dividable  // when the input is an empty string, the final maxPos is 1.0, and is considered as dividable.
 //            throw new UnsupportedOperationException("Porter Stemmer Unimplemented");
             throw new UnsupportedOperationException("Text Not Breakable");
         }else{
