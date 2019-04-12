@@ -127,18 +127,18 @@ public class WordBreakTokenizer implements Tokenizer {
 
 }
 
-class main{
-    public static void main(String[] args){
-        WordBreakTokenizer wbt = new WordBreakTokenizer();
-
-        List<String> res = wbt.tokenize("itisnotourgoal");
-
-        for(String s : res){
-            System.out.print(s + " ");
-        }
-
-    }
-}
+//class main{
+//    public static void main(String[] args){
+//        WordBreakTokenizer wbt = new WordBreakTokenizer();
+//
+//        List<String> res = wbt.tokenize("itisnotourgoal");
+//
+//        for(String s : res){
+//            System.out.print(s + " ");
+//        }
+//
+//    }
+//}
 
 
 
