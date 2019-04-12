@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.*;
 
 /**
  * Project 1, task 1: Implement a simple tokenizer based on punctuations and white spaces.
@@ -27,7 +28,20 @@ public class PunctuationTokenizer implements Tokenizer {
     public PunctuationTokenizer() {}
 
     public List<String> tokenize(String text) {
-        throw new UnsupportedOperationException("Punctuation Tokenizer Unimplemented");
+        List<String> tokens = new ArrayList<>();
+        char[] words = text.toCharArray(); /** put string into char list*/
+        for(int i = 0; i < words.length; i++){
+            if(punctuations.contains(String.valueOf(words[i]))) words[i]=' ';
+            /** remove required punctuations*/
+        }
+        String tmp = new String(words);
+        String [] arr = tmp.split("\\s+"); /** split the whole string into words*/
+        for(String ss : arr){
+            String ls =ss.toLowerCase();
+            if(!StopWords.stopWords.contains(ls) && ls.length()>0) tokens.add(ls);
+            /** modify the word to lowercase and remove stopwords*/
+        }
+        return tokens;
     }
 
 }
