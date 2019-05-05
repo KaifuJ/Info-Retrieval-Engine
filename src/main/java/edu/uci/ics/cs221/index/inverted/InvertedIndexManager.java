@@ -3,14 +3,17 @@ package edu.uci.ics.cs221.index.inverted;
 import com.google.common.base.Preconditions;
 import edu.uci.ics.cs221.analysis.Analyzer;
 import edu.uci.ics.cs221.storage.Document;
+import edu.uci.ics.cs221.storage.DocumentStore;
+import edu.uci.ics.cs221.storage.MapdbDocStore;
+import sun.jvm.hotspot.debugger.Page;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class manages an disk-based inverted index and all the documents in the inverted index.
@@ -18,7 +21,9 @@ import java.util.List;
  * Please refer to the project 2 wiki page for implementation guidelines.
  */
 public class InvertedIndexManager {
-
+    private List<Document> docs;
+    private Map<String, List<Integer>> segment;
+    private int segmentCounter;
 
     /**
      * The default flush threshold, in terms of number of documents.
@@ -38,6 +43,9 @@ public class InvertedIndexManager {
 
 
     private InvertedIndexManager(String indexFolder, Analyzer analyzer) {
+        this.docs = new ArrayList<>();
+        this.segment = new HashMap<>();
+        this.segmentCounter = 0;
     }
 
     /**
@@ -75,8 +83,58 @@ public class InvertedIndexManager {
      * flush() writes the segment to disk containing the posting list and the corresponding document store.
      */
     public void flush() {
+        // flush docs
+        DocumentStore docStore = MapdbDocStore.createOrOpen("./docStore_" + this.segmentCounter);
+        for(int i = 0; i < this.docs.size(); i++){
+            docStore.addDocument(i, docs.get(i));
+        }
+        docStore.close();
 
-        throw new UnsupportedOperationException();
+        // flush segment (keywords and lists)
+        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get("./segment_" + this.segmentCounter));
+
+        int BUFFER_SIZE = 4096;
+        ByteBuffer bf = ByteBuffer.allocate(BUFFER_SIZE);
+        List<List<Integer>> lists = new ArrayList<>(segment.size());
+
+
+        // flush keywords
+        for(String keyword : segment.keySet()){
+            byte[] kwBytes = keyword.getBytes();
+
+            if(bf.remaining() < 4 + kwBytes.length) flushAndClearBufferContent(bf, pfc);
+            bf.putInt(kwBytes.length);
+            bf.put(kwBytes);
+
+            lists.add(segment.get(keyword));
+        }
+        if(bf.remaining() < 4) flushAndClearBufferContent(bf, pfc);
+        bf.putInt(-1);
+        flushAndClearBufferContent(bf, pfc);
+
+
+        // flush posting lists
+        for(List<Integer> list : lists){
+            if(bf.remaining() < 4) flushAndClearBufferContent(bf, pfc);
+            bf.putInt(list.size());
+
+            for(int id : list){
+                if(bf.remaining() < 4) flushAndClearBufferContent(bf, pfc);
+                bf.putInt(id);
+            }
+        }
+        flushAndClearBufferContent(bf, pfc);
+
+        segmentCounter++;
+
+//        throw new UnsupportedOperationException();
+    }
+
+    private void flushAndClearBufferContent(ByteBuffer bf, PageFileChannel pfc){
+        byte[] content = Arrays.copyOf(bf.array(), bf.position());
+        ByteBuffer contentBf = ByteBuffer.wrap(content);
+        pfc.appendAllBytes(contentBf);
+        bf.clear();
     }
 
     /**

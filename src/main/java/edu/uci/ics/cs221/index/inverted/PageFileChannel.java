@@ -213,7 +213,7 @@ class Test{
         bf = pfc.readAllPages();
         bf.flip();
 
-        for(int i = 0; i < bf.capacity(); i++){
+        while(bf.hasRemaining()){
             System.out.println(bf.get());
         }
 
