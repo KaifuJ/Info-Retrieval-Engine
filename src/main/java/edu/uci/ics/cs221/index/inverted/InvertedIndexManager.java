@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class InvertedIndexManager {
 
+
     /**
      * The default flush threshold, in terms of number of documents.
      * For example, a new Segment should be automatically created whenever there's 1000 documents in the buffer.
@@ -74,6 +75,7 @@ public class InvertedIndexManager {
      * flush() writes the segment to disk containing the posting list and the corresponding document store.
      */
     public void flush() {
+
         throw new UnsupportedOperationException();
     }
 

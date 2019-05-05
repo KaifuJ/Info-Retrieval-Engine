@@ -9,6 +9,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static java.nio.file.StandardOpenOption.READ;
 import static java.nio.file.StandardOpenOption.WRITE;
@@ -54,6 +55,8 @@ public class PageFileChannel implements AutoCloseable {
         this.fileChannel = fileChannel;
     }
 
+
+
     /**
      * Creates (if not exists) or opens (if exists) a file channel of the given file path.
      *
@@ -72,6 +75,9 @@ public class PageFileChannel implements AutoCloseable {
             throw new UncheckedIOException(e);
         }
     }
+
+
+
 
     /**
      * Reads a page from file into a byteBuffer (a sequence of bytes).
@@ -104,6 +110,8 @@ public class PageFileChannel implements AutoCloseable {
         }
         return buffer;
     }
+
+
 
 
     /**
@@ -147,6 +155,9 @@ public class PageFileChannel implements AutoCloseable {
         }
     }
 
+
+
+
     /**
      * Gets the number of pages of the file.
      * @return number of pages of the file
@@ -180,3 +191,60 @@ public class PageFileChannel implements AutoCloseable {
     }
 
 }
+
+
+class Test{
+    public static void main(String[] args){
+        Path path = Paths.get("./segmentTest.txt");
+        PageFileChannel pfc = PageFileChannel.createOrOpen(path);
+
+        ByteBuffer bf = ByteBuffer.allocate(4096);
+
+        byte[] wr = new byte[20];
+        for(int i = 0; i < wr.length; i++){
+            wr[i] = (byte) (i + 1);
+        }
+
+        bf.put(wr);
+
+        pfc.appendAllBytes(bf);
+
+
+        bf = pfc.readAllPages();
+        bf.flip();
+
+        for(int i = 0; i < bf.capacity(); i++){
+            System.out.println(bf.get());
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
