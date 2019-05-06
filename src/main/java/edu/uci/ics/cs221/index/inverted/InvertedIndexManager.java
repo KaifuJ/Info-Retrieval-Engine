@@ -2,11 +2,15 @@ package edu.uci.ics.cs221.index.inverted;
 
 import com.google.common.base.Preconditions;
 import edu.uci.ics.cs221.analysis.Analyzer;
+import edu.uci.ics.cs221.analysis.ComposableAnalyzer;
+import edu.uci.ics.cs221.analysis.PorterStemmer;
+import edu.uci.ics.cs221.analysis.PunctuationTokenizer;
 import edu.uci.ics.cs221.storage.Document;
 import edu.uci.ics.cs221.storage.DocumentStore;
 import edu.uci.ics.cs221.storage.MapdbDocStore;
-import sun.jvm.hotspot.debugger.Page;
+//import sun.jvm.hotspot.debugger.Page;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.ByteBuffer;
@@ -21,8 +25,10 @@ import java.util.*;
  * Please refer to the project 2 wiki page for implementation guidelines.
  */
 public class InvertedIndexManager {
-    private List<Document> docs;
-    private Map<String, List<Integer>> segment;
+    private static final int PAGE_SIZE = 4096;
+
+    public List<Document> docs;
+    public Map<String, List<Integer>> segment;
     private int segmentCounter;
 
     /**
@@ -45,7 +51,7 @@ public class InvertedIndexManager {
     private InvertedIndexManager(String indexFolder, Analyzer analyzer) {
         this.docs = new ArrayList<>();
         this.segment = new HashMap<>();
-        this.segmentCounter = 0;
+        this.segmentCounter = new File("./inverted_index").list().length / 3;
     }
 
     /**
@@ -78,63 +84,80 @@ public class InvertedIndexManager {
         throw new UnsupportedOperationException();
     }
 
+
+
+
     /**
      * Flushes all the documents in the in-memory segment buffer to disk. If the buffer is empty, it should not do anything.
      * flush() writes the segment to disk containing the posting list and the corresponding document store.
      */
     public void flush() {
         // flush docs
-        DocumentStore docStore = MapdbDocStore.createOrOpen("./docStore_" + this.segmentCounter);
+        DocumentStore docStore = MapdbDocStore.createOrOpen("./inverted_index/docStore_" + this.segmentCounter);
         for(int i = 0; i < this.docs.size(); i++){
             docStore.addDocument(i, docs.get(i));
         }
         docStore.close();
 
-        // flush segment (keywords and lists)
-        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get("./segment_" + this.segmentCounter));
-
-        int BUFFER_SIZE = 4096;
-        ByteBuffer bf = ByteBuffer.allocate(BUFFER_SIZE);
-        List<List<Integer>> lists = new ArrayList<>(segment.size());
-
-
-        // flush keywords
-        for(String keyword : segment.keySet()){
-            byte[] kwBytes = keyword.getBytes();
-
-            if(bf.remaining() < 4 + kwBytes.length) flushAndClearBufferContent(bf, pfc);
-            bf.putInt(kwBytes.length);
-            bf.put(kwBytes);
-
-            lists.add(segment.get(keyword));
-        }
-        if(bf.remaining() < 4) flushAndClearBufferContent(bf, pfc);
-        bf.putInt(-1);
-        flushAndClearBufferContent(bf, pfc);
-
-
-        // flush posting lists
-        for(List<Integer> list : lists){
-            if(bf.remaining() < 4) flushAndClearBufferContent(bf, pfc);
-            bf.putInt(list.size());
-
-            for(int id : list){
-                if(bf.remaining() < 4) flushAndClearBufferContent(bf, pfc);
-                bf.putInt(id);
-            }
-        }
-        flushAndClearBufferContent(bf, pfc);
+        // flush segment (keywords and postingLists)
+        List<String> keywordsList = new ArrayList<>(segment.keySet());
+        flushKeywords(keywordsList);
+        flushPostingLists(keywordsList);
 
         segmentCounter++;
+        docs.clear();
+        segment.clear();
 
 //        throw new UnsupportedOperationException();
     }
 
-    private void flushAndClearBufferContent(ByteBuffer bf, PageFileChannel pfc){
-        byte[] content = Arrays.copyOf(bf.array(), bf.position());
-        ByteBuffer contentBf = ByteBuffer.wrap(content);
-        pfc.appendAllBytes(contentBf);
-        bf.clear();
+    private void flushKeywords(List<String> keywords){
+        ByteBuffer bf = ByteBuffer.allocate(PAGE_SIZE);
+        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get("./inverted_index/keywords_" + segmentCounter));
+
+        bf.putInt(0);
+        int count = 0;
+        for(String keyword : keywords) {
+            byte[] kwBytes = keyword.getBytes();
+
+            if(bf.remaining() < 4 + kwBytes.length +4){
+                bf.rewind();
+                bf.putInt(count);
+                count = 0;
+                pfc.appendPage(bf);
+                bf.clear();
+                bf.putInt(0);
+            }
+
+            bf.putInt(kwBytes.length);
+            bf.put(kwBytes);
+            bf.putInt(segment.get(keyword).size());
+            count++;
+        }
+        bf.rewind();
+        bf.putInt(count);
+        pfc.appendPage(bf);
+
+        pfc.close();
+    }
+
+    private void flushPostingLists(List<String> keywords){
+        ByteBuffer bf = ByteBuffer.allocate(PAGE_SIZE);
+        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get("./inverted_index/postingLists_" + segmentCounter));
+
+        for(String keyword : keywords){
+            List<Integer> postingList = segment.get(keyword);
+
+            for(int id : postingList){
+                if(!bf.hasRemaining()){
+                    pfc.appendPage(bf);
+                    bf.clear();
+                }
+                bf.putInt(id);
+            }
+        }
+        pfc.appendPage(bf);
+        pfc.close();
     }
 
     /**
@@ -145,6 +168,98 @@ public class InvertedIndexManager {
         Preconditions.checkArgument(getNumSegments() % 2 == 0);
         throw new UnsupportedOperationException();
     }
+
+
+
+
+    public List<String> getKeywordList(int segNum){
+        String keywordsFile = "./inverted_index/keywords_" + segNum;
+
+        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get(keywordsFile));
+        int pages = pfc.getNumPages();
+        List<String> keywords = new ArrayList<>();
+
+        for(int i = 0; i < pages; i++){
+            ByteBuffer bf = pfc.readPage(i);
+
+            int items = bf.getInt();
+            for(int j = 0; j < items; j++){
+                int kwBytesLength = bf.getInt();
+                byte[] kwBytes = new byte[kwBytesLength];
+                bf.get(kwBytes);
+                String keyword = new String(kwBytes);
+                keywords.add(keyword);
+                bf.position(bf.position() + 4);
+            }
+        }
+        return keywords;
+    }
+    
+    private List<Integer> getSizeList(int segNum){
+        String keywordsFile = "./inverted_index/keywords_" + segNum;
+
+        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get(keywordsFile));
+        int pages = pfc.getNumPages();
+        List<Integer> sizes = new ArrayList<>();
+
+        for(int i = 0; i < pages; i++){
+            ByteBuffer bf = pfc.readPage(i);
+
+            int items = bf.getInt();
+            for(int j = 0; j < items; j++){
+                int kwBytesLength = bf.getInt();
+                bf.position(bf.position() + kwBytesLength);
+                sizes.add(bf.getInt());
+            }
+        }
+        return sizes;
+    }
+
+    public Set<String> getKeywordSet(int segNum){
+        List<String> keywordList = getKeywordList(segNum);
+        Set<String> keywordSet = new HashSet<>(keywordList);
+        return keywordSet;
+    }
+
+    public List<Integer> getPostingList(int segNum, String keyword){
+        List<String> keywordList = getKeywordList(segNum);
+        List<Integer> sizeList = getSizeList(segNum);
+
+        int index = -1;
+        for(int i = 0; i < keywordList.size(); i++){
+            if(keyword.equals(keywordList.get(i))){
+                index = i;
+                break;
+            }
+        }
+        if(index == -1) return null;
+
+        String postingListFile = "./inverted_index/postingLists_" + segNum;
+        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get(postingListFile));
+        List<Integer> postingList = new ArrayList<>();
+
+        int globalOffset = 0;
+        for(int i = 0; i < index; i++) globalOffset += 4 * sizeList.get(i);
+
+        int pageNum = globalOffset / PAGE_SIZE;
+        int localOffset = globalOffset % PAGE_SIZE;
+
+        ByteBuffer bf = pfc.readPage(pageNum);
+        bf.position(localOffset);
+
+        for(int i = 0; i < sizeList.get(index); i++){
+            if(!bf.hasRemaining()){
+                pageNum++;
+                bf = pfc.readPage(pageNum);
+            }
+            postingList.add(bf.getInt());
+        }
+
+        return postingList;
+    }
+
+
+
 
     /**
      * Performs a single keyword search on the inverted index.
@@ -222,3 +337,66 @@ public class InvertedIndexManager {
 
 
 }
+
+
+
+class Test{
+    public static void main(String[] args){
+        InvertedIndexManager iim = InvertedIndexManager.createOrOpen("./", new ComposableAnalyzer(new PunctuationTokenizer(), new PorterStemmer()));
+
+        iim.docs.add(new Document("cat dog"));
+        iim.docs.add(new Document("dog shit"));
+
+        List<Integer> cat = new ArrayList<>();
+        List<Integer> dog = new ArrayList<>();
+        List<Integer> shit = new ArrayList<>();
+
+        cat.add(0);
+        dog.add(0);
+        dog.add(1);
+        shit.add(1);
+
+        iim.segment.put("cat", cat);
+        iim.segment.put("dog", dog);
+        iim.segment.put("shit", shit);
+
+        iim.flush();
+
+        List<String> keywords = iim.getKeywordList(0);
+        System.out.println(keywords.size());
+
+        for(String str : keywords){
+            System.out.println(str);
+        }
+
+        List<Integer> postingList = iim.getPostingList(0, "dog");
+        System.out.println(postingList.size());
+
+        for(int id : postingList){
+            System.out.println(id);
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

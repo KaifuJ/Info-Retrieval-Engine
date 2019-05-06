@@ -193,32 +193,32 @@ public class PageFileChannel implements AutoCloseable {
 }
 
 
-class Test{
-    public static void main(String[] args){
-        Path path = Paths.get("./segmentTest.txt");
-        PageFileChannel pfc = PageFileChannel.createOrOpen(path);
-
-        ByteBuffer bf = ByteBuffer.allocate(4096);
-
-        byte[] wr = new byte[20];
-        for(int i = 0; i < wr.length; i++){
-            wr[i] = (byte) (i + 1);
-        }
-
-        bf.put(wr);
-
-        pfc.appendAllBytes(bf);
-
-
-        bf = pfc.readAllPages();
-        bf.flip();
-
-        while(bf.hasRemaining()){
-            System.out.println(bf.get());
-        }
-
-    }
-}
+//class Test{
+//    public static void main(String[] args){
+//        Path path = Paths.get("./segmentTest.txt");
+//        PageFileChannel pfc = PageFileChannel.createOrOpen(path);
+//
+//        ByteBuffer bf = ByteBuffer.allocate(4096);
+//
+//        byte[] wr = new byte[20];
+//        for(int i = 0; i < wr.length; i++){
+//            wr[i] = (byte) (i + 1);
+//        }
+//
+//        bf.put(wr);
+//
+//        pfc.appendAllBytes(bf);
+//
+//
+//        bf = pfc.readAllPages();
+//        bf.flip();
+//
+//        while(bf.hasRemaining()){
+//            System.out.println(bf.get());
+//        }
+//
+//    }
+//}
 
 
 
