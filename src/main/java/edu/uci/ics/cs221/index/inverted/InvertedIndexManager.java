@@ -290,7 +290,7 @@ public class InvertedIndexManager {
             DocumentStore docStore0 = MapdbDocStore.createOrOpen(path+"/docStore_" + segNum0);
             DocumentStore docStore1 = MapdbDocStore.createOrOpen(path+"/docStore_" + segNum1);
 
-            DocumentStore newDocStore = MapdbDocStore.createOrOpen(path+"/newdoc_"+newSegNum);
+            DocumentStore newDocStore = MapdbDocStore.createOrOpen(path+"/new_docStore_"+newSegNum);
 
             Iterator<Map.Entry<Integer, Document>> itera0 = docStore0.iterator();
             int count = 0;
@@ -322,7 +322,7 @@ public class InvertedIndexManager {
             tmp0.delete();
             File tmp1 = new File(path+"/docStore_"+segNum1);
             tmp1.delete();
-            File tmp2  = new File(path+"/newdoc_"+newSegNum);
+            File tmp2  = new File(path+"/new_docStore_"+newSegNum);
             tmp2.renameTo(new File(path+"/docStore_"+newSegNum));
 
 
@@ -404,6 +404,7 @@ public class InvertedIndexManager {
                 sizes.add(bf.getInt());
             }
         }
+        pfc.close();
         return sizes;
     }
 
@@ -441,7 +442,7 @@ public class InvertedIndexManager {
             }
             postingList.add(bf.getInt());
         }
-
+        pfc.close();
         return postingList;
     }
 
@@ -601,9 +602,7 @@ public class InvertedIndexManager {
      * @return number of index segments.
      */
     public int getNumSegments() {
-        File file = new File(path);
-        File[] listFiles = file.listFiles();
-        return listFiles.length/3;
+        return segmentCounter;
     }
 
     /**

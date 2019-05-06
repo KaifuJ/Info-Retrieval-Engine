@@ -103,7 +103,6 @@ public class Team14MergeTest {
             index.addDocument(d);
             assert index.getNumSegments() == 1;
         }
-
     }
 
     /*
