@@ -126,7 +126,7 @@ public class Team6AndSearchTest {
         expectedDocs.add(doc5);
         expectedDocs.add(doc6);
 
-        List<String> keyWords = Arrays.asList("dog", "tree", "appl");
+        List<String> keyWords = Arrays.asList("dog", "tree", "apple");
         Iterator<Document> ite = manager.searchAndQuery(keyWords);
 
         while(ite.hasNext()){

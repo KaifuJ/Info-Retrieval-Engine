@@ -238,54 +238,6 @@ public class Team22FlushTest {
     }
 
 
-    // check if read/writer counter updated properly
-    // we check whether the pages take the space at least the length of the keywords
-
-    @Test
-    public void checkPageIOTest(){
-        Tokenizer tokenizer = new PunctuationTokenizer();
-        Stemmer stemmer = new PorterStemmer();
-        analyzer = new ComposableAnalyzer(tokenizer, stemmer); // create composable analyzer for documents tokenization
-        indexManager = InvertedIndexManager.createOrOpen(folder,analyzer);
-
-        // create documents with 4096 characters
-        char[] chars = new char[PageFileChannel.PAGE_SIZE];
-        Arrays.fill(chars, 'a');
-        String text = new String(chars);
-        Document doc1 = new Document(text);
-
-        chars = new char[PageFileChannel.PAGE_SIZE];
-        Arrays.fill(chars, 'b');
-        text = new String(chars);
-        Document doc2 = new Document(text);
-
-        chars = new char[PageFileChannel.PAGE_SIZE];
-        Arrays.fill(chars, 'c');
-        text = new String(chars);
-        Document doc3 = new Document(text);
-
-        // set up ground true documents
-        ArrayList<Document> docs = new ArrayList<>();
-        docs.add(doc1);
-        docs.add(doc2);
-        docs.add(doc3);
-
-        // add documents
-        indexManager.addDocument(doc1);
-        indexManager.addDocument(doc2);
-        indexManager.addDocument(doc3);
-        indexManager.flush();
-
-        // check segment number and write counter
-        assertEquals(indexManager.getNumSegments(), 1);
-        assertTrue(PageFileChannel.writeCounter >= 3);
-
-        // check segment context and read counter
-        checkSegment(0, docs);
-        assertTrue(PageFileChannel.readCounter >= 3);
-    }
-
-
 
     /*
     This function create the ground truth of "one segments" of given documents lists

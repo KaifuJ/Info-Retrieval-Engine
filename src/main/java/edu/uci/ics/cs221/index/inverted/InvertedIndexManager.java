@@ -31,7 +31,6 @@ public class InvertedIndexManager {
     public List<Document> docs;
     public Map<String, List<Integer>> segment;
     private int segmentCounter;
-    private int docCounter ;
     public List<Document> SearchDoc;
 
     private Analyzer analyzer;
@@ -59,7 +58,6 @@ public class InvertedIndexManager {
         this.segmentCounter = 0;
         this.analyzer = analyzer;
         this.path = indexFolder;
-        this.docCounter = 0;
         this.SearchDoc = new ArrayList<>();
     }
 
@@ -91,27 +89,25 @@ public class InvertedIndexManager {
      */
     public void addDocument(Document document) {
         List<String> wordList = this.analyzer.analyze(document.getText());
-        docCounter+=1;
         this.docs.add(document);
 
         for(String s : wordList){
             if(this.segment.containsKey(s)){
                 List<Integer> postingList = segment.get(s);
-                if(postingList.get(segment.get(s).size()-1)!=docCounter-1)
-                    postingList.add(docCounter-1);
+                if(postingList.get(postingList.size()-1)!=docs.size()-1)
+                    postingList.add(docs.size()-1);
             }
             else {
-                segment.put(s,new ArrayList<>(Arrays.asList(docCounter-1)));
+                segment.put(s,new ArrayList<>(Arrays.asList(docs.size()-1)));
             }
 
         }
 
-        if(this.docCounter == this.DEFAULT_FLUSH_THRESHOLD){
+        if(this.docs.size() == this.DEFAULT_FLUSH_THRESHOLD){
             flush();
         }
 
-        if(getNumSegments() == this.DEFAULT_MERGE_THRESHOLD)
-                mergeAllSegments();
+
     }
 
 
@@ -142,8 +138,9 @@ public class InvertedIndexManager {
         segmentCounter++;
         docs.clear();
         segment.clear();
-        docCounter = 0;
 
+        if(segmentCounter == this.DEFAULT_MERGE_THRESHOLD)
+            mergeAllSegments();
 //        throw new UnsupportedOperationException();
     }
 

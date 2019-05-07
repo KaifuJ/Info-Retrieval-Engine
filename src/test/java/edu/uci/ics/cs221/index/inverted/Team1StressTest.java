@@ -61,7 +61,7 @@ public class Team1StressTest {
      * Stress test with two large documents.
      * @see #largeDocs
      */
-    @Test(timeout = 300000)
+    @Test
     public void test1() {
         for (Document doc: largeDocs)
             iim.addDocument(doc);
@@ -95,7 +95,7 @@ public class Team1StressTest {
      * Stress test with 10 smaller documents.
      * @see #manyDocs
      */
-    @Test(timeout = 300000)
+    @Test
     public void test2() {
         for (Document doc: manyDocs)
             iim.addDocument(doc);

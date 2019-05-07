@@ -114,6 +114,7 @@ public class Team5OrSearchTest {
         Iterator<Document> iterator = invertedList.searchOrQuery(words);
         int counter = 0;
         while (iterator.hasNext()) {
+
             String text = iterator.next().getText();
             assertEquals(true,
                     text.toLowerCase().contains("dog") || text.toLowerCase().contains("toy"));
