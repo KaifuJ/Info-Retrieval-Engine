@@ -114,7 +114,9 @@ public class MapdbDocStore implements DocumentStore {
                 entry -> immutableEntry(entry.getKey(), new Document(entry.getValue())));
     }
 
-
+    public Iterator<Integer> keyIterator() {
+        return this.map.keyIterator();
+    }
 
     @Override
     public long size() {
