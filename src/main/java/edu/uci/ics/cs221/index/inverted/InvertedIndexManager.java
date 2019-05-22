@@ -1,16 +1,14 @@
 package edu.uci.ics.cs221.index.inverted;
 
 import com.google.common.base.Preconditions;
-import edu.uci.ics.cs221.analysis.Analyzer;
-import edu.uci.ics.cs221.analysis.ComposableAnalyzer;
-import edu.uci.ics.cs221.analysis.PorterStemmer;
-import edu.uci.ics.cs221.analysis.PunctuationTokenizer;
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
+import edu.uci.ics.cs221.analysis.*;
 import edu.uci.ics.cs221.storage.Document;
 import edu.uci.ics.cs221.storage.DocumentStore;
 import edu.uci.ics.cs221.storage.MapdbDocStore;
 //import sun.jvm.hotspot.debugger.Page;
 
-import javax.print.Doc;
 import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -30,40 +28,48 @@ public class InvertedIndexManager {
 
     public List<Document> docs;
     public Map<String, List<Integer>> segment;
+    public Table<String, Integer, List<Integer>> positions;
     private int segmentCounter;
+
     public List<Document> SearchDoc;
 
     private Analyzer analyzer;
-    private String path;
-    /**
-     * The default flush threshold, in terms of number of documents.
-     * For example, a new Segment should be automatically created whenever there's 1000 documents in the buffer.
-     *
-     * In test cases, the default flush threshold could possibly be set to any number.
-     */
-    public static int DEFAULT_FLUSH_THRESHOLD = 1000;
+    private Compressor compressor;
 
-    /**
-     * The default merge threshold, in terms of number of segments in the inverted index.
-     * When the number of segments reaches the threshold, a merge should be automatically triggered.
-     *
-     * In test cases, the default merge threshold could possibly be set to any number.
-     */
+    private String path;
+
+    public static int DEFAULT_FLUSH_THRESHOLD = 1000;
     public static int DEFAULT_MERGE_THRESHOLD = 8;
+
+
+
 
 
     private InvertedIndexManager(String indexFolder, Analyzer analyzer) {
         this.docs = new ArrayList<>();
         this.segment = new HashMap<>();
+        this.positions = HashBasedTable.create();
         this.segmentCounter = 0;
+
         this.analyzer = analyzer;
+
         this.path = indexFolder;
         this.SearchDoc = new ArrayList<>();
     }
 
-    /**
-     * Creates an inverted index manager with the folder and an analyzer
-     */
+    private InvertedIndexManager(String indexFolder, Analyzer analyzer, Compressor compressor) {
+        this.docs = new ArrayList<>();
+        this.segment = new HashMap<>();
+        this.positions = HashBasedTable.create();
+        this.segmentCounter = 0;
+
+        this.analyzer = analyzer;
+        this.compressor = compressor;
+
+        this.path = indexFolder;
+        this.SearchDoc = new ArrayList<>();
+    }
+
     public static InvertedIndexManager createOrOpen(String indexFolder, Analyzer analyzer) {
         try {
             Path indexFolderPath = Paths.get(indexFolder);
@@ -82,11 +88,28 @@ public class InvertedIndexManager {
         }
     }
 
-    /**
-     * Adds a document to the inverted index.
-     * Document should live in a in-memory buffer until `flush()` is called to write the segment to disk.
-     * @param document
-     */
+    public static InvertedIndexManager createOrOpenPositional(String indexFolder, Analyzer analyzer, Compressor compressor){
+        try {
+            Path indexFolderPath = Paths.get(indexFolder);
+            if (Files.exists(indexFolderPath) && Files.isDirectory(indexFolderPath)) {
+                if (Files.isDirectory(indexFolderPath)) {
+                    return new InvertedIndexManager(indexFolder, analyzer, compressor);
+                } else {
+                    throw new RuntimeException(indexFolderPath + " already exists and is not a directory");
+                }
+            } else {
+                Files.createDirectories(indexFolderPath);
+                return new InvertedIndexManager(indexFolder, analyzer, compressor);
+            }
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+
+
+
+
     public void addDocument(Document document) {
         List<String> wordList = this.analyzer.analyze(document.getText());
         this.docs.add(document);
@@ -107,7 +130,6 @@ public class InvertedIndexManager {
             flush();
         }
 
-
     }
 
 
@@ -116,147 +138,146 @@ public class InvertedIndexManager {
 
 
 
-
-    /**
-     * Flushes all the documents in the in-memory segment buffer to disk. If the buffer is empty, it should not do anything.
-     * flush() writes the segment to disk containing the posting list and the corresponding document store.
-     */
     public void flush() {
         // flush docs
-        if(docs.size() == 0) return;
+//        if(docs.size() == 0) return;
         DocumentStore docStore = MapdbDocStore.createOrOpen(path+"/docStore_" + this.segmentCounter);
         for(int i = 0; i < this.docs.size(); i++){
             docStore.addDocument(i, docs.get(i));
         }
         docStore.close();
 
-        // flush segment (keywords and postingLists)
-        List<String> keywordsList = new ArrayList<>(segment.keySet());
-        flushKeywords(keywordsList);
-        flushPostingLists(keywordsList);
 
-        segmentCounter++;
-        docs.clear();
-        segment.clear();
+        // flush keywords, posting lists, and position lists
+        PageFileChannel posiPfc = PageFileChannel.createOrOpen(Paths.get(path + "./positions_" + segmentCounter));
+        ByteBuffer posiBf = ByteBuffer.allocate(PAGE_SIZE);
+        int posiOffset = 0;
 
-        if(segmentCounter == this.DEFAULT_MERGE_THRESHOLD)
-            mergeAllSegments();
-//        throw new UnsupportedOperationException();
-    }
+        PageFileChannel postPfc = PageFileChannel.createOrOpen(Paths.get(path + "./postings_" + segmentCounter));
+        ByteBuffer postBf = ByteBuffer.allocate(PAGE_SIZE);
+        List<Integer> offInPost = new ArrayList<>();
+        int postOffset = 0;
 
-    private void flushKeywords(List<String> keywords){
-        ByteBuffer bf = ByteBuffer.allocate(PAGE_SIZE);
-        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get(path+"/keywords_" + segmentCounter));
+        PageFileChannel keyPfc = PageFileChannel.createOrOpen(Paths.get(path + "./keywords_" + segmentCounter));
+        ByteBuffer keyBf = ByteBuffer.allocate(PAGE_SIZE);
 
-        bf.putInt(0);
-        int count = 0;
-        for(String keyword : keywords) {
-            byte[] kwBytes = keyword.getBytes();
-
-            if(bf.remaining() < 4 + kwBytes.length +4){
-                bf.rewind();
-                bf.putInt(count);
-                count = 0;
-                pfc.appendPage(bf);
-                bf.clear();
-                bf.putInt(0);
-            }
-
-            bf.putInt(kwBytes.length);
-            bf.put(kwBytes);
-            bf.putInt(segment.get(keyword).size());
-            count++;
-        }
-        bf.rewind();
-        bf.putInt(count);
-        pfc.appendPage(bf);
-
-        pfc.close();
-    }
-
-    private void mergeKeywords(int segNum0, int segNum1){
-        Set<String> keywordSet0 = getKeywordSet(segNum0);
-        Set<String> keywordSet1 = getKeywordSet(segNum1);
-        keywordSet0.addAll(keywordSet1);
-        List<String> keywords = new ArrayList<>(keywordSet0);
-
-        ByteBuffer bf = ByteBuffer.allocate(PAGE_SIZE);
-        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get(path+"/new_keywords_" + (segNum0 / 2)));
-
-        bf.putInt(0);
-        int count = 0;
-        for(String keyword : keywords) {
-            byte[] kwBytes = keyword.getBytes();
-
-            if(bf.remaining() < 4 + kwBytes.length +4){
-                bf.rewind();
-                bf.putInt(count);
-                count = 0;
-                pfc.appendPage(bf);
-                bf.clear();
-                bf.putInt(0);
-            }
-            int size = getPostingList(segNum0, keyword).size() + getPostingList(segNum1, keyword).size();
-
-            bf.putInt(kwBytes.length);
-            bf.put(kwBytes);
-            bf.putInt(size);
-            count++;
-        }
-        bf.rewind();
-        bf.putInt(count);
-        pfc.appendPage(bf);
-
-        pfc.close();
-
-    }
-
-    private void flushPostingLists(List<String> keywords){
-        ByteBuffer bf = ByteBuffer.allocate(PAGE_SIZE);
-        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get(path+"/postingLists_" + segmentCounter));
-        for(String keyword : keywords){
-            List<Integer> postingList = segment.get(keyword);
-
-            for(int id : postingList){
-                if(!bf.hasRemaining()){
-                    pfc.appendPage(bf);
-                    bf.clear();
-                }
-                bf.putInt(id);
-            }
-        }
-        pfc.appendPage(bf);
-        pfc.close();
-    }
-
-    private void mergePostingLists(int segNum0, int segNum1, int count){
-        int newSegNum = segNum0 / 2;
-        ByteBuffer bf = ByteBuffer.allocateDirect(PAGE_SIZE);
-        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get(path+"/new_postingLists_" + newSegNum));
-
-        List<String> keywords = getKeywordList(newSegNum, true);
+        List<String> keywords = new ArrayList<>(segment.keySet());
+        keyBf.putInt(keywords.size());
 
         for(String keyword : keywords){
-            List<Integer> list0 = getPostingList(segNum0, keyword);
-            List<Integer> list1 = getPostingList(segNum1, keyword);
+            List<Integer> postList = segment.get(keyword);
+            offInPost.add(posiOffset);
 
-            for(int i = 0; i < list1.size(); i++){
-                list1.set(i, list1.get(i) + count);
+            for(int docId : postList){
+                List<Integer> posiList = positions.get(keyword, docId);
+                posiOffset = flushPosiList(posiPfc, posiBf, posiList, posiOffset);
+                offInPost.add(posiOffset);
             }
 
-            list0.addAll(list1);
+            int[] offInKey = flushPostList(postPfc, postBf, postList, offInPost, postOffset);
+            postOffset = offInKey[2];
+            offInPost.clear();
 
-            for(int id : list0){
-                if(!bf.hasRemaining()){
-                    pfc.appendPage(bf);
-                    bf.clear();
-                }
-                bf.putInt(id);
-            }
+            flushKeyword(keyPfc, keyBf, keyword, offInKey);
         }
-        pfc.appendPage(bf);
-        pfc.close();
 
+        if(posiBf.position() != 0) posiPfc.appendPage(posiBf);
+        if(postBf.position() != 0) postPfc.appendPage(postBf);
+        if(keyBf.position() != 0) keyPfc.appendPage(keyBf);
+
+        posiPfc.close();
+        postPfc.close();
+        keyPfc.close();
+
+        this.segmentCounter++;
+        this.docs.clear();
+        this.segment.clear();
+        this.positions.clear();
+    }
+
+    private void flushKeyword(PageFileChannel keyPfc, ByteBuffer keyBf, String keyword, int[] offInKey){
+        byte[] kwBytes = keyword.getBytes();
+
+        // put length and 3 offsets
+        if(keyBf.remaining() < 16){
+            keyPfc.appendPage(keyBf);
+            keyBf.clear();
+        }
+        keyBf.putInt(kwBytes.length);
+        keyBf.putInt(offInKey[0]);
+        keyBf.putInt(offInKey[1]);
+        keyBf.putInt(offInKey[2]);
+
+        // put keywords
+        int start = 0;
+        while(keyBf.remaining() < kwBytes.length - start){
+            int putLength = keyBf.remaining();
+            keyBf.put(kwBytes, start, putLength);
+            keyPfc.appendPage(keyBf);
+            keyBf.clear();
+
+            start += putLength;
+        }
+        keyBf.put(kwBytes, start, kwBytes.length - start);
+
+    }
+
+    private int[] flushPostList(PageFileChannel postPfc, ByteBuffer postBf, List<Integer> postList, List<Integer> offInPost, int postOffset){
+        int[] offsets = new int[3];
+        offsets[0] = postOffset;
+
+        byte[] encodedPostList = compressor.encode(postList);
+        byte[] encodedOffList = compressor.encode(offInPost);
+        int start = 0;
+
+        while(postBf.remaining() < encodedPostList.length - start){
+            int putLength = postBf.remaining();
+            postBf.put(encodedPostList, start, putLength);
+            postPfc.appendPage(postBf);
+            postBf.clear();
+
+            start += putLength;
+            postOffset += putLength;
+        }
+        postBf.put(encodedPostList, start, encodedPostList.length - start);
+        postOffset += encodedPostList.length - start;
+
+        offsets[1] = postOffset;
+
+        start = 0;
+
+        while(postBf.remaining() < encodedOffList.length - start){
+            int putLength = postBf.remaining();
+            postBf.put(encodedOffList, start, putLength);
+            postPfc.appendPage(postBf);
+            postBf.clear();
+
+            start += putLength;
+            postOffset += putLength;
+        }
+        postBf.put(encodedOffList, start, encodedOffList.length - start);
+        postOffset += encodedOffList.length - start;
+
+        offsets[2] = postOffset;
+        return offsets;
+    }
+
+    private int flushPosiList(PageFileChannel posiPfc, ByteBuffer posiBf, List<Integer> posiList, int posiOffset){
+        byte[] encodedPosiList = compressor.encode(posiList);
+        int start = 0;
+
+        while(posiBf.remaining() < encodedPosiList.length - start){
+            int putLength = posiBf.remaining();
+            posiBf.put(encodedPosiList, start, putLength);
+            posiPfc.appendPage(posiBf);
+            posiBf.clear();
+
+            start += putLength;
+            posiOffset += putLength;
+        }
+        posiBf.put(encodedPosiList, start, encodedPosiList.length - start);
+        posiOffset += encodedPosiList.length - start;
+        return posiOffset;
     }
 
 
@@ -264,18 +285,152 @@ public class InvertedIndexManager {
 
 
 
-    /**
-     * Merges all the disk segments of the inverted index pair-wise.
-     */
+    private Map<String, int[]> getKeywordsMap(int segNum){
+        Map<String, int[]> keywordsMap = new HashMap<>();
+
+        PageFileChannel keyPfc = PageFileChannel.createOrOpen(Paths.get(path + "./keywords_" + segNum));
+        int pages = keyPfc.getNumPages();
+        int pageNum = 0;
+
+        ByteBuffer keyBf = keyPfc.readPage(pageNum);
+        pageNum++;
+        int entries = keyBf.getInt();
+
+        for(int i = 0; i < entries; i++){
+            if(keyBf.remaining() < 16){
+                keyBf = keyPfc.readPage(pageNum);
+                pageNum++;
+            }
+            int length = keyBf.getInt();
+            int[] offsets = new int[3];
+            offsets[0] = keyBf.getInt();
+            offsets[1] = keyBf.getInt();
+            offsets[2] = keyBf.getInt();
+
+
+            byte[] kwBytes = new byte[length];
+            int start = 0;
+
+            while(keyBf.remaining() < length - start){
+                int getLength = keyBf.remaining();
+                keyBf.get(kwBytes, start, getLength);
+                start += getLength;
+            }
+            keyBf.get(kwBytes, start, length - start);
+
+            String keyword = new String(kwBytes);
+            keywordsMap.put(keyword, offsets);
+        }
+        keyPfc.close();
+        return keywordsMap;
+    }
+
+    public Set<String> getKeywordsSet(int segNum){
+        Map<String, int[]> keywordsMap = getKeywordsMap(segNum);
+        return keywordsMap.keySet();
+    }
+
+
+    public List<Integer> getPostAndOffsetList(String keyword, int segNum){
+        PageFileChannel postPfc = PageFileChannel.createOrOpen(Paths.get(path + "./postings_" + segNum));
+        Map<String, int[]> keywordsMap = getKeywordsMap(segNum);
+        int[] offsets = keywordsMap.get(keyword);
+
+        int pageNum = offsets[0] / PAGE_SIZE;
+        int pageOffset = offsets[0] % PAGE_SIZE;
+        ByteBuffer postBf = postPfc.readPage(pageNum);
+        pageNum++;
+        postBf.position(pageOffset);
+
+        int totalSize = offsets[2] - offsets[0];
+        byte[] idsAndOffs = new byte[totalSize];
+
+        for(int i = 0; i < totalSize; i++){
+            if(!postBf.hasRemaining()){
+                postBf = postPfc.readPage(pageNum);
+                pageNum++;
+            }
+            idsAndOffs[i] = postBf.get();
+        }
+
+        List<Integer> postAndOffs = new ArrayList<>();
+        postAndOffs.addAll(compressor.decode(idsAndOffs, 0, offsets[1] - offsets[0]));
+        postAndOffs.addAll(compressor.decode(idsAndOffs, offsets[1] - offsets[0], offsets[2] - offsets[1]));
+
+        postPfc.close();
+        return postAndOffs;
+    }
+
+    public List<Integer> getPostList(List<Integer> postAndOffs){
+//        List<Integer> postAndOffs = getPostAndOffsetList(keyword, segNum);
+        List<Integer> postList = new ArrayList<>(postAndOffs.size() / 2);
+
+        for(int i = 0; i < postAndOffs.size() / 2; i++){
+            postList.add(postAndOffs.get(i));
+        }
+        return postList;
+    }
+
+    private List<Integer> getPostOffsets(List<Integer> postAndOffs){
+//        List<Integer> postAndOffs = getPostAndOffsetList(keyword, segNum);
+        List<Integer> offsets = new ArrayList<>(postAndOffs.size() / 2 + 1);
+
+        for(int i = postAndOffs.size() / 2; i < postAndOffs.size(); i++){
+            offsets.add(postAndOffs.get(i));
+        }
+        return offsets;
+    }
+
+
+    public List<Integer> getPositionList(String keyword, int docId, int segNum){
+        List<Integer> postAndOffs = getPostAndOffsetList(keyword, segNum);
+        List<Integer> postList = getPostList(postAndOffs);
+        List<Integer> offsets = getPostOffsets(postAndOffs);
+
+        int start = -1;
+        int end = -1;
+        for(int i = 0; i < postList.size(); i++){
+            if(postList.get(i) == docId){
+                start = offsets.get(i);
+                end = offsets.get(i + 1);
+                break;
+            }
+        }
+
+        PageFileChannel posiPfc = PageFileChannel.createOrOpen(Paths.get(path + "./positions_" + segNum));
+
+        int pageNum = start / PAGE_SIZE;
+        ByteBuffer posiBf = posiPfc.readPage(pageNum);
+        pageNum++;
+
+        int pageOffset = start % PAGE_SIZE;
+        posiBf.position(pageOffset);
+
+        int length = end - start;
+
+        byte[] posiBytes = new byte[length];
+
+        for(int i = 0; i < length; i++){
+            if(!posiBf.hasRemaining()){
+                posiBf = posiPfc.readPage(pageNum);
+                pageNum++;
+            }
+            posiBytes[i] = posiBf.get();
+        }
+
+        posiPfc.close();
+        return compressor.decode(posiBytes);
+    }
+
+
+
+
+
+
+
     public void mergeAllSegments() {
         // merge only happens at even number of segments
         Preconditions.checkArgument(getNumSegments() % 2 == 0);
-//        Path indexFolderPath = Paths.get(path+"_new");
-//        try{
-//            Files.createDirectories(indexFolderPath);
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
 
 
         for(int i = 0; i < segmentCounter ; i += 2){
@@ -339,109 +494,9 @@ public class InvertedIndexManager {
         }
 
         segmentCounter /= 2;
-//        File oldDir = new File("./inverted_index");
-//        oldDir.renameTo(new File("./inverted_index_old"));
-//
-//        File newDir = new File("./inverted_index_new");
-//        newDir.renameTo(new File("./inverted_index"));
-
-//        throw new UnsupportedOperationException();
     }
 
 
-
-
-
-    private List<String> getKeywordList(int segNum, boolean newDir){
-        String keywordsFile = null;
-        if(newDir) keywordsFile = path+"/new_keywords_" + segNum;
-        else keywordsFile = path+"/keywords_" + segNum;
-
-        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get(keywordsFile));
-        int pages = pfc.getNumPages();
-        List<String> keywords = new ArrayList<>();
-
-        for(int i = 0; i < pages; i++){
-            ByteBuffer bf = pfc.readPage(i);
-
-            int items = bf.getInt();
-            for(int j = 0; j < items; j++){
-                int kwBytesLength = bf.getInt();
-                byte[] kwBytes = new byte[kwBytesLength];
-                bf.get(kwBytes);
-                String keyword = new String(kwBytes);
-                keywords.add(keyword);
-                bf.position(bf.position() + 4);
-            }
-        }
-        pfc.close();
-        return keywords;
-    }
-
-    private Set<String> getKeywordSet(int segNum){
-        List<String> keywordList = getKeywordList(segNum, false);
-        Set<String> keywordSet = new HashSet<>(keywordList);
-        return keywordSet;
-    }
-
-    private List<Integer> getSizeList(int segNum){
-        String keywordsFile = path+"/keywords_" + segNum;
-
-        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get(keywordsFile));
-        int pages = pfc.getNumPages();
-        List<Integer> sizes = new ArrayList<>();
-
-        for(int i = 0; i < pages; i++){
-            ByteBuffer bf = pfc.readPage(i);
-
-            int items = bf.getInt();
-            for(int j = 0; j < items; j++){
-                int kwBytesLength = bf.getInt();
-                bf.position(bf.position() + kwBytesLength);
-                sizes.add(bf.getInt());
-            }
-        }
-        pfc.close();
-        return sizes;
-    }
-
-    private List<Integer> getPostingList(int segNum, String keyword){
-        List<String> keywordList = getKeywordList(segNum, false);
-        List<Integer> sizeList = getSizeList(segNum);
-
-        int index = -1;
-        for(int i = 0; i < keywordList.size(); i++){
-            if(keyword.equals(keywordList.get(i))){
-                index = i;
-                break;
-            }
-        }
-
-        List<Integer> postingList = new ArrayList<>();
-        if(index == -1) return postingList;
-
-        String postingListFile = path+"/postingLists_" + segNum;
-        PageFileChannel pfc = PageFileChannel.createOrOpen(Paths.get(postingListFile));
-
-        int globalOffset = 0;
-        for(int i = 0; i < index; i++) globalOffset += 4 * sizeList.get(i);
-
-        int pageNum = globalOffset / PAGE_SIZE;
-        int localOffset = globalOffset % PAGE_SIZE;
-
-        ByteBuffer bf = pfc.readPage(pageNum);
-        bf.position(localOffset);
-
-        for(int i = 0; i < sizeList.get(index); i++){
-            if(!bf.hasRemaining()){
-                pageNum++;
-                bf = pfc.readPage(pageNum);
-            }
-            postingList.add(bf.getInt());
-        }
-        pfc.close();
-        return postingList;
-    }
 
 
 
@@ -480,6 +535,7 @@ public class InvertedIndexManager {
         }
         return keyword;
     }
+
     /**
      * Performs an AND boolean search on the inverted index.
      *
@@ -602,13 +658,12 @@ public class InvertedIndexManager {
         return segmentCounter;
     }
 
-    /**
-     * Reads a disk segment into memory based on segmentNum.
-     * This function is mainly used for checking correctness in test cases.
-     *
-     * @param segmentNum n-th segment in the inverted index (start from 0).
-     * @return in-memory data structure with all contents in the index segment, null if segmentNum don't exist.
-     */
+
+
+
+
+
+
     public InvertedIndexSegmentForTest getIndexSegment(int segmentNum) {
         if(getNumSegments()==0) return null;
         Map<String, List<Integer>> invertedLists = new HashMap<>();
@@ -629,11 +684,49 @@ public class InvertedIndexManager {
         return invertedIndexSegmentForTest;
     }
 
+    public PositionalIndexSegmentForTest getIndexSegmentPositional(int segmentNum){
+
+    }
+
 }
 
 
 
+class Test{
+    public static void main(String[] args){
+        Analyzer analyzer = new ComposableAnalyzer(new PunctuationTokenizer(), new PorterStemmer());
+        InvertedIndexManager iim = InvertedIndexManager.createOrOpenPositional("./test", analyzer, new DeltaVarLenCompressor());
 
+        iim.segment.put("key0", new ArrayList<>(Arrays.asList(0, 1, 2)));
+        iim.segment.put("key1", new ArrayList<>(Arrays.asList(5, 6, 7)));
+
+        iim.positions.put("key0", 0, Arrays.asList(0, 2, 3));
+        iim.positions.put("key0", 1, Arrays.asList(1, 4));
+        iim.positions.put("key0", 2, Arrays.asList(5));
+        iim.positions.put("key1", 5, Arrays.asList(7, 8));
+        iim.positions.put("key1", 6, Arrays.asList(3));
+        iim.positions.put("key1", 7, Arrays.asList(0));
+
+        iim.flush();
+
+        Set<String> set = iim.getKeywordsSet(0);
+        System.out.println(set.size());
+
+        for(String s : set) System.out.println(s);
+
+        System.out.println("--------------");
+
+        List<Integer> postList = iim.getPostList(iim.getPostAndOffsetList("key1", 0));
+
+        for(int id : postList){
+            System.out.println(id);
+        }
+
+        System.out.println("--------------");
+        List<Integer> posiList = iim.getPositionList("key1", 5, 0);
+        for(int posi : posiList) System.out.println(posi);
+    }
+}
 
 
 
