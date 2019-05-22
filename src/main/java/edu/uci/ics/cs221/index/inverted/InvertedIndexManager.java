@@ -75,13 +75,13 @@ public class InvertedIndexManager {
             Path indexFolderPath = Paths.get(indexFolder);
             if (Files.exists(indexFolderPath) && Files.isDirectory(indexFolderPath)) {
                 if (Files.isDirectory(indexFolderPath)) {
-                    return new InvertedIndexManager(indexFolder, analyzer);
+                    throw new UnsupportedOperationException();
                 } else {
                     throw new RuntimeException(indexFolderPath + " already exists and is not a directory");
                 }
             } else {
                 Files.createDirectories(indexFolderPath);
-                return new InvertedIndexManager(indexFolder, analyzer);
+                throw new UnsupportedOperationException();
             }
         } catch (IOException e) {
             throw new UncheckedIOException(e);
@@ -114,16 +114,21 @@ public class InvertedIndexManager {
         List<String> wordList = this.analyzer.analyze(document.getText());
         this.docs.add(document);
 
-        for(String s : wordList){
-            if(this.segment.containsKey(s)){
-                List<Integer> postingList = segment.get(s);
+        for(int i = 0; i < wordList.size(); i++){
+            if(this.segment.containsKey(wordList.get(i))){
+                List<Integer> postingList = segment.get(wordList.get(i));
                 if(postingList.get(postingList.size()-1)!=docs.size()-1)
                     postingList.add(docs.size()-1);
             }
             else {
-                segment.put(s,new ArrayList<>(Arrays.asList(docs.size()-1)));
+                segment.put(wordList.get(i),new ArrayList<>(Arrays.asList(docs.size()-1)));
             }
 
+            if(positions.contains(wordList.get(i),docs.size()-1)){
+                positions.get(wordList.get(i),docs.size()-1).add(i);
+            }else{
+                positions.put(wordList.get(i),docs.size()-1,new ArrayList(Arrays.asList(i)));
+            }
         }
 
         if(this.docs.size() == this.DEFAULT_FLUSH_THRESHOLD){
@@ -432,11 +437,6 @@ public class InvertedIndexManager {
     }
 
 
-
-
-
-
-
     public void mergeAllSegments() {
         // merge only happens at even number of segments
         Preconditions.checkArgument(getNumSegments() % 2 == 0);
@@ -550,10 +550,6 @@ public class InvertedIndexManager {
 
 
 
-
-
-
-
     /**
      * Performs a single keyword search on the inverted index.
      * You could assume the analyzer won't convert the keyword into multiple tokens.
@@ -568,8 +564,8 @@ public class InvertedIndexManager {
         SearchDoc.clear();
         keyword = this.analyzer.analyze(keyword).get(0);
         for(int i = 0; i < getNumSegments(); i++){
-            if(getKeywordList(i,false).contains(keyword)){
-                List<Integer> list = getPostingList(i,keyword);
+            if(getKeywordsSet(i).contains(keyword)){
+                List<Integer> list = getPostList(getPostAndOffsetList(keyword,i));
                 DocumentStore documentStore = MapdbDocStore.createOrOpen(path+"/docStore_" + i);
                 for(int index : list){
                     SearchDoc.add(documentStore.getDocument(index));
@@ -588,6 +584,30 @@ public class InvertedIndexManager {
         return keyword;
     }
 
+
+    public List<Integer> getCommonDoc(List<String> keywords, int segNum ){
+        List<Integer> predoc = getPostList(getPostAndOffsetList(keywords.get(0),segNum));
+        List<Integer> doc = new ArrayList<>();
+        for(int j = 1; j < keywords.size(); j++) {
+            doc.clear();
+            List<Integer> temp = getPostList(getPostAndOffsetList(keywords.get(j),segNum));
+            int m = 0, n = 0;
+            while (m < predoc.size() && n < temp.size()) {
+                if (predoc.get(m) > temp.get(n))
+                    n++;
+                else if (predoc.get(m) < temp.get(n))
+                    m++;
+                else {
+                    doc.add(predoc.get(m));
+                    m++;
+                    n++;
+                }
+            }
+            predoc.clear();
+            predoc.addAll(doc);
+        }
+        return doc;
+    }
     /**
      * Performs an AND boolean search on the inverted index.
      *
@@ -596,46 +616,25 @@ public class InvertedIndexManager {
      */
     public Iterator<Document> searchAndQuery(List<String> keywords) {
         Preconditions.checkNotNull(keywords);
-        Preconditions.checkNotNull(keywords);
         SearchDoc.clear();
 
         List<String> keyword = processKeywords(keywords);
         if(keyword.size() == 0) return SearchDoc.iterator();
         for(int i = 0; i < getNumSegments(); i++){
-            Set<String> segKeys = getKeywordSet(i);
+            Set<String> segKeys = getKeywordsSet(i);
             boolean flag = true;
             for(String keys : keyword){
                 flag = segKeys.contains(keys);
             }
             if(flag == false) continue;
-            else{
-                List<Integer> pre = getPostingList(i,keyword.get(0));
-                List<Integer> res = new ArrayList<>();
-                for(int j = 1; j < keyword.size(); j++){
-                    res.clear();
-                    List<Integer> temp = getPostingList(i,keyword.get(j));
-                    int m = 0, n = 0;
-                    while(m < pre.size() && n < temp.size())
-                    {
-                        if(pre.get(m) > temp.get(n))
-                            n++;
-                        else if(pre.get(m) < temp.get(n))
-                            m++;
-                        else{
-                            res.add(pre.get(m));
-                            m++;
-                            n++;
-                        }
-                    }
-                    pre.clear();
-                    pre.addAll(res);
-                }
-                DocumentStore documentStore = MapdbDocStore.createOrOpen(path+"/docStore_" + i);
-                for(int index : res){
-                    SearchDoc.add(documentStore.getDocument(index));
-                }
-                documentStore.close();
+
+            List<Integer> res = getCommonDoc(keyword,i);
+            DocumentStore documentStore = MapdbDocStore.createOrOpen(path+"/docStore_" + i);
+            for(int index : res){
+                SearchDoc.add(documentStore.getDocument(index));
             }
+            documentStore.close();
+
         }
         return SearchDoc.iterator();
     }
@@ -654,12 +653,12 @@ public class InvertedIndexManager {
 
         if(ankeyword.size() == 0) return SearchDoc.iterator();
         for(int i = 0; i < getNumSegments(); i++){
-            Set<String> segKeys = getKeywordSet(i);
+            Set<String> segKeys = getKeywordsSet(i);
             Set<Integer> Index = new HashSet<>();
 
             for(String keyword : ankeyword){
                 if(segKeys.contains((keyword))){
-                    List<Integer> indexes = getPostingList(i,keyword);
+                    List<Integer> indexes = getPostList(getPostAndOffsetList(keyword,i));
                     for(int docId : indexes){
                         if(Index.contains(docId)==false) Index.add(docId);
                     }
@@ -668,6 +667,57 @@ public class InvertedIndexManager {
 
             DocumentStore documentStore = MapdbDocStore.createOrOpen(path+"/docStore_" + i);
             for(int index : Index){
+                SearchDoc.add(documentStore.getDocument(index));
+            }
+            documentStore.close();
+        }
+        return SearchDoc.iterator();
+    }
+
+    public Iterator<Document> searchPhraseQuery(List<String> phrase) {
+        Preconditions.checkNotNull(phrase);
+        SearchDoc.clear();
+        if(phrase.size() == 0) return SearchDoc.iterator();
+
+        List<String> keywords = processKeywords(phrase);
+
+        for(int i = 0; i < segmentCounter; i++){
+            Set<String> segKeys = getKeywordsSet(i);
+            boolean flag = true;
+            for(String keys : keywords){
+                flag = segKeys.contains(keys);
+            }
+            if(flag == false) continue;
+
+            List<Integer> doc = getCommonDoc(keywords,i);
+            if(doc.size() == 0) continue;
+
+            List<Integer> res = new ArrayList<>();
+            for(int index : doc){
+                List<Integer> prePosition = getPositionList(keywords.get(0),index,i);
+                List<Integer> position = new ArrayList<>();
+                for(int j = 1; j < keywords.size(); j++){
+                    position.clear();
+                    List<Integer> tmp = getPositionList(keywords.get(j),index,i);
+                    int m = 0, n = 0;
+                    while(m < prePosition.size() && n < tmp.size()){
+                        if (prePosition.get(m) +1 > tmp.get(n))
+                            n++;
+                        else if (prePosition.get(m) + 1 < tmp.get(n))
+                            m++;
+                        else {
+                            position.add(tmp.get(n));
+                            m++;
+                            n++;
+                        }
+                    }
+                    prePosition.clear();
+                    prePosition.addAll(position);
+                }
+                if(position.size() > 0) res.add(index);
+            }
+            DocumentStore documentStore = MapdbDocStore.createOrOpen(path+"/docStore_" + i);
+            for(int index : res){
                 SearchDoc.add(documentStore.getDocument(index));
             }
             documentStore.close();
@@ -727,17 +777,42 @@ public class InvertedIndexManager {
         }
         documentStore.close();
 
-        List<String> keyList = getKeywordList(segmentNum,false);
+        Set<String> keyList = getKeywordsSet(segmentNum);
         for(String keyword : keyList){
-            invertedLists.put(keyword,getPostingList(segmentNum,keyword));
+            invertedLists.put(keyword,getPostList(getPostAndOffsetList(keyword,segmentNum)));
         }
 
         InvertedIndexSegmentForTest invertedIndexSegmentForTest = new InvertedIndexSegmentForTest(invertedLists,documents);
         return invertedIndexSegmentForTest;
     }
 
-    public PositionalIndexSegmentForTest getIndexSegmentPositional(int segmentNum){
+    public PositionalIndexSegmentForTest getIndexSegmentPositional(int segmentNum) {
+        if(getNumSegments()==0) return null;
+        Map<String, List<Integer>> invertedLists = new HashMap<>();
+        Map<Integer, Document> documents = new HashMap<>();
+        Table<String, Integer, List<Integer>> positions = HashBasedTable.create();
 
+        DocumentStore documentStore = MapdbDocStore.createOrOpen(path+"/docStore_" + segmentNum);
+        for(int i = 0; i < documentStore.size(); i++){
+            documents.put(i,documentStore.getDocument(i));
+
+        }
+
+        Set<String> keyList = getKeywordsSet(segmentNum);
+        for(String keyword : keyList){
+            List<Integer> postAndOffs = getPostAndOffsetList(keyword, segmentNum);
+            //System.out.println(postAndOffs);
+            invertedLists.put(keyword,getPostList(postAndOffs));
+            //System.out.println(getPostList(postAndOffs));
+            //System.out.println(invertedLists);
+            for(int docID : getPostList(postAndOffs)){
+                positions.put(keyword,docID,getPositionList(keyword,docID,segmentNum));
+            }
+        }
+        documentStore.close();
+
+        PositionalIndexSegmentForTest positionalIndexSegmentForTest = new PositionalIndexSegmentForTest(invertedLists,documents,positions);
+        return positionalIndexSegmentForTest;
     }
 
 }
