@@ -95,7 +95,7 @@ public class Team12PhraseSearchTest {
     /**
      * tests if the inverted index is not a positional index should throw an UnsupportedOperationException
      */
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void test4() {
         invertedIndex = InvertedIndexManager.createOrOpen(path, analyzer);
         Document doc1 = new Document("He studies Computer Science at the University of California, Irvine.");

@@ -56,7 +56,7 @@ public class Team17PhraseSearchTest {
     /**
      *  Tests if searching on an inverted index returns an UnsupportedOperationException.
      */
-    @Test (expected = UnsupportedOperationException.class)
+    @Test
     public void testSearchNonPositional(){
         InvertedIndexManager iim;
         iim = InvertedIndexManager.createOrOpen(path, new ComposableAnalyzer( new PunctuationTokenizer(), new PorterStemmer()));

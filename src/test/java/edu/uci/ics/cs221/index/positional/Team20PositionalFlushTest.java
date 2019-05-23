@@ -104,7 +104,6 @@ public class Team20PositionalFlushTest {
         DeltaVarLenCompressor compressor = new DeltaVarLenCompressor();
         InvertedIndexManager ii = InvertedIndexManager.createOrOpenPositional("./index/Team20FlushTest/", analyzer, compressor);
 
-        PageFileChannel.PAGE_SIZE = 8;
         InvertedIndexManager.DEFAULT_FLUSH_THRESHOLD = 2;
         ii.addDocument(d1);
         ii.addDocument(d2);

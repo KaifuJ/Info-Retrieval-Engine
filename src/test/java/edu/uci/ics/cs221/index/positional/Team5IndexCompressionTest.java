@@ -137,7 +137,7 @@ public class Team5IndexCompressionTest {
 
     Assert.assertEquals(0, PageFileChannel.readCounter);
     Assert.assertEquals(0, PageFileChannel.writeCounter);
-    for (int i = 0; i < 3000; i++) {
+    for (int i = 0; i < 300; i++) {
       positional_list_naive_compressor.addDocument(
               new Document("cat" + " cat" + " cat" + " and dog" + " dog" + " dog"));
       positional_list_naive_compressor.addDocument(
@@ -161,7 +161,7 @@ public class Team5IndexCompressionTest {
     int naive_rc = PageFileChannel.readCounter;
     PageFileChannel.resetCounters();
 
-    for (int i = 0; i < 3000; i++) {
+    for (int i = 0; i < 300; i++) {
       positional_list_compressor.addDocument(
               new Document("cat" + " cat" + " cat" + " and dog" + " dog" + " dog"));
       positional_list_compressor.addDocument(

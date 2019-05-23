@@ -3,6 +3,7 @@ package edu.uci.ics.cs221.index.positional;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import edu.uci.ics.cs221.analysis.ComposableAnalyzer;
+import edu.uci.ics.cs221.analysis.PorterStemmer;
 import edu.uci.ics.cs221.analysis.PunctuationTokenizer;
 import edu.uci.ics.cs221.index.inverted.*;
 import edu.uci.ics.cs221.storage.Document;
@@ -79,7 +80,7 @@ public class Team21PositionalMergeTest {
         /*
         test mergeAllSegments() and getIndexSegment() functions.
          */
-        ComposableAnalyzer analyzer = new ComposableAnalyzer(new PunctuationTokenizer(), token -> token);
+        ComposableAnalyzer analyzer = new ComposableAnalyzer(new PunctuationTokenizer(), new PorterStemmer());
         InvertedIndexManager manager = InvertedIndexManager.createOrOpenPositional(indexFolder, analyzer, new NaiveCompressor());
 
         manager.addDocument(new Document(str[0]));

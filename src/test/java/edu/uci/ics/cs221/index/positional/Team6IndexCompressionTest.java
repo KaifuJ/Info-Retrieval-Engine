@@ -67,7 +67,6 @@ public class Team6IndexCompressionTest {
      *  We assume the compressed one will be 2/3 smaller than non-compressed one
      * */
 
-    @Test
     public void test1() {
         //naive compressor manager add document
         for(int i = 0; i<100; i++)
