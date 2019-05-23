@@ -7,7 +7,6 @@ import edu.uci.ics.cs221.analysis.*;
 import edu.uci.ics.cs221.storage.Document;
 import edu.uci.ics.cs221.storage.DocumentStore;
 import edu.uci.ics.cs221.storage.MapdbDocStore;
-//import sun.jvm.hotspot.debugger.Page;
 
 import java.io.File;
 import java.io.IOException;
@@ -334,7 +333,7 @@ public class InvertedIndexManager {
 
     public Set<String> getKeywordsSet(int segNum){
         Map<String, int[]> keywordsMap = getKeywordsMap(segNum);
-        return keywordsMap.keySet();
+        return new HashSet<>(keywordsMap.keySet());
     }
 
 
@@ -482,7 +481,7 @@ public class InvertedIndexManager {
             List<Integer> offInPost = new ArrayList<>();
             int postOffset = 0;
 
-            PageFileChannel keyPfc = PageFileChannel.createOrOpen(Paths.get(path + "./keywords_" + newSegNum));
+            PageFileChannel keyPfc = PageFileChannel.createOrOpen(Paths.get(path + "/keywords_" + newSegNum));
             ByteBuffer keyBf = ByteBuffer.allocate(PAGE_SIZE);
 
 
@@ -801,10 +800,8 @@ public class InvertedIndexManager {
         Set<String> keyList = getKeywordsSet(segmentNum);
         for(String keyword : keyList){
             List<Integer> postAndOffs = getPostAndOffsetList(keyword, segmentNum);
-            //System.out.println(postAndOffs);
             invertedLists.put(keyword,getPostList(postAndOffs));
-            //System.out.println(getPostList(postAndOffs));
-            //System.out.println(invertedLists);
+
             for(int docID : getPostList(postAndOffs)){
                 positions.put(keyword,docID,getPositionList(keyword,docID,segmentNum));
             }

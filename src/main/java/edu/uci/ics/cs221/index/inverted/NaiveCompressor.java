@@ -22,7 +22,7 @@ public class NaiveCompressor implements Compressor {
         ByteBuffer byteBuffer = ByteBuffer.wrap(bytes, startOffset, length);
         List<Integer> integers = new ArrayList<>();
         while (byteBuffer.hasRemaining()) {
-            byteBuffer.getInt();
+            integers.add(byteBuffer.getInt());
         }
         return integers;
     }
