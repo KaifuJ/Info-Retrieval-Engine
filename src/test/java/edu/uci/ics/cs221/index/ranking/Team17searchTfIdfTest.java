@@ -4,6 +4,7 @@ import edu.uci.ics.cs221.analysis.*;
 import edu.uci.ics.cs221.index.inverted.*;
 import edu.uci.ics.cs221.storage.Document;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -59,6 +60,7 @@ public class Team17searchTfIdfTest {
         iim.addDocument(doc3);
         iim.addDocument(doc4);
         iim.addDocument(doc5);
+        iim.flush();
 
         List<String> searchKeyword = new ArrayList<>(Arrays.asList("life"));
 
@@ -89,19 +91,14 @@ public class Team17searchTfIdfTest {
         );
 
         //Create and add documents
-        Document doc0 = new Document("The purpose of life is a life with purpose");
         Document doc1 = new Document("The purpose of life is to code");
-        Document doc2 = new Document("The purpose of life is to eat good food");
-        Document doc3 = new Document("The Purpose");
-        Document doc4 = new Document("Life of Pi is a good movie");
-        Document doc5 = new Document("What is the purpose of knowing about after-life");
+        Document doc2 = new Document("The purpose of life of life of life is to eat good food");
+        Document doc3 = new Document("Life of Pi is a good movie");
 
-        iim.addDocument(doc0);
         iim.addDocument(doc1);
         iim.addDocument(doc2);
         iim.addDocument(doc3);
-        iim.addDocument(doc4);
-        iim.addDocument(doc5);
+        iim.flush();
 
         List<String> searchKeyword = new ArrayList<>(Arrays.asList("The", "purpose", "of", "life", "is"));
 
@@ -113,17 +110,18 @@ public class Team17searchTfIdfTest {
         int count = 0;
 
         //Check which of these are topK
-        expected.add(doc0.getText());
         expected.add(doc1.getText());
         expected.add(doc2.getText());
+        expected.add(doc3.getText());
 
         while(res.hasNext()){
             count ++;
-            //actual.add(res.next().getLeft().getText());
+            Pair<Document, Double> result = res.next();
+            actual.add(result.getLeft().getText());
         }
 
         assertEquals(3, count);
-        //assertTrue(actual.equals(expected));
+        Assert.assertEquals(expected, actual);
     }
 
 
@@ -154,6 +152,7 @@ public class Team17searchTfIdfTest {
         iim.addDocument(doc3);
         iim.addDocument(doc4);
         iim.addDocument(doc5);
+        iim.flush();
 
         List<String> searchKeyword = new ArrayList<>(Arrays.asList("JCBKiKhudai"));
 

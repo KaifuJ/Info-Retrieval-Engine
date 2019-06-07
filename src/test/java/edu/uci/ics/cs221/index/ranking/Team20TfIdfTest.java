@@ -9,7 +9,7 @@ import edu.uci.ics.cs221.storage.Document;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+import edu.uci.ics.cs221.index.inverted.Pair;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
