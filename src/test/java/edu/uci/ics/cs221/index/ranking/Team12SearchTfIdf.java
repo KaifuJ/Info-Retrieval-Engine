@@ -7,6 +7,7 @@ import edu.uci.ics.cs221.analysis.PunctuationTokenizer;
 import edu.uci.ics.cs221.index.inverted.*;
 import edu.uci.ics.cs221.storage.Document;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
@@ -50,7 +51,7 @@ public class Team12SearchTfIdf {
             iterate.next();
             counter++;
         }
-        assertEquals(4,counter);
+        assertEquals(3,counter);
     }
     /**
      * test if the score of documents is in descending order
@@ -72,11 +73,11 @@ public class Team12SearchTfIdf {
         phrase.add("Irvine");
         Iterator<Pair<Document, Double>> iterate = invertedIndex.searchTfIdf(phrase, 4);
 
-        Double prev = 1.0;
+        Double prev = Double.MAX_VALUE;
 
         while (iterate.hasNext()) {
             Double val = iterate.next().getRight();
-            assert prev > val;
+            Assert.assertTrue(prev >= val);
             prev = val;
         }
     }

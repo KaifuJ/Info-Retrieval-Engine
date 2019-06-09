@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Team6DocumentFrequencyTest {
 
-    private final String path = "./index/Team6AndSearchTest";
+    private final String path = "./index/Team6DocumentFrequencyTest";
     Analyzer analyzer = new ComposableAnalyzer(new PunctuationTokenizer(), new PorterStemmer());
 
     private InvertedIndexManager manager = null;
@@ -39,11 +39,10 @@ public class Team6DocumentFrequencyTest {
         manager.addDocument(doc1);
         manager.addDocument(doc2);
         manager.addDocument(doc3);
-        manager.flush();
         manager.addDocument(doc4);
+        manager.flush();
         manager.addDocument(doc5);
         manager.addDocument(doc6);
-        manager.flush();
         manager.addDocument(doc7);
         manager.addDocument(doc8);
         manager.flush();
@@ -70,12 +69,10 @@ public class Team6DocumentFrequencyTest {
     public void test1() {
         List<Integer> expectedList = new ArrayList<>();
         expectedList.add(3);
-        expectedList.add(2);
-        expectedList.add(0);
+        expectedList.add(3);
         List<Integer> resultList = new ArrayList<>();
         resultList.add(manager.getDocumentFrequency(0, "dog"));
         resultList.add(manager.getDocumentFrequency(1, "tree"));
-        resultList.add(manager.getDocumentFrequency(2, "cat"));
         assertEquals(expectedList, resultList);
 
     }

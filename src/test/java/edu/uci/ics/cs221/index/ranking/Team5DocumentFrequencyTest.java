@@ -16,8 +16,8 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class Team5getDocumentFrequencyTest {
-  private String path = "./index/Team5getDocumentFrequencyTest";
+public class Team5DocumentFrequencyTest {
+  private String path = "./index/Team5DocumentFrequencyTest";
   private Analyzer analyzer =
       new ComposableAnalyzer(new PunctuationTokenizer(), new PorterStemmer());
   private InvertedIndexManager invertedList;

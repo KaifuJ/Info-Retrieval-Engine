@@ -51,7 +51,7 @@ public class IcsSearchEngineTest {
 
         icsSearchEngine.writeIndex();
 
-        icsSearchEngine.computePageRank(100);
+//        icsSearchEngine.computePageRank(100);
 
         idUrlMap = HashBiMap.create();
         Files.readAllLines(webPagesPath.resolve("url.tsv")).stream().map(line -> line.split("\\s")).forEach(line -> {

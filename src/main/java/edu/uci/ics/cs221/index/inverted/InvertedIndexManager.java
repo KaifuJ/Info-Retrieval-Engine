@@ -8,6 +8,7 @@ import edu.uci.ics.cs221.storage.Document;
 import edu.uci.ics.cs221.storage.DocumentStore;
 import edu.uci.ics.cs221.storage.MapdbDocStore;
 
+import javax.print.Doc;
 import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -28,6 +29,7 @@ public class InvertedIndexManager {
     public List<Document> docs;
     public Map<String, List<Integer>> segment;
     public Table<String, Integer, List<Integer>> positions;
+
     private int segmentCounter;
 
     public List<Document> SearchDoc;
@@ -39,6 +41,7 @@ public class InvertedIndexManager {
 
     public static int DEFAULT_FLUSH_THRESHOLD = 1000;
     public static int DEFAULT_MERGE_THRESHOLD = 8;
+
 
 
 
@@ -126,11 +129,10 @@ public class InvertedIndexManager {
 
 
 
-
-
     public void flush() {
         // flush docs
         if(docs.size() == 0) return;
+        int docCount = this.docs.size();
         DocumentStore docStore = MapdbDocStore.createOrOpen(path+"/docStore_" + this.segmentCounter);
         for(int i = 0; i < this.docs.size(); i++){
             docStore.addDocument(i, docs.get(i));
@@ -146,12 +148,14 @@ public class InvertedIndexManager {
         PageFileChannel postPfc = PageFileChannel.createOrOpen(Paths.get(path + "/postings_" + segmentCounter));
         ByteBuffer postBf = ByteBuffer.allocate(PAGE_SIZE);
         List<Integer> offInPost = new ArrayList<>();
+        List<Integer> tfList = new ArrayList<>();
         int postOffset = 0;
 
         PageFileChannel keyPfc = PageFileChannel.createOrOpen(Paths.get(path + "/keywords_" + segmentCounter));
         ByteBuffer keyBf = ByteBuffer.allocate(PAGE_SIZE);
 
         List<String> keywords = new ArrayList<>(segment.keySet());
+        keyBf.putInt(docCount);
         keyBf.putInt(keywords.size());
 
         for(String keyword : keywords){
@@ -162,11 +166,13 @@ public class InvertedIndexManager {
                 List<Integer> posiList = positions.get(keyword, docId);
                 posiOffset = flushPosiList(posiPfc, posiBf, posiList, posiOffset);
                 offInPost.add(posiOffset);
+                tfList.add(posiList.size());
             }
 
-            int[] offInKey = flushPostList(postPfc, postBf, postList, offInPost, postOffset);
-            postOffset = offInKey[2];
+            int[] offInKey = flushPostList(postPfc, postBf, postList, offInPost, tfList, postOffset);
+            postOffset = offInKey[3];
             offInPost.clear();
+            tfList.clear();
 
             flushKeyword(keyPfc, keyBf, keyword, offInKey);
         }
@@ -211,11 +217,12 @@ public class InvertedIndexManager {
             start += putLength;
         }
         keyBf.put(kwBytes, start, kwBytes.length - start);
-
     }
 
-    private int[] flushPostList(PageFileChannel postPfc, ByteBuffer postBf, List<Integer> postList, List<Integer> offInPost, int postOffset){
-        int[] offsets = new int[3];
+    private int[] flushPostList(PageFileChannel postPfc, ByteBuffer postBf,
+                                List<Integer> postList, List<Integer> offInPost, List<Integer> tfList,
+                                int postOffset){
+        int[] offsets = new int[4];
         offsets[0] = postOffset;
 
         byte[] encodedPostList = compressor.encode(postList);
@@ -251,6 +258,20 @@ public class InvertedIndexManager {
         postOffset += encodedOffList.length - start;
 
         offsets[2] = postOffset;
+
+        // flush tfList
+        for(int tf : tfList){
+            if(postBf.remaining() < 4){
+                postOffset += postBf.remaining();
+
+                postPfc.appendPage(postBf);
+                postBf.clear();
+            }
+            postBf.putInt(tf);
+            postOffset += 4;
+        }
+        offsets[3] = postOffset;
+
         return offsets;
     }
 
@@ -286,6 +307,7 @@ public class InvertedIndexManager {
 
         ByteBuffer keyBf = keyPfc.readPage(pageNum);
         pageNum++;
+        keyBf.position(4); // skip docCount
         int entries = keyBf.getInt();
 
         for(int i = 0; i < entries; i++){
@@ -323,7 +345,8 @@ public class InvertedIndexManager {
     }
 
 
-    public List<Integer> getPostAndOffsetList(String keyword, int segNum){
+
+    public List<Integer> getPostOffTf(String keyword, int segNum){
         PageFileChannel postPfc = PageFileChannel.createOrOpen(Paths.get(path + "/postings_" + segNum));
         Map<String, int[]> keywordsMap = getKeywordsMap(segNum);
 
@@ -356,35 +379,52 @@ public class InvertedIndexManager {
         postAndOffs.addAll(compressor.decode(idsAndOffs, 0, offsets[1] - offsets[0]));
         postAndOffs.addAll(compressor.decode(idsAndOffs, offsets[1] - offsets[0], offsets[2] - offsets[1]));
 
+        int tfCount = postAndOffs.size() / 2;
+        for(int i = 0; i < tfCount; i++){
+            if(postBf.remaining() < 4){
+                postBf = postPfc.readPage(pageNum);
+                pageNum++;
+            }
+            postAndOffs.add(postBf.getInt());
+        }
+
         postPfc.close();
         return postAndOffs;
     }
 
-    public List<Integer> getPostList(List<Integer> postAndOffs){
-//        List<Integer> postAndOffs = getPostAndOffsetList(keyword, segNum);
-        List<Integer> postList = new ArrayList<>(postAndOffs.size() / 2);
+    public List<Integer> getPostList(List<Integer> postOffTf){
+        List<Integer> postList = new ArrayList<>(postOffTf.size() / 3);
 
-        for(int i = 0; i < postAndOffs.size() / 2; i++){
-            postList.add(postAndOffs.get(i));
+        for(int i = 0; i < postOffTf.size() / 3; i++){
+            postList.add(postOffTf.get(i));
         }
         return postList;
     }
 
-    private List<Integer> getPostOffsets(List<Integer> postAndOffs){
-//        List<Integer> postAndOffs = getPostAndOffsetList(keyword, segNum);
-        List<Integer> offsets = new ArrayList<>(postAndOffs.size() / 2 + 1);
+    private List<Integer> getPostOffsets(List<Integer> postOffTf){
+        List<Integer> offsets = new ArrayList<>(postOffTf.size() / 3 + 1);
 
-        for(int i = postAndOffs.size() / 2; i < postAndOffs.size(); i++){
-            offsets.add(postAndOffs.get(i));
+        for(int i = postOffTf.size() / 3; i < postOffTf.size() - postOffTf.size() / 3; i++){
+            offsets.add(postOffTf.get(i));
         }
         return offsets;
     }
 
+    private List<Integer> getPostTf(List<Integer> postOffTf){
+        List<Integer> tfList = new ArrayList<>(postOffTf.size() / 3);
+
+        for(int i = postOffTf.size() - postOffTf.size() / 3; i < postOffTf.size(); i++){
+            tfList.add(postOffTf.get(i));
+        }
+        return tfList;
+    }
+
+
 
     public List<Integer> getPositionList(String keyword, int docId, int segNum){
-        List<Integer> postAndOffs = getPostAndOffsetList(keyword, segNum);
-        List<Integer> postList = getPostList(postAndOffs);
-        List<Integer> offsets = getPostOffsets(postAndOffs);
+        List<Integer> postOffTf = getPostOffTf(keyword, segNum);
+        List<Integer> postList = getPostList(postOffTf);
+        List<Integer> offsets = getPostOffsets(postOffTf);
 
         int start = -1;
         int end = -1;
@@ -422,6 +462,10 @@ public class InvertedIndexManager {
     }
 
 
+
+
+
+
     public void mergeAllSegments() {
         // merge only happens at even number of segments
         Preconditions.checkArgument(getNumSegments() % 2 == 0);
@@ -457,6 +501,7 @@ public class InvertedIndexManager {
             newDocStore.close();
 
 
+
             // merge keywords, posting lists, and position lists
             PageFileChannel posiPfc = PageFileChannel.createOrOpen(Paths.get(path + "/new_positions_" + newSegNum));
             ByteBuffer posiBf = ByteBuffer.allocate(PAGE_SIZE);
@@ -465,6 +510,7 @@ public class InvertedIndexManager {
             PageFileChannel postPfc = PageFileChannel.createOrOpen(Paths.get(path + "/new_postings_" + newSegNum));
             ByteBuffer postBf = ByteBuffer.allocate(PAGE_SIZE);
             List<Integer> offInPost = new ArrayList<>();
+            List<Integer> tfList = new ArrayList<>();
             int postOffset = 0;
 
             PageFileChannel keyPfc = PageFileChannel.createOrOpen(Paths.get(path + "/new_keywords_" + newSegNum));
@@ -473,11 +519,12 @@ public class InvertedIndexManager {
 
             Set<String> keywordSet = getKeywordsSet(segNum0);
             keywordSet.addAll(getKeywordsSet(segNum1));
+            keyBf.putInt(getNumDocuments(segNum0) + getNumDocuments(segNum1));
             keyBf.putInt(keywordSet.size());
 
             for(String keyword : keywordSet){
-                List<Integer> postList = getPostList(getPostAndOffsetList(keyword, segNum0));
-                List<Integer> postList1 = getPostList(getPostAndOffsetList(keyword, segNum1));
+                List<Integer> postList = getPostList(getPostOffTf(keyword, segNum0));
+                List<Integer> postList1 = getPostList(getPostOffTf(keyword, segNum1));
                 for(int j = 0; j < postList1.size(); j++){
                     postList1.set(j, postList1.get(j) + count);
                 }
@@ -489,11 +536,13 @@ public class InvertedIndexManager {
                                                             docId >= count ? docId - count : docId,
                                                             docId >= count ? segNum1 : segNum0);
                     posiOffset = flushPosiList(posiPfc, posiBf, posiList, posiOffset);
+                    tfList.add(posiList.size());
                     offInPost.add(posiOffset);
                 }
 
-                int[] offInKey = flushPostList(postPfc, postBf, postList, offInPost, postOffset);
-                postOffset = offInKey[2];
+                int[] offInKey = flushPostList(postPfc, postBf, postList, offInPost, tfList, postOffset);
+                postOffset = offInKey[3];
+                tfList.clear();
                 offInPost.clear();
 
                 flushKeyword(keyPfc, keyBf, keyword, offInKey);
@@ -508,35 +557,7 @@ public class InvertedIndexManager {
 
 
             // clean up
-            File temp = null;
-            temp = new File(path+"/docStore_"+segNum0);
-            temp.delete();
-            temp = new File(path+"/docStore_"+segNum1);
-            temp.delete();
-            temp = new File(path+"/new_docStore_"+newSegNum);
-            temp.renameTo(new File(path+"/docStore_"+newSegNum));
-
-            temp = new File(path+"/keywords_"+segNum0);
-            temp.delete();
-            temp = new File(path+"/keywords_"+segNum1);
-            temp.delete();
-            temp = new File(path+"/new_keywords_" + newSegNum);
-            temp.renameTo(new File(path+"/keywords_" + newSegNum));
-
-            temp = new File(path+"/postings_"+segNum0);
-            temp.delete();
-            temp = new File(path+"/postings_"+segNum1);
-            temp.delete();
-            temp  = new File(path+"/new_postings_"+newSegNum);
-            temp.renameTo(new File(path+"/postings_"+newSegNum));
-
-            temp = new File(path + "/positions_" + segNum0);
-            temp.delete();
-            temp = new File(path + "/positions_" + segNum1);
-            temp.delete();
-            temp = new File(path + "/new_positions_" + newSegNum);
-            temp.renameTo(new File(path + "/positions_" + newSegNum));
-
+            cleanUpAfterMerge(segNum0, segNum1, newSegNum);
         }
 
         segmentCounter /= 2;
@@ -544,14 +565,9 @@ public class InvertedIndexManager {
 
 
 
-    /**
-     * Performs a single keyword search on the inverted index.
-     * You could assume the analyzer won't convert the keyword into multiple tokens.
-     * If the keyword is empty, it should not return anything.
-     *
-     * @param keyword keyword, cannot be null.
-     * @return a iterator of documents matching the query
-     */
+
+
+
     public Iterator<Document> searchQuery(String keyword) {
         Preconditions.checkNotNull(keyword);
 
@@ -559,7 +575,7 @@ public class InvertedIndexManager {
         keyword = this.analyzer.analyze(keyword).get(0);
         for(int i = 0; i < getNumSegments(); i++){
             if(getKeywordsSet(i).contains(keyword)){
-                List<Integer> list = getPostList(getPostAndOffsetList(keyword,i));
+                List<Integer> list = getPostList(getPostOffTf(keyword,i));
                 DocumentStore documentStore = MapdbDocStore.createOrOpen(path+"/docStore_" + i);
                 for(int index : list){
                     SearchDoc.add(documentStore.getDocument(index));
@@ -578,14 +594,13 @@ public class InvertedIndexManager {
         return keyword;
     }
 
-
     public List<Integer> getCommonDoc(List<String> keywords, int segNum ){
-        List<Integer> predoc = getPostList(getPostAndOffsetList(keywords.get(0),segNum));
+        List<Integer> predoc = getPostList(getPostOffTf(keywords.get(0),segNum));
         if(keywords.size()==1) return predoc;
         List<Integer> doc = new ArrayList<>();
         for(int j = 1; j < keywords.size(); j++) {
             doc.clear();
-            List<Integer> temp = getPostList(getPostAndOffsetList(keywords.get(j),segNum));
+            List<Integer> temp = getPostList(getPostOffTf(keywords.get(j),segNum));
             int m = 0, n = 0;
             while (m < predoc.size() && n < temp.size()) {
                 if (predoc.get(m) > temp.get(n))
@@ -603,12 +618,7 @@ public class InvertedIndexManager {
         }
         return doc;
     }
-    /**
-     * Performs an AND boolean search on the inverted index.
-     *
-     * @param keywords a list of keywords in the AND query
-     * @return a iterator of documents matching the query
-     */
+
     public Iterator<Document> searchAndQuery(List<String> keywords) {
         Preconditions.checkNotNull(keywords);
         SearchDoc.clear();
@@ -634,12 +644,6 @@ public class InvertedIndexManager {
         return SearchDoc.iterator();
     }
 
-    /**
-     * Performs an OR boolean search on the inverted index.
-     *
-     * @param keywords a list of keywords in the OR query
-     * @return a iterator of documents matching the query
-     */
     public Iterator<Document> searchOrQuery(List<String> keywords) {
         Preconditions.checkNotNull(keywords);
         SearchDoc.clear();
@@ -653,7 +657,7 @@ public class InvertedIndexManager {
 
             for(String keyword : ankeyword){
                 if(segKeys.contains((keyword))){
-                    List<Integer> indexes = getPostList(getPostAndOffsetList(keyword,i));
+                    List<Integer> indexes = getPostList(getPostOffTf(keyword,i));
                     for(int docId : indexes){
                         if(Index.contains(docId)==false) Index.add(docId);
                     }
@@ -722,6 +726,16 @@ public class InvertedIndexManager {
         return SearchDoc.iterator();
     }
 
+
+
+
+
+
+
+
+
+
+
     /**
      * Performs top-K ranked search using TF-IDF.
      * Returns an iterator that returns the top K documents with highest TF-IDF scores.
@@ -738,9 +752,160 @@ public class InvertedIndexManager {
      * @return a iterator of top-k ordered documents matching the query
      */
     public Iterator<Pair<Document, Double>> searchTfIdf(List<String> keywords, Integer topK) {
-        throw new UnsupportedOperationException();
+//        throw new UnsupportedOperationException();
+        String str = String.join(" ", keywords);
+        keywords = this.analyzer.analyze(str);
+
+        Map<String, Integer> queryTf = new HashMap<>();
+        for(String keyword : keywords){
+            queryTf.put(keyword, queryTf.getOrDefault(keyword, 0) + 1);
+        }
+
+        // first pass to calculate idf all query keywords
+        // idf = log10(N/df)
+        int N = 0;
+        Map<String, Double> idfs = new HashMap<>();
+        Map<String, Integer> dfs = new HashMap<>();
+
+        for(int i = 0; i < segmentCounter; i++){
+            N += getNumDocuments(i);
+
+            for(String keyword : queryTf.keySet()){
+                dfs.put(keyword, dfs.getOrDefault(keyword, 0) + getDocumentFrequency(i, keyword));
+            }
+        }
+
+        for(String keyword : dfs.keySet()){
+            idfs.put(keyword, Math.log10((double)N / dfs.get(keyword)));
+        }
+
+
+        // calculate tfidf for query
+        Map<String, Double> queryTfIdf = new HashMap<>();
+        for(String keyword : queryTf.keySet()){
+            queryTfIdf.put(keyword, queryTf.get(keyword) * idfs.get(keyword));
+        }
+
+
+        // second pass to calculate tfidf for each document containing keywords
+        PriorityQueue<Pair<DocId, Double>> pq = new PriorityQueue<>(new Comparator<Pair<DocId, Double>>(){
+            @Override
+            public int compare(Pair<DocId, Double> p1, Pair<DocId, Double> p2){
+                return p1.getRight() < p2.getRight() ? -1 : 1;
+            } // min-heap
+        });
+
+        for(int segNum = 0; segNum < segmentCounter; segNum++){
+            Map<DocId, Double> dotProduct = new HashMap<>();
+            Map<DocId, Double> vectorLength = new HashMap<>();
+
+            for(String keyword : queryTfIdf.keySet()){
+
+                List<Integer> postOffTf = getPostOffTf(keyword, segNum);
+                List<Integer> postList = getPostList(postOffTf);
+                List<Integer> tfList = getPostTf(postOffTf);
+
+                for(int i = 0; i < postList.size(); i++){
+
+                    DocId id = new DocId(segNum, postList.get(i));
+                    double tfidf = tfList.get(i) * idfs.get(keyword);
+
+                    dotProduct.put(id, dotProduct.getOrDefault(id, 0.0) + tfidf * queryTfIdf.get(keyword));
+                    vectorLength.put(id, vectorLength.getOrDefault(id, 0.0) + tfidf * tfidf);
+                }
+
+            }
+
+            for(DocId id : dotProduct.keySet()){
+                pq.add(new Pair<DocId, Double>(id,
+                        vectorLength.get(id) != 0 ?
+                        dotProduct.get(id) / Math.sqrt(vectorLength.get(id))
+                        : 0));
+                if(topK == null ? false : pq.size() > topK){
+                    pq.poll();
+                }
+            }
+
+        }
+        // now we have got all the result docIds
+
+
+        // map docIds to documents
+        List<Pair<Document, Double>> res = new ArrayList<>(pq.size());
+        int size = pq.size();
+        for(int i = 0; i < size; i++){
+            Pair<DocId, Double> pair = pq.poll();
+            DocumentStore docStore = MapdbDocStore.createOrOpen(path+"/docStore_" + pair.getLeft().segNum);
+            res.add(new Pair<Document, Double>(docStore.getDocument(pair.getLeft().docId), pair.getRight()));
+            docStore.close();
+        }
+        int left = 0;
+        int right = res.size() - 1;
+        while(left < right){
+            Pair<Document, Double> temp = res.get(left);
+            res.set(left, res.get(right));
+            res.set(right, temp);
+            left++;
+            right--;
+        }
+        return res.iterator();
     }
 
+
+    /**
+     * Returns the number of documents containing the token within the given segment.
+     * The token should be already analyzed by the analyzer. The analyzer shouldn't be applied again.
+     */
+    public int getDocumentFrequency(int segNum, String token) {
+//        throw new UnsupportedOperationException();
+        return getPostList(getPostOffTf(token, segNum)).size();
+    }
+
+    public int getNumDocuments(int segNum) {
+//        throw new UnsupportedOperationException();
+        PageFileChannel keyPfc = PageFileChannel.createOrOpen(Paths.get(path + "/keywords_" + segNum));
+        ByteBuffer keyBf = keyPfc.readPage(0);
+        keyPfc.close();
+        return keyBf.getInt();
+    }
+
+
+
+
+
+
+
+
+    private void cleanUpAfterMerge(int segNum0, int segNum1, int newSegNum){
+        File temp = null;
+        temp = new File(path+"/docStore_"+segNum0);
+        temp.delete();
+        temp = new File(path+"/docStore_"+segNum1);
+        temp.delete();
+        temp = new File(path+"/new_docStore_"+newSegNum);
+        temp.renameTo(new File(path+"/docStore_"+newSegNum));
+
+        temp = new File(path+"/keywords_"+segNum0);
+        temp.delete();
+        temp = new File(path+"/keywords_"+segNum1);
+        temp.delete();
+        temp = new File(path+"/new_keywords_" + newSegNum);
+        temp.renameTo(new File(path+"/keywords_" + newSegNum));
+
+        temp = new File(path + "/postings_" + segNum0);
+        temp.delete();
+        temp = new File(path + "/postings_" + segNum1);
+        temp.delete();
+        temp = new File(path + "/new_postings_" + newSegNum);
+        temp.renameTo(new File(path + "/postings_" + newSegNum));
+
+        temp = new File(path + "/positions_" + segNum0);
+        temp.delete();
+        temp = new File(path + "/positions_" + segNum1);
+        temp.delete();
+        temp = new File(path + "/new_positions_" + newSegNum);
+        temp.renameTo(new File(path + "/positions_" + newSegNum));
+    }
 
     /**
      * Iterates through all the documents in all disk segments.
@@ -759,37 +924,9 @@ public class InvertedIndexManager {
         return SearchDoc.iterator();
     }
 
-    /**
-     * Returns the number of documents containing the token within the given segment.
-     * The token should be already analyzed by the analyzer. The analyzer shouldn't be applied again.
-     */
-    public int getDocumentFrequency(int segmentNum, String token) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Deletes all documents in all disk segments of the inverted index that match the query.
-     * @param keyword
-     */
-    public void deleteDocuments(String keyword) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Gets the total number of segments in the inverted index.
-     * This function is used for checking correctness in test cases.
-     *
-     * @return number of index segments.
-     */
     public int getNumSegments() {
         return segmentCounter;
     }
-
-
-
-
-
-
 
     public InvertedIndexSegmentForTest getIndexSegment(int segmentNum) {
         if(getNumSegments()==0) return null;
@@ -804,7 +941,7 @@ public class InvertedIndexManager {
 
         Set<String> keyList = getKeywordsSet(segmentNum);
         for(String keyword : keyList){
-            invertedLists.put(keyword,getPostList(getPostAndOffsetList(keyword,segmentNum)));
+            invertedLists.put(keyword,getPostList(getPostOffTf(keyword,segmentNum)));
         }
 
         InvertedIndexSegmentForTest invertedIndexSegmentForTest = new InvertedIndexSegmentForTest(invertedLists,documents);
@@ -825,7 +962,7 @@ public class InvertedIndexManager {
 
         Set<String> keyList = getKeywordsSet(segmentNum);
         for(String keyword : keyList){
-            List<Integer> postAndOffs = getPostAndOffsetList(keyword, segmentNum);
+            List<Integer> postAndOffs = getPostOffTf(keyword, segmentNum);
             invertedLists.put(keyword,getPostList(postAndOffs));
 
             for(int docID : getPostList(postAndOffs)){
@@ -866,7 +1003,7 @@ class Test{
 
         System.out.println("--------------");
 
-        List<Integer> postList = iim.getPostList(iim.getPostAndOffsetList("key1", 0));
+        List<Integer> postList = iim.getPostList(iim.getPostOffTf("key1", 0));
 
         for(int id : postList){
             System.out.println(id);
