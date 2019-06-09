@@ -1,0 +1,49 @@
+15686
+www.ics.uci.edu/~ejw/versioning/arch/0077.html
+Archive of Working Group on Versioning and Configuration Management of World Wide Web Content: Re2: what's doable in Web version control Re2: what's doable in Web version control David G. Durand (dgd@cs.bu.edu) Mon, 10 Jun 1996 22:30:31 -0400 Messages sorted by: [ date ][ thread ][ subject ][ author ] Previous message: Jim Whitehead: "Archive now available" At 3:43 PM 6/9/96, Larry Masinter wrote:
+>Re PUT and all of the possibilities around it:
+>
+>I think all of the requirements laid on "PUT" can be accomplished with
+>"POST", with some standards for the data that is posted. (E.g., a new
+>media type. Call it 'multipart/update'.)
+   This sound like vtml, to a great extent. I'm not claiming that VTML is
+the perfect solution, but a version that is less rigid on policy, and
+better adapted to arbitrary data types seems that it meets the needs you
+list.
+
+>Yes, multipart/update should contain information about the location,
+>variant, entitytag (for validation), and prior version that's being
+>updated.
+Check. Again, we have to remove policy dependencies.
+
+>>	Going further, something that we (P3) support is atomic checkin
+>>	of multiple documents, because it allows you to move the repository
+>>	forward in whole chunks rather than a file-at-a-time.  Certainly
+>>	we think this is important for Web documents as well, and would
+>>	like to see multiple PUTs with a single COMMIT possible.
+>
+>Well, a single POST of a multipart/update can be performed atomicly.
+Is this why the update is multipart? so that several URLs can be updated in
+a single operation?  This seems one way to get transactions.
+> seiwald@p3.com wrote:
+>> Version control.
+>>
+>>    All the wrinkles that make a simple PUT difficult are going to make
+>>    flowing full version control models over HTTP truly daunting.
+>>    It might be possible to come up with a limited set of operations that
+>>    make sense across all models, but the examples put forth so far --
+>>    compute the predecessor revision and show a version tree -- each only
+>>    make sense in a subset of the systems.
+This should be OK. We do need to make sure that servers can NOP whatever
+doesn't apply to their policies harmlessly. We need lists of essential
+operations from implementors of these various models.
+
+>Larry
+
+    -- David
+
+----------------------------------------------+----------------------------
+  David Durand                 dgd@cs.bu.edu  | david@dynamicDiagrams.com
+  Boston University Computer Science          | Dynamic Diagrams
+  http://cs-www.bu.edu:80/students/grads/dgd/ | http://dynamicDiagrams.com/
+ Previous message: Jim Whitehead: "Archive now available"

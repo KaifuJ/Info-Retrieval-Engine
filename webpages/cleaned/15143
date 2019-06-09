@@ -1,0 +1,3 @@
+15143
+www.ics.uci.edu/~ejw/authoring/orem/properties/tsld028.htm
+DAV Links - An Example DAV Links - An Example <XML> <Namespace><Ref>DAV:</><AS>D</></> <D:Prop> <Propname>Source</><Propvalue> <XML:XML> <Namespace><Ref>DAV:</><AS>D</></> <Namespace><Ref>CODE:</><AS>F</></> <D:Link><F:ProjectFiles>SourceCode</> <src>http://foo.bar/program</> <dst>http://foo.bar/source/main.c</> </> <D:Link><F:ProjectFiles>Library</> <src>http://foo.bar/program</> <dst>http://foo.bar/source/main.lib</> </></> </> Previous slide Next slide Back to first slide View graphic version

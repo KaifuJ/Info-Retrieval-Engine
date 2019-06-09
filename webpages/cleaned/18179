@@ -1,0 +1,3 @@
+18179
+www.ics.uci.edu/~magda/Courses/ics156/Ch3_files/slide0077.htm
+ICS 156: Networking Lab 3.2.2 Operation of Routers (2/2) nRouting mechanism: the action of looking an address up in a table and deciding what to do with the IP datagram -> Performed by IP nRouting policy: the actual algorithms that are use to make routing calculations and fill the routing table with forwarding entries -> Performed by a routing daemon

@@ -1,0 +1,3 @@
+19113
+www.ics.uci.edu/~pazzani/Slides/Hill/tsld028.htm
+Calendar Calendar Empirical (No Relations)- location-WeH5309 :- attendees = office-hours & sponsor = mitchell location-WeH5307 :- attendees = office-hours & sponsor = mason Empirical (Relations) location(Meeting, Room) :- attendees(Meeting, office-hours) & sponsor(Meeting, S) & office(S, Room). Empirical+Analytic (Relations) location(Meeting, Room) :- event-type(Meeting, meeting) & scheduled-by(Meeting, Person) & office(Person, Room) & number-of-attendees(Meeting, N) & N <= 2. Previous slide Next slide Back to first slide View graphic version

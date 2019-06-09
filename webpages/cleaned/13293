@@ -1,0 +1,4 @@
+13293
+www.ics.uci.edu/~dock/manuals/oechem/api/node1058.html
+15.10.2 Release OEChem - API Manual Version 1.3.1 Previous: 15.10.1 Acquire Up: 15.10 OETryMutex Next: 15.10.3 Try 15.10.2 Release void Release()
+ The OETryMutex::Release method releases (unlocks) the OETryMutex. The OETryMutex object must have previously been locked by the calling thread. OEChem - API Manual Version 1.3.1 Previous: 15.10.1 Acquire Up: 15.10 OETryMutex Next: 15.10.3 Try Documentation released on July 30, 2004.

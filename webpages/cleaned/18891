@@ -1,0 +1,3 @@
+18891
+www.ics.uci.edu/~pattis/common/modules/courselibdoc/predicate.html
+Python: module predicate predicate index c:\users\pattis\workspace\courselib\predicate.py Functions is_bigger_than(i) is_even(x) is_less_than(i) is_non_negative(x) is_odd(x) is_percentage(x) is_positive(x) is_prime(x) length_equal(i) reverse(p)

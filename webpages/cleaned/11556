@@ -1,0 +1,3 @@
+11556
+www.ics.uci.edu/~amrm/slides/amrm_structure/pta/tsld058.htm
+Prefetching for Latency & BW Management Prefetching for Latency & BW Management Combat latency deterioration optimal prefetching: �memory side pointer chasing� blocking mechanisms fast barrier, broadcast support synchronization support Bandwidth management memory (re)organization to suit application characteristics translate and gather hardware �prefetching with compaction� Previous slide Next slide Back to first slide View graphic version

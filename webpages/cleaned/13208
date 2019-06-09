@@ -1,0 +1,3 @@
+13208
+www.ics.uci.edu/~dock/manuals/cgal_manual/STL_Extension_ref/FunctionObjectClass_Creator_1.html
+Creator_1<Arg, Result> Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::Creator_1<Arg, Result> Definition The concept Creator_1<Arg, Result> defines types and operations for creating objects from one argument. #include <CGAL/function_objects.h> Requirements Arg is convertible to Result. Creator_1<Arg, Result>::argument_type type of argument. Creator_1<Arg, Result>::result_type type of object to create. result_type c.operator() ( argument_type a) const returns result_type(a). Next: Creator_2<Arg1, Arg2, Result> Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

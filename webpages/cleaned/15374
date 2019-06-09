@@ -1,0 +1,3 @@
+15374
+www.ics.uci.edu/~ejw/authoring/versioning/dt_oct98/kaler/tsld004.htm
+Intrinsic Versioning Intrinsic Versioning Servers create versions when a resource changes Not all resources MUST version Resources can be versioned even from HTTP/1.1 Collections can be versioned Any change can cause a new version Resource support versioning-specific properties Some (discoverable) live properties may not cause versioning Previous slide Next slide Back to first slide View graphic version

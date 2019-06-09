@@ -1,0 +1,3 @@
+11633
+www.ics.uci.edu/~amrm/slides/os/protection-validation/tsld005.htm
+Progress Progress Study of Operating System and Hardware Protection mechanisms in the R4000 (w/ Jay Byun) Detailed study of the instruction set Detailed study of operating systems protection mode changes => conclusions for simple RISC processors (designed for Unix style protection structures), other operating systems/processors differ significantly Written report 5/11/98. Basis for formalization of current protection structure, basis for design of a protection structure for adaptable hardware Previous slide Next slide Back to first slide View graphic version

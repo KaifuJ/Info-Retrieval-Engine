@@ -1,0 +1,3 @@
+1926
+fano.ics.uci.edu/ca/rules/b0478s024
+B0478/S024 B0478/S024 This is equivalent to rule B012357/S23567. In this rule, patterns formed by 2x2 blocks of cells simulate a simpler cellular automaton that applies the following rules to each 2x2 neighborhood: 0 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 1 1 0 1 1 1 1 0 0 1 1 1 1 0 One glider is listed: Glider 35, size 3x2, speed c/4, diagonal [Cellular Automata] [Rules] Fano Experimental Web Server, D. Eppstein, School of Information & Computer Science, UC Irvine

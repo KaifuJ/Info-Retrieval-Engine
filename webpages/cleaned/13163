@@ -1,0 +1,3 @@
+13163
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_d_ref/Function_project_along_d_axis.html
+project_along_d_axis Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::project_along_d_axis #include <CGAL/constructions_d.h> Point_d<R> project_along_d_axis ( Point_d<R> p) returns p projected along the d -axis onto the hyperspace spanned by the first d-1 standard base vectors. Next: side_of_bounded_sphere Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

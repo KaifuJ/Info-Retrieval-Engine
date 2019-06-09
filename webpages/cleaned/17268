@@ -1,0 +1,3 @@
+17268
+www.ics.uci.edu/~irus//css/98/mini-tutorial/tsld018.htm
+XML-LANG: DTDs (2/2) XML-LANG: DTDs (2/2) Attribute Declarations - name, type, default Attribute types: CDATA, ID, IDREF/IDREFS, ENTITY/ENTITIES, NMTOKEN/NMTOKENS, a list of names Default values: #REQUIRED, #IMPLIED, �value�, #FIXED �value� Entity Declarations - associate name with chunk Internal entities: < > & ' "or locally defined: ⋔ <!ENTITY fork �4K Consulting�> External entities: <!ENTITY forkfooter SYSTEM �fork/footer.xml�><!ENTITY pic SYSTEM �http://xent.ics.uci.edu/4k.gif� NDATA GIF87A> Parameter entities: <!ENTITY % html.ver �-//W3C//DTD HTML 4.0//EN�> Notation Declarations - external binary data <!NOTATION GIF87A SYSTEM �GIF�> Previous slide Next slide Back to first slide View graphic version

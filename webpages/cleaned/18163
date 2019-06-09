@@ -1,0 +1,3 @@
+18163
+www.ics.uci.edu/~magda/Courses/ics156/Ch1_files/slide0045.htm
+ICS 156: Networking Lab IP Packet Fields 3/5 nFragment Offset: 13 bits used to indicate position of this fragment in the original unfragmented packet. Measured in 8 byte units. nTime to live: Set by source and decremented by routers as the packet passes though them. When is reaches 0 packet is discarded. This prevents eternal looping of packets. nProtocal: Indicates the Transport Layer protocol being used. E.g., UDP 17, TCP 6, OSPF 89, etc.

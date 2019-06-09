@@ -1,0 +1,4 @@
+13856
+www.ics.uci.edu/~dock/manuals/oechem/api/node817.html
+9.8.12 GetBrief OEChem - API Manual Version 1.3.1 Previous: 9.8.11 GetInstance Up: 9.8 OEInterface Next: 9.8.13 GetDetail 9.8.12 GetBrief std::string GetBrief() const
+ Returns the brief description of the interface. OEChem - API Manual Version 1.3.1 Previous: 9.8.11 GetInstance Up: 9.8 OEInterface Next: 9.8.13 GetDetail Documentation released on July 30, 2004.

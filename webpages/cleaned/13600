@@ -1,0 +1,5 @@
+13600
+www.ics.uci.edu/~dock/manuals/oechem/api/node430.html
+4.53 OEGetAutomorphs OEChem - API Manual Version 1.3.1 Previous: 4.52 OEGetAtomicSymbol Up: 4. OEChem Functions Next: 4.54 OEGetAverageWeight 4.53 OEGetAutomorphs OESystem::OEIterBase<OEMatchBase> *OEGetAutomorphs(const OEMolBase&,
+                                                   bool includeH=false)
+ OEChem - API Manual Version 1.3.1 Previous: 4.52 OEGetAtomicSymbol Up: 4. OEChem Functions Next: 4.54 OEGetAverageWeight Documentation released on July 30, 2004.

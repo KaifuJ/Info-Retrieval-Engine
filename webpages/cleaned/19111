@@ -1,0 +1,3 @@
+19111
+www.ics.uci.edu/~pazzani/Slides/Hill/tsld026.htm
+Rules Learned by FOCL Rules Learned by FOCL Typically Head :- Coperationalize Head :- Coperationalize & Cinductive Head :- Cinductive & Coperationalize & Cinductive Head :- Cinductive min_inv(?A 3) & neg_imp(?A 0) min_inv(?A 2) & barrier(?A 0) & fiscal(?A 0) & issunite(?A B) & not(?B>=2) min_inv(?A 1) & barrier(?A 1) & neg_imp(?A 0) min_inv(?A 2) & barrier(?A 1) & gatt_tht(?A 1) & issunite(?A B) & not(?B>=1) min_inv(?A 1) & barrier(?A 0) & not(?mature(?A 1)) & target(?A 0) & neg_imp(?A 0) & opp_us(?A B) & not(?B>=1) min_inv(?A 2) & gatt_tht(?A 1) & neg_imp(?A 1) ... Previous slide Next slide Back to first slide View graphic version

@@ -1,0 +1,3 @@
+11315
+www.ics.uci.edu/~alexv/154/modelsim-openlab.htm
+CS154 Modelsim Using Modelsim on openlab ssh -XY your-username@openlab.ics.uci.edu module load altera/modelsim/15.1 create (or cd to) your "work" directory where all your VHDL files should reside vsim vsim will start Modelsim and open a UI window on your computer. Use it to 1. Create a new project (or open an existing one) 2. Import your design files 3. Click on Compile and compile them - design before testbench 4. Click on Simulate and then Start Simulation. 5. Enable Wave in View, add variables you want to track 6. Run simulation

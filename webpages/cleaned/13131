@@ -1,0 +1,3 @@
+13131
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/Function_compare_z.html
+compare_z Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::compare_z Comparison_result compare_z ( Point_3<Kernel> p, Point_3<Kernel> q) compares the z -coordinates of p and q . See AlsoCGAL::compare_xy CGAL::compare_xyz CGAL::compare_x CGAL::compare_x_at_y CGAL::compare_y CGAL::compare_yx CGAL::compare_y_at_x Next: coplanar Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

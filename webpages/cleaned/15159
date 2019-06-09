@@ -1,0 +1,3 @@
+15159
+www.ics.uci.edu/~ejw/authoring/orem/properties/tsld047.htm
+SEARCH Method - Example SEARCH Method - Example SEARCH /container/ HTTP/1.1 Host: www.foo.bar Content-Length: xxxx Content-Type: application/xml <XML> <XML:Namespace><Ref>DAV:</><AS>S</></> <S:limited-search><OR> <AND><Name>BOX:big*</><Value>*</></> </></> </> Previous slide Next slide Back to first slide View graphic version

@@ -1,0 +1,31 @@
+13199
+www.ics.uci.edu/~dock/manuals/cgal_manual/Optimisation_ref/Function_min_strip_2.html
+min_strip_2 Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::min_strip_2 Definition The function computes a minimum width enclosing strip S(P) of a given convex point set P . A strip is the closed region bounded by two parallel lines in the plane. Note that S(P) is not unique in general. The focus on convex sets is no restriction, since any parallelogram enclosing P - as a convex set - contains the convex hull of P . For general point sets one has to compute the convex hull as a preprocessing step. #include <CGAL/min_quadrilateral_2.h> template < class ForwardIterator, class OutputIterator, class Traits > OutputIterator min_strip_2 ( ForwardIterator points_begin, ForwardIterator points_end, OutputIterator o, Traits& t = Default_traits) computes a minimum enclosing strip of the point set described by [points_begin, points_end), writes its two bounding lines to o and returns the past-the-end iterator of this sequence. If the input range is empty or consists of one element only, o remains unchanged. Precondition: The points denoted by the range [points_begin, points_end) form the boundary of a simple convex polygon P in counterclockwise orientation. The geometric types and operations to be used for the computation are specified by the traits class parameter t. The parameter can be omitted, if ForwardIterator refers to a two-dimensional point type from one the CGAL Kernels. In this case, a default traits class (Min_quadrilateral_default_traits_2<Kernel>) is used. Requirement: If Traits is specified, it is a model for MinQuadrilateralTraits_2 and the value type VT of ForwardIterator is Traits::Point_2. Otherwise VT is CGAL::Point_2<Kernel> for some kernel Kernel. OutputIterator accepts Traits::Line_2 as value type. See AlsoCGAL::min_rectangle_2 CGAL::min_parallelogram_2 MinQuadrilateralTraits_2 CGAL::Min_quadrilateral_default_traits_2<Kernel> Implementation We use a rotating caliper algorithm [Tou83] with worst case running time linear in the number of input points. Example The following code generates a random convex polygon P with 20 vertices and computes the minimum enclosing strip of P. #include <CGAL/Cartesian.h>
+#include <CGAL/Polygon_2.h>
+#include <CGAL/point_generators_2.h>
+#include <CGAL/random_convex_set_2.h>
+#include <CGAL/min_quadrilateral_2.h>
+#include <iostream>
+
+struct Kernel : public CGAL::Cartesian<double> {};
+
+typedef Kernel::Point_2                           Point_2;
+typedef Kernel::Line_2                            Line_2;
+typedef CGAL::Polygon_2<Kernel>                   Polygon_2;
+typedef CGAL::Random_points_in_square_2<Point_2>  Generator;
+
+int main()
+{
+  // build a random convex 20-gon p
+  Polygon_2 p;
+  CGAL::random_convex_set_2(20, std::back_inserter(p), Generator(1.0));
+  std::cout << p << std::endl;
+
+  // compute the minimal enclosing strip p_m of p
+  Line_2 p_m[2];
+  CGAL::min_strip_2(p.vertices_begin(), p.vertices_end(), p_m);
+  std::cout << p_m[0] << "\n" << p_m[1] << std::endl;
+
+  return 0;
+} 
+ Next: Min_quadrilateral_default_traits_2<Kernel> Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

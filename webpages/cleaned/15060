@@ -1,0 +1,3 @@
+15060
+www.ics.uci.edu/~ejw/authoring/orem/namespace/tsld011.htm
+INDEX INDEX INDEX returns a machine-readable representation of the membership of the resource at Request-URI. For a collection, INDEX must return a machine-readable list of its members For all other resources, the information returned by INDEX is undefined and may vary. Previous slide Next slide Back to first slide View graphic version

@@ -1,0 +1,3 @@
+16421
+www.ics.uci.edu/~eppstein/pubs/a-paterson.html
+David Eppstein - Publications David Eppstein - Publications Publications with Mike Paterson On nearest-neighbor graphs. D. Eppstein, M. S. Paterson, and F. F. Yao. Disc. Comp. Geom. 17: 263–282, 1997. Paterson and Yao presented a paper at ICALP showing among other things that any connected nearest neighbor forest with diameter D has O(D9) vertices. This paper is the journal version; my contribution consists of improving that bound to O(D5), which is tight. (BibTeX – CiteSeer – Citations) Co-authors – Publications – David Eppstein – Theory Group – Inf. & Comp. Sci. – UC Irvine Semi-automatically filtered from a common source file.

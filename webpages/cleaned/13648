@@ -1,0 +1,9 @@
+13648
+www.ics.uci.edu/~dock/manuals/oechem/api/node497.html
+4.120 OEReadMolecule OEChem - API Manual Version 1.3.1 Previous: 4.119 OEReadMol2File Up: 4. OEChem Functions Next: 4.121 OEReadMOPACFile 4.120 OEReadMolecule bool OEReadMolecule(oemolistream &ifs, OEMCMolBase &mol)
+bool OEReadMolecule(oemolistream &ifs, OEQMolBase &mol)
+bool OEReadMolecule(oemolistream &ifs, OEMolBase &mol)
+bool OEReadMolecule(oemolistream &ifs, OEMol &mol)
+bool OEReadMolecule(oemolistream &ifs, OEQMol &mol)
+bool OEReadMolecule(oemolistream &ifs, OEGraphMol &mol)
+ OEChem - API Manual Version 1.3.1 Previous: 4.119 OEReadMol2File Up: 4. OEChem Functions Next: 4.121 OEReadMOPACFile Documentation released on July 30, 2004.

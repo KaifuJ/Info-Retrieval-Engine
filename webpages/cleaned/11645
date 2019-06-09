@@ -1,0 +1,3 @@
+11645
+www.ics.uci.edu/~amrm/slides/os/protection-validation/tsld017.htm
+Fault Containment (just beginning) Fault Containment (just beginning) Develop an Architectural Framework for Fault Containment Simple software, synthesis, and hardware fault models Exploit Process Isolation and Validation mechanisms for fast-fail Design hardware and software structures which enable containment and reconfiguration Controlled synthesis and hardware mapping Synthesis of Hardware structures which provide modularization Previous slide Back to first slide View graphic version

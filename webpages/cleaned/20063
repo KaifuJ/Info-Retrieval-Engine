@@ -1,0 +1,14 @@
+20063
+www.ics.uci.edu/~schark/simulator/javadoc/ReceiveEvent.html
+Class ReceiveEvent
+ Class ReceiveEvent java.lang.Object
+   |
+   +----SimEvent
+           |
+           +----TaskEvent
+                   |
+                   +----ReceiveEvent
+ public class ReceiveEvent extends TaskEvent This class represents an event that is issued every time a processor gets a message from another task ReceiveEvent(SendEvent) getFromTask() toString() ReceiveEvent  public ReceiveEvent(SendEvent e)
+ getFromTask  public long getFromTask()
+ toString  public String toString()
+ Overrides: toString in class SimEvent

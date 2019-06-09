@@ -1,0 +1,3 @@
+13112
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--ConstructPerpendicularVector_2.html
+Kernel::ConstructPerpendicularVector_2 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::ConstructPerpendicularVector_2 A model for this must provide: Kernel::Vector_2 fo.operator() ( Kernel::Vector_2 v, Orientation o) returns v rotated clockwise by 90 degrees, if o is CLOCKWISE, and rotated counterclockwise otherwise. Precondition: o is not COLLINEAR. RefinesAdaptableFunctor (with two arguments) See AlsoCGAL::Vector_2<Kernel> Next: Kernel::ConstructPlane_3 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

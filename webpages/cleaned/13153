@@ -1,0 +1,3 @@
+13153
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_d_ref/FunctionObjectConcept_Kernel--Point_of_sphere_d.html
+Kernel::Point_of_sphere_d Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::Point_of_sphere_d A model for this must provide: bool fo ( Kernel::Sphere_d s, int i) returns the ith point defining the sphere s . Next: Kernel::Point_to_vector_d Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

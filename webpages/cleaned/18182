@@ -1,0 +1,3 @@
+18182
+www.ics.uci.edu/~magda/Courses/ics156/Ch3_files/slide0095.htm
+ICS 156: Networking Lab 3.10 Operation of OSPF (2/4) nRouters within an area are called internal routers. nA router connected to the outside world, i.e., other AS, is called a boundary router. nWithin an area, each router knows its route to every other router in the area including the backbone router(s) connecting the area to the backbone. All routers in an area have identical linkstate databases. nRouters connecting several areas must have the link status database of each area it is connected too.

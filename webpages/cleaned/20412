@@ -1,0 +1,3 @@
+20412
+www.ics.uci.edu/~theory/269/040319a.html
+Theory Seminar, 19 Mar 2004 ICS 269, Winter 2004: Theory Seminar 19 Mar 2004: Rank-Maximal Matchings Matthew Ba Nguyen The authors present two algorithms for the Rank-Maximal Matching Problem. The first one is a combinatorial algorithm with running time O(min(n+ C, C sqrt(n))m) where C <= the maximal rank of an edge used in the rank-maximal matching. The authors also present a O(Cnm) time algorithm which transform the rank-maximal matching problem into a maximum weight matching problem. However, I will only present the first algorithm. From: Rank-Maximal Matchings by R.W. Irving, T.Kavitha, K. Mehlorn, D. Michail, and K. Paluch. Proceedings of the 15th Annual ACM-SIAM Symposium on Discrete Algorithms, 2004.

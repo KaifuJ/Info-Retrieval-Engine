@@ -1,0 +1,3 @@
+18886
+www.ics.uci.edu/~pattis/common/modules/courselibdoc/driver.html
+Python: module driver driver index c:\users\pattis\workspace\courselib\driver.py Modules math prompt traceback Functions batch_self_check(file_name=None, seperator=None, show_comment=None, show_all=None, show_traceback=None, show_exception=None, show_exception_message=None, TA_info=None) batch_test(file_name, confirm=False) driver() num_just(x) Data default_file_name = 'bsc.txt' default_separator = '-->' default_show_all = False default_show_comment = True default_show_exception = False default_show_exception_message = False default_show_traceback = False

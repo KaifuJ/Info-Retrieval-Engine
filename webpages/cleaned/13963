@@ -1,0 +1,5 @@
+13963
+www.ics.uci.edu/~dock/manuals/oechem/api/node945.html
+11.7 OETypeId OEChem - API Manual Version 1.3.1 Previous: 11.6.1 Constructor Up: 11. OESystem Templates Next: 11.8 OEUnaryFunction 11.7 OETypeId template<typename T>
+class OETypeId
+ OEChem - API Manual Version 1.3.1 Previous: 11.6.1 Constructor Up: 11. OESystem Templates Next: 11.8 OEUnaryFunction Documentation released on July 30, 2004.

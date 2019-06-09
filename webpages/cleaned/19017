@@ -1,0 +1,3 @@
+19017
+www.ics.uci.edu/~pazzani/Slides/CogSci94/tsld014.htm
+PostHoc PostHoc Given: Existing Knowledge Sequence of Classified Examples Create: An inference rule to classifyRepresentation of training examples (color yellow) (size small) (act dip) (age adult): (not alpha) (color yellow) (size large) (act dip) (age adult): (inflate balloon) Representation of hypotheses: DNF (disjuncts of conjuncts) ((age child) (act stretch))?? ((age adult)) ? (inflate balloon) Previous slide Next slide Back to first slide View graphic version

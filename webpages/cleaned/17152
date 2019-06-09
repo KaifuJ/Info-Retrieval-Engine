@@ -1,0 +1,3 @@
+17152
+www.ics.uci.edu/~irus//bart/flyers/99/presentations/july99-neno/tsld016.htm
+Strategy #2:Constraining UML Strategy #2:Constraining UML Identify UML meta classes semantically similar to major architectural constructs operation, message, port component, connector, architecture Define stereotypes and apply them to meta class instances use stereotypes to model structural aspects of an architecture Describe semantics using UML diagrams sequence, statechart, collaboration, activity Previous slide Next slide Back to first slide View graphic version

@@ -1,0 +1,3 @@
+13108
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--ConstructOppositeLine_3.html
+Kernel::ConstructOppositeLine_3 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::ConstructOppositeLine_3 A model for this must provide: Kernel::Line_3 fo.operator() ( Kernel::Line_3 l) returns the line representing the same set of points as l , but with opposite direction. RefinesAdaptableFunctor (with one argument) See AlsoCGAL::Line_3<Kernel> Next: Kernel::ConstructOppositePlane_3 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

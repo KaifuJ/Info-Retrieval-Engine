@@ -1,0 +1,3 @@
+13107
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--ConstructMinVertex_2.html
+Kernel::ConstructMinVertex_2 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::ConstructMinVertex_2 A model for this must provide: Kernel::Point_2 fo.operator() ( Kernel::Iso_rectangle_2 r) returns the vertex of r with lexicographically smallest coordinates. RefinesAdaptableFunctor (with one argument) See AlsoCGAL::Iso_rectangle_2<Kernel> Next: Kernel::ConstructMinVertex_3 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

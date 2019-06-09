@@ -1,0 +1,3 @@
+18183
+www.ics.uci.edu/~magda/Courses/ics156/Ch3_files/slide0099.htm
+ICS 156: Networking Lab 3.6 Types of Routers (2/5) nCustomer, regional and backbone networks are all called autonomous systems (AS). nAn AS consists of a collection of interconnected networks run by a single organization. nASs are interconnected via gateways. nSeveral regional networks can exist in an area. nSeveral backbone networks make up the core backbone.

@@ -1,0 +1,17 @@
+21028
+www.ics.uci.edu/~vitus/ics1c/doc/forms.html
+How HTML's FORM Element Works How HTML's FORM Element Works The following HTML: <FORM ACTION="
+http://eee.uci.edu/96b/36246/cgi-bin/formval.cgi" METHOD=POST>
+<INPUT TYPE=HIDDEN NAME="Secret" VALUE="Quiet">
+First entry: <INPUT NAME="Entry1">
+<BR>Second Entry: <INPUT NAME="Entry2" VALUE="Anteater">
+<BR>Select Color: <SELECT NAME="Color">
+   <OPTION VALUE="Rd">Red
+   <OPTION VALUE="Gr">Green
+   <OPTION VALUE="Bl">Blue
+   </SELECT>
+<BR>
+<INPUT TYPE=submit NAME=submit Value="Submit Information"> 
+<INPUT TYPE=reset NAME=reset Value="Clear Form"> 
+</FORM>
+ Appears as follows: First entry: Second Entry: Select Color: Red Green Blue Suggested by http://www.utoronto.ca/webdocs/HTMLdocs/NewHTML/forms.html ICS 1C, Summer 1996

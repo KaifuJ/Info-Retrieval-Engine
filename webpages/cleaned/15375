@@ -1,0 +1,3 @@
+15375
+www.ics.uci.edu/~ejw/authoring/versioning/dt_oct98/kaler/tsld005.htm
+Basic Versioning (I) Basic Versioning (I) New headers to identify specific versions, overwrite resource, comment changes, group changes Default versions can be set via a property on the version-independent resource Sharing is accomplished via referential members History graphs are obtained via PROPFIND Previous slide Next slide Back to first slide View graphic version

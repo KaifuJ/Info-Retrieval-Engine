@@ -1,0 +1,3 @@
+6061
+ganglia.ics.uci.edu/graph_all_periods.php?c=virthost&h=jim-rockford.ics.uci.edu&r=hour&z=default&jr=&js=&st=1486974136&v=14.759&m=disk_total&vl=GB&ti=Total%20Disk%20Space&z=large
+Ganglia: Graph all periods Available Metric actions. Host/Cluster/Host Regex: jim-rockford.ics.uci.edu Metric/Graph/Metric Regex: disk_total Hide/Show Events All GraphsTimeshift Overlay hour CSV JSON Inspect Hide/Show Events Timeshift 2hr CSV JSON Inspect Hide/Show Events Timeshift 4hr CSV JSON Inspect Hide/Show Events Timeshift day CSV JSON Inspect Hide/Show Events Timeshift week CSV JSON Inspect Hide/Show Events Timeshift month CSV JSON Inspect Hide/Show Events Timeshift year CSV JSON Inspect Hide/Show Events Timeshift

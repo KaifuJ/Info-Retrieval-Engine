@@ -1,0 +1,3 @@
+13106
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--ConstructMidpoint_2.html
+Kernel::ConstructMidpoint_2 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::ConstructMidpoint_2 A model for this must provide: Kernel::Point_2 fo.operator() ( Kernel::Point_2 p, Kernel::Point_2 q) computes the midpoint of the segment pq . RefinesAdaptableFunctor (with two arguments) See AlsoCGAL::midpoint Next: Kernel::ConstructMidpoint_3 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

@@ -1,0 +1,120 @@
+12820
+www.ics.uci.edu/~dock/CHEM_docs/CHEM.Web.cgibin.Links-module.html
+CHEM.Web.cgibin.Links Home Trees Indices Help Package CHEM :: Package Web :: Package cgibin :: Module Links [hide private] [frames] | no frames] Module Links Just a bunch of constant lists as a common references for the NAV and footer links throughout the site. Functions [hide private] buildLinks(linkHRefList, linkTextList, linkFormat, linkSeparator) Given a list of link hrefs and text, build a single formatted HTML string to represent all of them as a set of navigation links. Variables [hide private] HEADER_LINK_FORMAT = '<a class="breadcrumb" href="%s" target="... HEADER_LINK_SEPARATOR = ' / ' NAV_LINK_FORMAT = '<td><a href="%s" target="_top">%s</a></td>' NAV_LINK_SEPARATOR = '<td width=1 class="line"></td>' FOOTER_LINK_FORMAT = '<a href="%s">%s</a>' FOOTER_LINK_SEPARATOR = ' | ' HEADER_LINK_HREF = ['../index.htm'] HEADER_LINK_TEXT = ['ChemDB'] HEADER_LINKS = '<a class="breadcrumb" href="../index.htm" targ... NAV_LINK_HREF = ['../index.htm', '../cgibin/ChemicalSearchWeb.... NAV_LINK_TEXT = ['Home', 'Chemical Search', 'Smi2Depict', 'Bab... NAV_LINKS = '<td><a href="../index.htm" target="_top">Home</a>... FOOTER_LINK_HREF = ['../index.htm', '../contacts.htm'] FOOTER_LINK_TEXT = ['Home', 'Contacts'] FOOTER_LINKS = '<a href="../index.htm">Home</a>\n | \n<a href=... REACTION_HEADER_LINK_HREF = ['http://cdb.ics.uci.edu', '../../... REACTION_HEADER_LINK_TEXT = ['ChemDB', 'Synthesis Explorer'] REACTION_HEADER_LINKS = '<a class="breadcrumb" href="http://cd... REACTION_NAV_LINK_HREF = ['http://cdb.ics.uci.edu', '../../cgi... REACTION_NAV_LINK_TEXT = ['Home', 'Reaction Processor', 'Synth... REACTION_NAV_LINKS = '<td><a href="http://cdb.ics.uci.edu" tar... REACTION_FOOTER_LINK_HREF = ['http://cdb.ics.uci.edu', '../../... REACTION_FOOTER_LINK_TEXT = ['Home', 'Contacts'] REACTION_FOOTER_LINKS = '<a href="http://cdb.ics.uci.edu">Home... SUPPLEMENT_HEADER_LINK_HREF = ['../../index.htm', '../Suppleme... SUPPLEMENT_HEADER_LINK_TEXT = ['ChemDB', 'Supplements'] SUPPLEMENT_HEADER_LINKS = '<a class="breadcrumb" href="../../i... SUPPLEMENT_NAV_LINK_HREF = ['../SupplementIndex.py', 'Download... SUPPLEMENT_NAV_LINK_TEXT = ['Supplements', 'Download', 'Implem... SUPPLEMENT_NAV_LINKS = '<td><a href="../SupplementIndex.py" ta... SUPPLEMENT_FOOTER_LINK_HREF = ['../../index.htm', '../../conta... SUPPLEMENT_FOOTER_LINK_TEXT = ['Home', 'Contacts'] SUPPLEMENT_FOOTER_LINKS = '<a href="../../index.htm">Home</a>\... ADMIN_HEADER_LINK_HREF = ['../../index.htm', '../AdminIndex.py... ADMIN_HEADER_LINK_TEXT = ['ChemDB', 'Admin'] ADMIN_HEADER_LINKS = '<a class="breadcrumb" href="../../index.... ADMIN_NAV_LINK_HREF = ['../../index.htm', 'http://cdb.ics.uci.... ADMIN_NAV_LINK_TEXT = ['Home', 'Issues', 'Wiki', 'TableMaint',... ADMIN_NAV_LINKS = '<td><a href="../../index.htm" target="_top"... ADMIN_FOOTER_LINK_HREF = ['../../index.htm', '../../contacts.h... ADMIN_FOOTER_LINK_TEXT = ['Home', 'Contacts'] ADMIN_FOOTER_LINKS = '<a href="../../index.htm">Home</a>\n | \... TOOLS_HEADER_LINK_HREF = ['http://cdb.ics.uci.edu'] TOOLS_HEADER_LINK_TEXT = ['ChemDB'] TOOLS_HEADER_LINKS = '<a class="breadcrumb" href="http://cdb.i... TOOLS_NAV_LINK_HREF = ['http://cdb.ics.uci.edu'] TOOLS_NAV_LINK_TEXT = ['Home'] TOOLS_NAV_LINKS = '<td><a href="http://cdb.ics.uci.edu" target... TOOLS_FOOTER_LINK_HREF = ['http://cdb.ics.uci.edu'] TOOLS_FOOTER_LINK_TEXT = ['Home'] TOOLS_FOOTER_LINKS = '<a href="http://cdb.ics.uci.edu">Home</a... Variables Details [hide private] HEADER_LINK_FORMAT Value: '<a class="breadcrumb" href="%s" target="_top">%s</a>'
+ HEADER_LINKS Value: '''<a class="breadcrumb" href="../index.htm" target="_top">ChemDB</a>
+'''
+ NAV_LINK_HREF Value: ['../index.htm',
+ '../cgibin/ChemicalSearchWeb.py',
+ '../cgibin/Smi2DepictWeb.py',
+ '../cgibin/BabelWeb.py',
+ '../cgibin/SupplementIndex.py']
+ NAV_LINK_TEXT Value: ['Home', 'Chemical Search', 'Smi2Depict', 'Babel', 'Supplements']
+ NAV_LINKS Value: '''<td><a href="../index.htm" target="_top">Home</a></td>
+<td width=1 class="line"></td>
+<td><a href="../cgibin/ChemicalSearchWeb.py" target="_top">Chemical Se
+arch</a></td>
+<td width=1 class="line"></td>
+<td><a href="../cgibin/Smi2DepictWeb.py" target="_top">Smi2Depict</a><
+/td>
+<td width=1 class="line"></td>
+...
+ FOOTER_LINKS Value: '''<a href="../index.htm">Home</a>
+ | 
+<a href="../contacts.htm">Contacts</a>
+'''
+ REACTION_HEADER_LINK_HREF Value: ['http://cdb.ics.uci.edu',
+ '../../cgibin/reaction/ReactionTutorialSetupWeb.psp']
+ REACTION_HEADER_LINKS Value: '''<a class="breadcrumb" href="http://cdb.ics.uci.edu" target="_top">C
+hemDB</a>
+ / 
+<a class="breadcrumb" href="../../cgibin/reaction/ReactionTutorialSetu
+pWeb.psp" target="_top">Synthesis Explorer</a>
+'''
+ REACTION_NAV_LINK_HREF Value: ['http://cdb.ics.uci.edu',
+ '../../cgibin/reaction/ReactionProcessorWeb.py',
+ '../../cgibin/reaction/ReactionTutorialSetupWeb.psp',
+ '../../cgibin/reaction/VirtualSpaceWeb.py']
+ REACTION_NAV_LINK_TEXT Value: ['Home',
+ 'Reaction Processor',
+ 'Synthesis Explorer',
+ 'Virtual Chemical Space']
+ REACTION_NAV_LINKS Value: '''<td><a href="http://cdb.ics.uci.edu" target="_top">Home</a></td>
+<td width=1 class="line"></td>
+<td><a href="../../cgibin/reaction/ReactionProcessorWeb.py" target="_t
+op">Reaction Processor</a></td>
+<td width=1 class="line"></td>
+<td><a href="../../cgibin/reaction/ReactionTutorialSetupWeb.psp" targe
+t="_top">Synthesis Explorer</a></td>
+<td width=1 class="line"></td>
+...
+ REACTION_FOOTER_LINK_HREF Value: ['http://cdb.ics.uci.edu', '../../contacts.htm']
+ REACTION_FOOTER_LINKS Value: '''<a href="http://cdb.ics.uci.edu">Home</a>
+ | 
+<a href="../../contacts.htm">Contacts</a>
+'''
+ SUPPLEMENT_HEADER_LINK_HREF Value: ['../../index.htm', '../SupplementIndex.py']
+ SUPPLEMENT_HEADER_LINKS Value: '''<a class="breadcrumb" href="../../index.htm" target="_top">ChemDB</
+a>
+ / 
+<a class="breadcrumb" href="../SupplementIndex.py" target="_top">Suppl
+ements</a>
+'''
+ SUPPLEMENT_NAV_LINK_HREF Value: ['../SupplementIndex.py',
+ 'Download.py',
+ 'Implementation.py',
+ 'Analysis.py',
+ 'Comparison.py']
+ SUPPLEMENT_NAV_LINK_TEXT Value: ['Supplements',
+ 'Download',
+ 'Implementation',
+ 'Analysis',
+ 'Comparison']
+ SUPPLEMENT_NAV_LINKS Value: '''<td><a href="../SupplementIndex.py" target="_top">Supplements</a></
+td>
+<td width=1 class="line"></td>
+<td><a href="Download.py" target="_top">Download</a></td>
+<td width=1 class="line"></td>
+<td><a href="Implementation.py" target="_top">Implementation</a></td>
+<td width=1 class="line"></td>
+<td><a href="Analysis.py" target="_top">Analysis</a></td>
+...
+ SUPPLEMENT_FOOTER_LINK_HREF Value: ['../../index.htm', '../../contacts.htm']
+ SUPPLEMENT_FOOTER_LINKS Value: '''<a href="../../index.htm">Home</a>
+ | 
+<a href="../../contacts.htm">Contacts</a>
+'''
+ ADMIN_HEADER_LINK_HREF Value: ['../../index.htm', '../AdminIndex.py?dev=access']
+ ADMIN_HEADER_LINKS Value: '''<a class="breadcrumb" href="../../index.htm" target="_top">ChemDB</
+a>
+ / 
+<a class="breadcrumb" href="../AdminIndex.py?dev=access" target="_top"
+>Admin</a>
+'''
+ ADMIN_NAV_LINK_HREF Value: ['../../index.htm',
+ 'http://cdb.ics.uci.edu:8080/scarab/issues',
+ 'http://contact15.ics.uci.edu/~chemdb',
+ 'TableMaint.py',
+ 'DBUtilWeb.py']
+ ADMIN_NAV_LINK_TEXT Value: ['Home', 'Issues', 'Wiki', 'TableMaint', 'DBUtil']
+ ADMIN_NAV_LINKS Value: '''<td><a href="../../index.htm" target="_top">Home</a></td>
+<td width=1 class="line"></td>
+<td><a href="http://cdb.ics.uci.edu:8080/scarab/issues" target="_top">
+Issues</a></td>
+<td width=1 class="line"></td>
+<td><a href="http://contact15.ics.uci.edu/~chemdb" target="_top">Wiki<
+/a></td>
+<td width=1 class="line"></td>
+...
+ ADMIN_FOOTER_LINK_HREF Value: ['../../index.htm', '../../contacts.htm']
+ ADMIN_FOOTER_LINKS Value: '''<a href="../../index.htm">Home</a>
+ | 
+<a href="../../contacts.htm">Contacts</a>
+'''
+ TOOLS_HEADER_LINKS Value: '''<a class="breadcrumb" href="http://cdb.ics.uci.edu" target="_top">C
+hemDB</a>
+'''
+ TOOLS_NAV_LINKS Value: '''<td><a href="http://cdb.ics.uci.edu" target="_top">Home</a></td>
+'''
+ TOOLS_FOOTER_LINKS Value: '''<a href="http://cdb.ics.uci.edu">Home</a>
+'''
+ Home Trees Indices Help Generated by Epydoc 3.0beta1 on Thu Nov 8 17:49:24 2007 http://epydoc.sourceforge.net

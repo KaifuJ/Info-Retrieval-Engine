@@ -1,0 +1,3 @@
+13136
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/Function_midpoint.html
+midpoint Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::midpoint Point_2<Kernel> midpoint ( Point_2<Kernel> p, Point_2<Kernel> q) computes the midpoint of the segment pq . Point_3<Kernel> midpoint ( Point_3<Kernel> p, Point_3<Kernel> q) computes the midpoint of the segment pq . Next: min_vertex Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

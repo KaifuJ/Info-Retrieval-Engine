@@ -1,0 +1,3 @@
+13095
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--Angle_3.html
+Kernel::Angle_3 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::Angle_3 A model for this must provide: Angle fo.operator() ( Kernel::Point_3 p, Kernel::Point_3 q, Kernel::Point_3 r) returns OBTUSE, RIGHT or ACUTE depending on the angle formed by the three points p , q , r ( q being the vertex of the angle). RefinesAdaptableFunctor (with three arguments) See AlsoCGAL::angle Next: Kernel::AreOrderedAlongLine_2 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

@@ -1,0 +1,3 @@
+11603
+www.ics.uci.edu/~amrm/slides/compiler/compiler/tsld017.htm
+Other Compiler Reconfiguration help Other Compiler Reconfiguration help Based on the work of Bilardi & Preparata we might be able to derive theoretically sound (yet practical) metrics of locality for a given application by compiler-analysis of the data-reference patterns in the code. These metrics can be a valuable tool in both reconfiguration monitoring and scripting. Previous slide Next slide Back to first slide View graphic version

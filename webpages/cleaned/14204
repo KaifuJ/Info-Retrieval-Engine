@@ -1,0 +1,3 @@
+14204
+www.ics.uci.edu/~dock/manuals/python/UTILS.html
+Python: module UTILS UTILS index /home/dock/programs/MOL2/UTILS.py Functions MyFileOpen(filename, dash_equal, mode) listceiling(list, max) listfinger(list) listfloat(list) listfloor(list, min) listrank(list) listrelrank(list) listsu(list)

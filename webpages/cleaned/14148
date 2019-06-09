@@ -1,0 +1,6 @@
+14148
+www.ics.uci.edu/~dock/manuals/oechem/cplusprog/node35.html
+4.3.2 Retrieving SD Data from a Molecule OEChem - C++ Theory Manual Version 1.3.1 Previous: 4.3.1 Storing SD Data Up: 4.3 Manipulating SD File Next: 4.3.3 Deleting SD Data 4.3.2 Retrieving SD Data from a Molecule bool OEHasSDData(const OEMolBase &mol, const std::string tag)
+ Returns true if molecule has an item with the given tag, false otherwise. std::string OEGetSDData(const OEMolBase &mol, const std::string tag)
+ Returns the value for the given tag. If the molecule does not have that tag, an empty string is returned. OESystem::OEIterBase<OESDDataPair> *OEGetSDDataPairs(OEMolBase &mol)
+ Returns an OEIter to OESDDataPairs that can be used to just loop over all pairs like iterators over atoms and bonds OEChem - C++ Theory Manual Version 1.3.1 Previous: 4.3.1 Storing SD Data Up: 4.3 Manipulating SD File Next: 4.3.3 Deleting SD Data Documentation released on July 30, 2004.

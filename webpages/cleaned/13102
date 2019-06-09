@@ -1,0 +1,3 @@
+13102
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--ConstructCenter_3.html
+Kernel::ConstructCenter_3 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::ConstructCenter_3 A model for this must provide: Kernel::Point_3 fo.operator() ( Kernel::Sphere_3 s) compute the center of the sphere s . RefinesAdaptableFunctor (with one argument) See AlsoCGAL::Sphere_3<Kernel> Next: Kernel::ConstructCentroid_2 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

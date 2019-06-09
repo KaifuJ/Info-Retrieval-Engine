@@ -1,0 +1,3 @@
+1880
+fano.ics.uci.edu
+Fano Experimental Web Server Fano Experimental Web Server This is Fano, an experimental object-oriented web server operated by David Eppstein at the School of Information and Computer Science, University of California, Irvine. Fano is based on Webster, a free and very small Java web server. However, I have heavily modified this code to generate most pages synthetically rather than serving them from files. Available databases: Gliders in Life-like cellular automata Citation bibliography Fano Experimental Web Server, D. Eppstein, School of Information & Computer Science, UC Irvine

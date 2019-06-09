@@ -1,0 +1,3 @@
+13104
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--ConstructCrossProductVector_3.html
+Kernel::ConstructCrossProductVector_3 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::ConstructCrossProductVector_3 A model for this must provide: Kernel::Vector_3 fo.operator() ( Kernel::Vector_3 v, Kernel::Vector_3 w) computes the cross product of v and w . RefinesAdaptableFunctor (with two arguments) See Also CGAL::cross_product Next: Kernel::ConstructDirection_2 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

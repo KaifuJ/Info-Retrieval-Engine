@@ -1,0 +1,3 @@
+17266
+www.ics.uci.edu/~irus//css/98/mini-tutorial/tsld016.htm
+XML-LANG: Markup Types XML-LANG: Markup Types Elements - start-tags, end-tags, empty tags <joke>Take my XML. Please.<applause/></joke> Attributes - name-value pairs in tags <warning class=�emergency�> Entity References - special chars, macros, external elements " or &4k-logo; Comments - not passed along to application <!-- Not allowed two dashes before end of comment. --> Processing Instructions - passed along to application <?pi-target-name pi-data?> CDATA Sections - parser ignores markup for Character Data *p = &q; b = (i <= 3); Previous slide Next slide Back to first slide View graphic version

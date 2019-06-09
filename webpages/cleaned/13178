@@ -1,0 +1,3 @@
+13178
+www.ics.uci.edu/~dock/manuals/cgal_manual/NumberTypeSupport_ref/Class_Euclidean_ring_tag.html
+Euclidean_ring_tag Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::Euclidean_ring_tag Definition The class Euclidean_ring_tag is used as a tag in some algorithms. It indicates that a number type is to be considered as a model for EuclideanRingNumberType. Only operations defined for EuclideanRingNumberType are used. For example, no divisions are computed, even if the number type as such supports divisions. #include <CGAL/Number_type_traits.h> See AlsoEuclideanRingNumberType Ring_tag Field_tag Sqrt_field_tag Next: Field_tag Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

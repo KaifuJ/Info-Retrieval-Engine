@@ -1,0 +1,9 @@
+21075
+www.ics.uci.edu/~welling/NSFcareer/software/software_BMRF/doc/MRFLearning/findGridMarginals.html
+Description of findGridMarginals Home > MRFLearning > findGridMarginals.m findGridMarginals PURPOSE Node and Edge Marginals for a grid from JT output SYNOPSIS function marginals = findGridMarginals( sNodes ) DESCRIPTION  Node and Edge Marginals for a grid from JT output
+
+ Finds all node and edge marginals required in the exact gradient computation for a grid 
+ model using output from the JT
+ INPUT:
+ 
+ RETURNS: CROSS-REFERENCE INFORMATION This function calls: This function is called by: MLgrid Estimate the ML parameters for a rectangular grid boltzmann m/c, Generated on Wed 28-Sep-2005 04:10:02 by m2html © 2003

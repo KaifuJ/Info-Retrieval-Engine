@@ -1,0 +1,3 @@
+13180
+www.ics.uci.edu/~dock/manuals/cgal_manual/NumberTypeSupport_ref/FunctionObjectClass_Sgn.html
+Sgn<NT> Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::Sgn<NT> Definition The function object class Sgn<NT> computes the sign of a number. It is named Sgn to avoid a conflict with the type Sign. #include <CGAL/number_utils_classes.h> Is Model for the ConceptAdaptableFunctor Sign f ( NT ntval) returns the sign: POSITIVE, ZERO, or NEGATIVE. Next: Sqrt<NT> Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

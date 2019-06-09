@@ -1,0 +1,4 @@
+11375
+www.ics.uci.edu/~alspaugh/cls/shr/javadoc/formula/class-use/Named.html
+Uses of Class formula.Named (formula package)
+ Overview Package Class Use Tree Deprecated Index Help PREV NEXT FRAMES NO FRAMES All Classes Uses of Class formula.Named Packages that use Named formula Basic classes implementing propositional and first-order logic formulas. Uses of Named in formula Subclasses of Named in formula class LogicalVariable A logical variable, representing true or false (but we may not know which). Overview Package Class Use Tree Deprecated Index Help PREV NEXT FRAMES NO FRAMES All Classes

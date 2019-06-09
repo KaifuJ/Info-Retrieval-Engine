@@ -1,0 +1,3 @@
+15070
+www.ics.uci.edu/~ejw/authoring/orem/namespace/tsld034.htm
+RFC 2068 Methods on Collections (cont�d) RFC 2068 Methods on Collections (cont�d) PUT for Collections In HTTP/1.1, PUT exactly stores the request entity under the Request-URI, hence its semantics are limited to non-collection resources If a PUT is invoked on a collection resource, it MUST fail When PUT creates a new non-collection resource, a server MAY add that new resource to one or more collections Previous slide Next slide Back to first slide View graphic version

@@ -1,0 +1,26 @@
+14159
+www.ics.uci.edu/~dock/manuals/oechem/cplusprog/node48.html
+5.6 Looping over the Conformers of a Molecule OEChem - C++ Theory Manual Version 1.3.1 Previous: 5.5 Looping over the Up: 5. Traversing the Atoms, Next: 5.7 Looping over subsets 5.6 Looping over the Conformers of a Molecule Molecules with multi-conformers are represented by OEMCMolBases in OEChem. OEMCMolBases derive from OEMolBases and support atom and bond iterators, but they also support conformer iterators. The following code shows a rudimentary example of looping over conformers. #include "oechem.h"
+#include <iostream>
+
+using namespace OEChem;
+using namespace OESystem;
+using namespace std;
+
+int main()
+{
+  OEIter<OEMCMolBase> mol;
+  OEIter<OEConfBase> conf;
+  oemolistream ims;
+
+  for (mol=ims.GetMCMolBases(); mol; ++mol)
+  {
+    for(conf = mol->GetConfs(); conf; ++conf)
+    {
+      cerr << conf->GetTitle() << ": Energy = " << conf->GetEnergy() << endl;
+    }
+  }
+
+  return 0;
+}
+ Download as text. OEChem - C++ Theory Manual Version 1.3.1 Previous: 5.5 Looping over the Up: 5. Traversing the Atoms, Next: 5.7 Looping over subsets Documentation released on July 30, 2004.

@@ -1,0 +1,10 @@
+14002
+www.ics.uci.edu/~dock/manuals/oechem/api/node990.html
+14.23 OEGeom3DRotate OEChem - API Manual Version 1.3.1 Previous: 14.22 OEGeom3DNormalize Up: 14. OEMath Template Functions Next: 14.24 OEGeom3DRotVectorToTransform 14.23 OEGeom3DRotate template<class T,class U>
+static void OEGeom3DRotate(T *xyz, const U *m,
+                           unsigned int ncoord)
+template<class T>
+static void OEGeom3DRotate(T *xyz, const T *m,
+                           unsigned int *idx,
+                           unsigned int ncoord)
+ OEChem - API Manual Version 1.3.1 Previous: 14.22 OEGeom3DNormalize Up: 14. OEMath Template Functions Next: 14.24 OEGeom3DRotVectorToTransform Documentation released on July 30, 2004.

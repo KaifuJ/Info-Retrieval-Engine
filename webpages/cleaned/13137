@@ -1,0 +1,3 @@
+13137
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/Function_opposite.html
+opposite Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::opposite #include <CGAL/functions_on_enums.h> Oriented_side opposite ( Oriented_side o) returns the opposite side (for example ON_POSITIVE_SIDE if o==ON_NEGATIVE_SIDE), or ON_ORIENTED_BOUNDARY if o==ON_ORIENTED_BOUNDARY. Bounded_side opposite ( Bounded_side o) returns the opposite side (for example BOUNDED_SIDE if o==UNBOUNDED_SIDE), or returns ON_BOUNDARY if o==ON_BOUNDARY. Next: orthogonal_vector Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

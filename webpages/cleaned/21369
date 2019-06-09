@@ -1,0 +1,3 @@
+21369
+www.ics.uci.edu/~ziv/ooad/classes/tsld017.htm
+Reminder:  Binary Tree Client Code Reminder: Binary Tree Client Code Reminder: Binary Tree Client Code with COUNTER_PACKAGE, PILE_PACKAGE, TREE_PACKAGE; use COUNTER_PACKAGE, PILE_PACKAGE, TREE_PACKAGE; procedure COUNT_LEAVES_ON_BINARY_TREE is begin GET_INITIAL(TREE); PUT_INITIAL(TREE, ON => PILE); ZERO(LEAF_COUNT); while IS_NOT_EMPTY(PILE) loop TAKE(TREE, OFF => PILE); if IS_SINGLE_LEAF(TREE) then INCREMENT(LEAF_COUNT); THROW_AWAY(TREE); else SPLIT(TREE, LEFT_INTO => LEFT_SUBTREE, RIGHT_INTO => RIGHT_SUBTREE); PUT(LEFT_SUBTREE, ON => PILE); PUT(RIGHT_SUBTREE, ON = > PILE); end if; end loop; DISPLAY(LEAF_COUNT); end COUNT_LEAVES_ON_BINARY_TREE; Previous slide Next slide Back to the first slide View Graphic Version

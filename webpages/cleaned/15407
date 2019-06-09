@@ -1,0 +1,3 @@
+15407
+www.ics.uci.edu/~ejw/authoring/washington/jim
+WEBDAVWashington, DC IETF WEBDAVWashington, DC IETF 1/5/98 Click here to start Table of Contents WEBDAVWashington, DC IETF Agenda WebDAV Documents WebDAV Requirements DA Protocol Specification DA Protocol Schedule ACL Requirements ACL Protocol Versioning Protocol Tree (recursive operations) Protocol Document Scenarios Document Issues Ordered Collections Ordered Collections: Proposals Ordered Collections: Creation Security Issue: Recursive PROPFIND,Remove INDEX Remove PATCH method Author: Jim Whitehead Email: ejw@ics.uci.edu Home Page: http://www.ics.uci.edu/~ejw/ Download presentation source

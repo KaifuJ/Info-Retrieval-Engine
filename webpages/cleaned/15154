@@ -1,0 +1,3 @@
+15154
+www.ics.uci.edu/~ejw/authoring/orem/properties/tsld041.htm
+PROPPATCH Method - Example PROPPATCH Method - Example <XML> <Namespace><Ref>DAV:</><AS>D</></> <D:PropertyUpdate> <Create><prop> <propname>AIIM:Dublin:authors</> <propvalue><XML:XML> <Namespace><Ref>DAV:</><AS>D</></> <Namespace><Ref>Z39.50:</><AS>Z</></> <Z:Author>Jim Whitehead</> <Z:Author>Roy Fielding</> </> </> <Remove><propname>Z39.50:Copyright</></> </> </> Previous slide Next slide Back to first slide View graphic version

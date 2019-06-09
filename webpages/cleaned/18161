@@ -1,0 +1,3 @@
+18161
+www.ics.uci.edu/~magda/Courses/ics156/Ch1_files/slide0036.htm
+ICS 156: Networking Lab Frame Fields 2/2 nLength field used by 802.3 standard, packet type field used by Ethernet, indicates whether network layer is IP, IPX, AppleTalk, etc. In 802.3 the type field is included in the LLC header. nData field can be anywhere from 0 to 1500 bytes. nPAD field used by MAC to make ensure that minimum frame length is 64 bytes. (when data =0bytes, pad =46 or 38 bytes)

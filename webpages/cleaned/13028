@@ -1,0 +1,3 @@
+13028
+www.ics.uci.edu/~dock/manuals/cgal_manual/Alpha_shapes_2_ref/Class_Alpha_shape_face_base_2.html
+Alpha_shape_face_base_2<AlphaShapeTraits_2,  	                                   TriangulationFaceBase_2> Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::Alpha_shape_face_base_2<AlphaShapeTraits_2, TriangulationFaceBase_2> Definition The class Alpha_shape_face_base_2<AlphaShapeTraits_2, TriangulationFaceBase_2> is the default model for the concept AlphaShapeFace_2. #include <CGAL/Alpha_shape_face_base_2.h> Is Model for the ConceptAlphaShapeFace_2 Inherits From TriangulationFaceBase_2 Next: AlphaShapeTraits_2 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

@@ -1,0 +1,3 @@
+11557
+www.ics.uci.edu/~amrm/slides/amrm_structure/pta/tsld059.htm
+Adaptation for Latency Tolerance Adaptation for Latency Tolerance Operation 1. Application sets prefetch parameters (compiler controlled) 2. Prefetching event generation (runtime controlled) when a new cache block is filled if(start<=vAddr<=end) { if(pAddr & 0x20) addr = pAddr - 0x20 else addr = pAddr + 0x20 <initiate fetch of cache line at addr to L1> } Previous slide Next slide Back to first slide View graphic version

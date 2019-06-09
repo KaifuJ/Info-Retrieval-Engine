@@ -1,0 +1,3 @@
+19161
+www.ics.uci.edu/~pazzani/Slides/MLC94/tsld013.htm
+Decision Lists and ILP Decision Lists and ILP FOCL (and FOIL, etc.) designed for binary classification problems learn clauses that cover all positive an no negatives When there are n classes, run learner n times treat examples of each class in turn as positives treat examples of other classes as negative Classification issues When clauses from more than one class are satisfied When no clause is satisfied Decision Lists Ordered set of clauses Default clause if no clause matches Better Safe Than Sorry (Provost & Buchanan) Previous slide Next slide Back to first slide View graphic version

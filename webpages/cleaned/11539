@@ -1,0 +1,3 @@
+11539
+www.ics.uci.edu/~amrm/slides/amrm_structure/pta/tsld041.htm
+Further opportunities to adapt Further opportunities to adapt L2 cache organization variable-size line L2 non-sequential prefetch L3 organization and use (for deep sub-?) In-memory adaptivity assist (DRAM tags) Multiple processor scenarios Even longer latency Coherence, hardware or software Synchronization Prefetch under and beyond the above Avoid coherence if possible Prefetch past synchronization Assist Adaptive Scheduling Previous slide Next slide Back to first slide View graphic version

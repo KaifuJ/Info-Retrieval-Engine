@@ -1,0 +1,10 @@
+15737
+www.ics.uci.edu/~ejw/versioning/arch/0130.html
+Archive of Working Group on Versioning and Configuration Management of World Wide Web Content: Re: Seiwald Q & A -- "GET for EDIT" cookies Re: Seiwald Q & A -- "GET for EDIT" cookies Roy T. Fielding (fielding@liege.ICS.UCI.EDU) Sat, 31 Aug 1996 15:08:20 -0700 Messages sorted by: [ date ][ thread ][ subject ][ author ] Next message: Yaron Goland: "RE: Seiwald Q & A -- "GET for EDIT" cookies" Previous message: Daniel W. Connolly: "Re: Seiwald Q & A -- "GET for EDIT" cookies" > This is what Derived-From: and Version: are all about: in
+> response to a GET (for edit), the server emits Version: ... .
+
+That's Content-Version now.  The name was changed to protect the innocent
+(MIME), but it does have exactly the functionality being discussed.
+
+....Roy
+ Next message: Yaron Goland: "RE: Seiwald Q & A -- "GET for EDIT" cookies" Previous message: Daniel W. Connolly: "Re: Seiwald Q & A -- "GET for EDIT" cookies"

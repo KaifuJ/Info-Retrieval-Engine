@@ -1,0 +1,5 @@
+13849
+www.ics.uci.edu/~dock/manuals/oechem/api/node799.html
+9.6.4 Info OEChem - API Manual Version 1.3.1 Previous: 9.6.3 GetStrict Up: 9.6 OEErrorHandler Next: 9.6.5 SetOutputStream 9.6.4 Info void Info(const char * format, ...)
+void Info(const std::string &)
+ The Info methods are used to write an informational messages to the OEErrorHandler. OEChem - API Manual Version 1.3.1 Previous: 9.6.3 GetStrict Up: 9.6 OEErrorHandler Next: 9.6.5 SetOutputStream Documentation released on July 30, 2004.

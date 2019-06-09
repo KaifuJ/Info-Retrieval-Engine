@@ -1,0 +1,49 @@
+15740
+www.ics.uci.edu/~ejw/versioning/arch/0133.html
+Archive of Working Group on Versioning and Configuration Management of World Wide Web Content: Re: Seiwald Q & A -- "GET for EDIT" cookies Re: Seiwald Q & A -- "GET for EDIT" cookies Daniel W. Connolly (connolly@w3.org) Sun, 01 Sep 1996 00:51:31 -0400 Messages sorted by: [ date ][ thread ][ subject ][ author ] Next message: David G. Durand: "Cookies! What are they and do we need them?" Previous message: Yaron Goland: "RE: Seiwald Q & A -- "GET for EDIT" cookies" In message <c=US%a=_%p=msft%l=RED-44-MSG-960901001030Z-22529@mail.microsoft.com
+>, Yaron Goland writes:
+>The Derived and Version headers would not be able to handle a situation 
+>where you check out the same document from several different locations.
+
+Interesting claim. Would you please elaborate, giving the argument
+behind it? What about that scenario could Derived-From and
+Content-Versio not handle/express?
+
+Dan
+
+
+> One 
+>could, of course, munge on information to the fields but that is the same 
+>concept as cookies or URL appending.
+>					Yaron
+>
+>----------
+>From:  Daniel W. Connolly[SMTP:connolly@w3.org]
+>Sent:  Friday, August 30, 1996 6:39 PM
+>To:  Christopher Seiwald
+>Cc:  w3c-dist-auth@w3.org; www-vers-wg@ics.uci.edu
+>Subject:  Re: Seiwald Q & A -- "GET for EDIT" cookies
+>
+>In message <199608310041.RAA23761@spice.perforce.com>, Christopher Seiwald 
+>writ
+>es:
+>>
+>>Clearly the URL is not sufficient: multiple users can be working on the
+>>same document.
+>>
+>>URL+username might be better, but I can easily imagine a case where the
+>>same named user (or the same user) is working on a single document from
+>>two different places.
+>>
+>>URL+username+hostname?  Maybe.
+>
+>This is what Derived-From: and Version: are all about: in
+>response to a GET (for edit), the server emits Version: ... .
+>
+>In the corresponding PUT, the client includes Derived-From: ... .
+>
+>See Dave Long's draft for details.
+>
+>Dan
+>
+ Next message: David G. Durand: "Cookies! What are they and do we need them?" Previous message: Yaron Goland: "RE: Seiwald Q & A -- "GET for EDIT" cookies"

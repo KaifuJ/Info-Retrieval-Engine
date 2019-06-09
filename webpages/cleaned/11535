@@ -1,0 +1,3 @@
+11535
+www.ics.uci.edu/~amrm/slides/amrm_structure/pta/tsld037.htm
+Possible Adaptive Mechanisms Possible Adaptive Mechanisms Hardware: a common pool of (small) n-word buffers a set of possible policies, a subset of: Stride-directed prefetch PC-based prefetch History-based prefetch Victim cache Write buffer Previous slide Next slide Back to first slide View graphic version

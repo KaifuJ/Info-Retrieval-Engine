@@ -1,0 +1,3 @@
+11520
+www.ics.uci.edu/~amrm/slides/amrm_structure/pta/tsld022.htm
+Opportunities - Cont�d Opportunities - Cont�d Compiler assist can Select initial hardware configuration Pass hints on to hardware Generate code to collect run-time info and adapt during execution Adapt configuration after being �called� at certain intervals during execution Re-optimize code at run-time Previous slide Next slide Back to first slide View graphic version

@@ -1,0 +1,3 @@
+20634
+www.ics.uci.edu/~theory/269/140221.html
+Theory Seminar, February 21, 2014 CS 269S, Winter 2014: Theory Seminar Bren Hall, Room 1423, 1pm February 21, 2014: What is Courcelle's Theorem? Michael Bannister Courcelle's theorem is a powerful algorithmic meta-theorem, producing fixed-parameter tractable algorithms for recognizing graph families definable in monadic second order logic. In this talk, I will cover the background needed to understand and apply Courcelle's theorem, including applications to typical hard graph properties, e.g., graph coloring, hamiltonian cycle, and crossing minimization.

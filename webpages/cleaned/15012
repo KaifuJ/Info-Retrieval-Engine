@@ -1,0 +1,3 @@
+15012
+www.ics.uci.edu/~ejw/authoring/munich/overview/tsld016.htm
+Collections: ADDREF/DELREF Collections: ADDREF/DELREF ADDREF method adds an external member to a collection DELREF method removes an external member from a collection Benefits: Simple methods for adding/removing external members from a collection, does not require a request body Separate methods support separate access control Previous slide Next slide Back to first slide View graphic version

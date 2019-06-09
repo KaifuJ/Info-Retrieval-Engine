@@ -1,0 +1,3 @@
+13162
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_d_ref/Function_midpoint.html
+midpoint Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::midpoint #include <CGAL/constructions_d.h> Point_d<R> midpoint ( Point_d<R> p, Point_d<R> q) computes the midpoint of the segment pq . Precondition: Precondition: p.dimension() == q.dimension(). Next: orientation Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

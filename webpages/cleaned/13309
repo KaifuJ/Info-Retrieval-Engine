@@ -1,0 +1,20 @@
+13309
+www.ics.uci.edu/~dock/manuals/oechem/api/node1082.html
+15.16.2 operator OEChem - API Manual Version 1.3.1 Previous: 15.16.1 Constructors Up: 15.16 oeostream Next: 15.16.3 close 15.16.2 operator virtual oeostream &operator << (oeistream&)
+ This operator fills the current stream by reading and storing all of the data from the specified input stream. virtual oeostream &operator << (const char *)
+virtual oeostream &operator << (const signed char *)
+virtual oeostream &operator << (const unsigned char *)
+virtual oeostream &operator << (const std::string &)
+virtual oeostream &operator << (bool)
+virtual oeostream &operator << (char)
+virtual oeostream &operator << (signed char)
+virtual oeostream &operator << (unsigned char)
+virtual oeostream &operator << (short)
+virtual oeostream &operator << (unsigned short)
+virtual oeostream &operator << (int)
+virtual oeostream &operator << (unsigned int)
+virtual oeostream &operator << (long)
+virtual oeostream &operator << (unsigned long)
+virtual oeostream &operator << (float)
+virtual oeostream &operator << (double)
+ These operators take the specified parameter, convert it to a text representation, and then push it onto the current stream as a whitespace- delimited text token. OEChem - API Manual Version 1.3.1 Previous: 15.16.1 Constructors Up: 15.16 oeostream Next: 15.16.3 close Documentation released on July 30, 2004.

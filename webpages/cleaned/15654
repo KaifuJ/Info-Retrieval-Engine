@@ -1,0 +1,74 @@
+15654
+www.ics.uci.edu/~ejw/versioning/arch/0045.html
+Archive of Working Group on Versioning and Configuration Management of World Wide Web Content: Re: Versioning Thoughts (in HTML) Re: Versioning Thoughts (in HTML) David G. Durand (dgd@cs.bu.edu) Thu, 6 Jun 1996 13:45:36 -0400 Messages sorted by: [ date ][ thread ][ subject ][ author ] Next message: David G. Durand: "Re: More versioning thoughts." Previous message: David J. Fiander: "Re: Versioning Thoughts (in HTML)" Maybe in reply to: David G. Durand: "Versioning Thoughts (in HTML)" Next in thread: Larry Masinter: "Re: Versioning Thoughts (in HTML)" >> <p>Use of versioning operation should not depend on operations such as
+>>LOCK and
+>> UNLOCK. I at least, am taking great pains to avoid the logical or
+>> practical necessity for such operations by making the free creation of
+>> variant versions (and their later merging, if desired) as easy as possible.
+>> I'd like it if we can find a specification for lock and Unlock such that a
+>> server like the one I am implementing will be able to work with editors
+>> that expect LOCK and UNLOCK.
+>
+>I sort of agree and disagree.  I feel that we need to define LOCK
+>and UNLOCK methods, but state that it's up to the server to
+>decide whether or not they're required before editting, or
+>PUTing.  This allows for a strict locking protocol for those
+>sites that feel it's necessary while leaving things open for
+>looser policy.
+
+I think we actually just agree. I don't want to force a policy, but hope
+that we can define a way for policy assumptions to painlessly vary between
+server and client. For instance, as long as it's permissible for LOCK to be
+an always-succeed NOP, then a "locking client" will work with an
+"non-locking" server. If a client does not lock when it should, then the
+error return can indicate that a lock is required.
+
+>
+>> <p>It should be a server decision as to what version identifier should be
+>> assigned to a document revision when it is submitted.  This follows from
+>> the opaqueness of version parameters in URLs.  It should be a server
+>> decision (not mandated by the protocol) whether to accept a new revision.
+>
+>I agree on both points, but reserve the right to change my mind.
+>The protocol will certainly not specify that the server MUST
+>accept a new revision.  I can think of at least a dozen reasons,
+>all policy-based, why a server might refuse a "check-in"
+>operation.
+
+Certainly, it ought to be a server policy decision whether or not to accept
+any change. I just don't want a protocol that says you must have taken a
+lock to submit a change. On the other hand there probably should be
+standard not-updated reasons like "file not locked", "conflicting update
+pending", "not authorized", etc. This list should include common results
+that might reasonably be implemented by popular policies (like LOCK/UNLOCK
+or CHECKOUT/CHECKIN).
+
+>
+>> <p>I'd like to discuss notions such as VTML as part of the overall
+>> approach to versioning on the web, thus creating a tripartite front for
+>> proper support: <tt>Content-type:</tt>, HTTP protocol, and URL format.
+>> These correspond to the fundamental versioning notions of naming, access
+>> control, and differencing.
+>
+>I've looked at the VTML paper, but can't say, right now, any more
+>than that.  I will certainly not accept any attempt to specify
+>VTML as the storage format.  The server may accept VTML as a
+>format for updating pages, and it may serve VTML to
+>versioning-aware clients, for display purposes, but how the
+>server stores things is private.
+
+   Definitely. I think that VTML is useful as a way to send information
+between versioning aware editors and servers, but it shouldn't be a
+requirement on versioning aware servers. I also think it would be an
+unreasonable and unpopular requirement for implementation technology. Not
+all versioning systems will even have the information to implement VTML
+(for instance a server that used the VMS file system as a version
+"repository").
+
+   -- David
+
+----------------------------------------------+----------------------------
+  David Durand                 dgd@cs.bu.edu  | david@dynamicDiagrams.com
+  Boston University Computer Science          | Dynamic Diagrams
+  http://cs-www.bu.edu:80/students/grads/dgd/ | http://dynamicDiagrams.com/
+ Next message: David G. Durand: "Re: More versioning thoughts." Previous message: David J. Fiander: "Re: Versioning Thoughts (in HTML)" Maybe in reply to: David G. Durand: "Versioning Thoughts (in HTML)" Next in thread: Larry Masinter: "Re: Versioning Thoughts (in HTML)"

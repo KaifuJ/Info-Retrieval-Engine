@@ -1,0 +1,4 @@
+13973
+www.ics.uci.edu/~dock/manuals/oechem/api/node957.html
+11.11.5 GetSetting OEChem - API Manual Version 1.3.1 Previous: 11.11.4 GetDefault Up: 11.11 OETypedParameter Next: 11.11.6 TypedParameterTypedID 11.11.5 GetSetting bool GetSetting(TT& setting) const { return GetValue(setting) || GetDefault(setting); }
+ OEChem - API Manual Version 1.3.1 Previous: 11.11.4 GetDefault Up: 11.11 OETypedParameter Next: 11.11.6 TypedParameterTypedID Documentation released on July 30, 2004.

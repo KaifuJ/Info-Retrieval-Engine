@@ -1,0 +1,3 @@
+19267
+www.ics.uci.edu/~peymano/dynamic-arch/austin/oreizy/tsld002.htm
+Degrees of Dynamism Degrees of Dynamism Static complete system behavior described at build time examples: Wright, UniCON, etc. Closed dynamic complete system behavior described at build time describe changes during design (must predict change) examples: DARWIN, Rapide Open dynamic system behavior may evolve after build time describe previously unanticipated changes during runtime examples: C2 Previous slide Next slide Back to first slide View graphic version

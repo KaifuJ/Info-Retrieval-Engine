@@ -1,0 +1,13 @@
+13935
+www.ics.uci.edu/~dock/manuals/oechem/api/node911.html
+10.21 StringTo OEChem - API Manual Version 1.3.1 Previous: 10.20 OETanimoto Up: 10. OESystem Functions Next: 10.22 ToString 10.21 StringTo These functions provide mechanisms for converting a string into other specified formats. bool StringTo(const std::string& str, unsigned short& x)
+bool StringTo(const std::string& str, unsigned int&   x)
+bool StringTo(const std::string& str, OEULongLong&    x)
+bool StringTo(const std::string& str, short&          x)
+bool StringTo(const std::string& str, int&            x)
+bool StringTo(const std::string& str, OELongLong&     x)
+bool StringTo(const std::string& str, double&         x)
+bool StringTo(const std::string& str, float&          x)
+ These are inlined functions which are equivalent to calling OESystem::OEStringToNumber(str, x). bool StringTo(const std::string& str, bool& x)
+ This function assigns x a boolean value based on the contents of the specified string parameter (str). A true value is assigned to x if the string equals: "1", "yes", "true", "on", "y", or "t". This function is not case-sensitive. If the string does not equal one of the previously specified values, a false value is assigned to x. bool StringTo(const std::string& str, std::string& x)
+ This function is equivalent to: x = str. OEChem - API Manual Version 1.3.1 Previous: 10.20 OETanimoto Up: 10. OESystem Functions Next: 10.22 ToString Documentation released on July 30, 2004.

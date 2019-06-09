@@ -1,0 +1,42 @@
+13938
+www.ics.uci.edu/~dock/manuals/oechem/api/node914.html
+10.23.1 Parameter record format OEChem - API Manual Version 1.3.1 Previous: 10.23 OEConfigure Up: 10.23 OEConfigure Next: 10.23.2 Category record format 10.23.1 Parameter record format When OEConfigure encounters a parameter record, it adds an OEParameter object to the OEInterface. A parameter record takes the following form. !PARAMETER <name> [order priority]
+  !TYPE <type>
+  !ALIAS <alias>
+  !BRIEF <brief description>
+  !DEFAULT <default value>
+  !REQUIRED <true or false>
+  !VISIBILITY <visibility>
+  !KEYLESS <keyless setting>
+  !LEGAL_VALUE <value>
+  !ILLEGAL_VALUE <value>
+  !LEGAL_RANGE <hi value> <low value>
+  !ILLEGAL_RANGE <hi_value> <low_value>
+  !DETAIL
+    <detailed description line 1>
+    <detailed description line 2>
+    <detailed description line 3>
+    .
+    .
+    .
+!END
+ The order individual fields appear within the parameter record is unimportant. Each parameter record must begin with !PARAMETER and end with !END, and each record must have a !TYPE field. All other fields within the parameter record are optional. So the simplest possible parameter record is. !PARAMETER <name> [order priority]
+  !TYPE <type>
+!END
+ When OEConfigure parses this record it does the equivilant of the following C++ code. OEParameter* param = itf.AddParameter(<type>);
+param->SetName(<name>);
+param->SetOrderPriority([order priority]);
+ If [order priority] isn't specified, zero is assumed. Legitamate values of <type> are string Creates a std::string parameter double Creates a double parameter float Creates a float parameter bool Creates a bool parameter int Creates a int parameter file Creates a OEPlatform::oeisstream parameter param_file Creates a OEPlatform::oeisstream parameter that is recognized as a text file holding parameter settings, by OEParseCommandLine. The remaining fields in a parameter record are optional have do the following. !ALIAS <alias> param->AddAlias(<alias>);
+ This field can appear multiple times. !BRIEF <brief description> param->SetBrief(<brief description>);
+ This field can only appear once. !DEFAULT <default value> param->SetStringDefault(<default value>);
+ This field can only appear once. !REQUIRED <true or false> param->SetRequired(<true or false>);
+ This field can only appear once in a parameter record. !VISIBILITY <visibility> Visibility must be either "simple", "normal" or "hidden" (without quotes). This causes either param->SetVisiblity(ParamVis::Simple);
+param->SetVisiblity(ParamVis::Normal);
+param->SetVisiblity(ParamVis::Hidden);
+ to be called respectively. This field can only appear once in a parameter record. !KEYLESS <keyless setting> param->SetKeyless(<keyless setting>);
+ The <keyless setting> must be a non-negative integer. This field can only appear once in a parameter record. !LEGAL_VALUE <value> param->AddLegalValue(<value>);
+ Parameters of type bool cannot have a !LEGAL_VALUE field. This field can appear multiple times in a parameter record. !ILLEGAL_VALUE <value> param->AddIllegalValue(<value>);
+ Parameters of type bool cannot have an !ILLEGAL_VALUE field. This field can appear multiple times in a parameter record. !LEGAL_RANGE <hi value> <low value> param->AddLegalRange(<hi value>, <low value>);
+ Parameters of type bool, string, file and file_param cannot have a !LEGAL_RANGE field. This field can appear multiple times in a parameter record. !ILLEGAL_RANGE <hi value> <low value> param->AddIllegalRange(<hi value>, <low value>);
+ Parameters of type bool, string, file and file_param cannot have an !ILLEGAL_RANGE field. This field can appear multiple times in a parameter record. !DETAIL Detail All lines following the !DETAIL keyword up until this next line begining with another parameter record keyword are added to the parameter via param->AddDetail(<detail line>);
+ This field can appear once in a parameter record. OEChem - API Manual Version 1.3.1 Previous: 10.23 OEConfigure Up: 10.23 OEConfigure Next: 10.23.2 Category record format Documentation released on July 30, 2004.

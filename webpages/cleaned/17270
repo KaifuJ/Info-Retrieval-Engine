@@ -1,0 +1,3 @@
+17270
+www.ics.uci.edu/~irus//css/98/mini-tutorial/tsld020.htm
+XLink: Advanced XLink: Advanced Extended links - can be multidirectional, need not live in the resources they point, link groups <related-term-group>Hamlet <related-term HREF=�Othello.xml�/><related-term HREF=�KingLear.xml�/><related-term HREF=�Macbeth.xml�/></related-term-group> <!ELEMENT related-term-group (#PCDATA | related-term)* ><!ATTLIST related-term-group XML-LINK CDATA #FIXED �EXTENDED� INLINE CDATA #FIXED �TRUE� CONTENT-ROLE CDATA #FIXED �RT� � > Extended Pointers - locate resource by traversing the element tree of its containing document XPointers allow links without modifying the containing document Previous slide Next slide Back to first slide View graphic version

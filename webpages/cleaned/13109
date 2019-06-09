@@ -1,0 +1,3 @@
+13109
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--ConstructOppositeRay_2.html
+Kernel::ConstructOppositeRay_2 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::ConstructOppositeRay_2 A model for this must provide: Kernel::Ray_2 fo.operator() ( Kernel::Ray_2 r) returns the ray with the same source as r , but in opposite direction. RefinesAdaptableFunctor (with one argument) See AlsoCGAL::Ray_2<Kernel> Next: Kernel::ConstructOppositeRay_3 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

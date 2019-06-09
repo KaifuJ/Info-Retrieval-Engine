@@ -1,0 +1,3 @@
+13132
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/Function_coplanar.html
+coplanar Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::coplanar bool coplanar ( Point_3<Kernel> p, Point_3<Kernel> q, Point_3<Kernel> r, Point_3<Kernel> s) returns true, if p , q , r , and s are coplanar. See AlsoCGAL::coplanar_orientation CGAL::coplanar_side_of_bounded_circle Next: coplanar_orientation Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

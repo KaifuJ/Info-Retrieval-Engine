@@ -1,0 +1,3 @@
+13094
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/Enum_Oriented_side
+Oriented_side Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::Oriented_side #include <CGAL/enum.h> enum Oriented_side { ON_NEGATIVE_SIDE , ON_ORIENTED_BOUNDARY , ON_POSITIVE_SIDE }; Next: CLOCKWISE Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

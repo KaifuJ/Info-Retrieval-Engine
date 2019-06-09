@@ -1,0 +1,3 @@
+15058
+www.ics.uci.edu/~ejw/authoring/orem/namespace/tsld007.htm
+Propagation Model Propagation Model A tree traversal. When a method is invoked on a collection resource, the method is �propagated� to all propagate members of the collection Collection resources continue to propagate the method invocation to their members The Depth header controls how far down the propagation occurs: 0, 1, infinity Previous slide Next slide Back to first slide View graphic version

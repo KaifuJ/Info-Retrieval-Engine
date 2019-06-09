@@ -1,0 +1,3 @@
+13113
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--EqualX_2.html
+Kernel::EqualX_2 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::EqualX_2 A model for this must provide: bool fo.operator() ( Kernel::Point_2 p, Kernel::Point_2 q) returns true iff p and q have the same Cartesian x -coordinate. RefinesAdaptableFunctor (with two arguments) See AlsoCGAL::x_equal Next: Kernel::EqualX_3 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

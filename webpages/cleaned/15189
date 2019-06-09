@@ -1,0 +1,3 @@
+15189
+www.ics.uci.edu/~ejw/authoring/orem/versioning/tsld013.htm
+VersionId Header VersionId Header The VersionId header allows a client to request a specific version identifier for a resource The server is not required to honor this request Version-Id-Header = �VersionId� �:� quoted-string Previous slide Next slide Back to first slide View graphic version

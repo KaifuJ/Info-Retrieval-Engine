@@ -1,0 +1,51 @@
+15725
+www.ics.uci.edu/~ejw/versioning/arch/0118.html
+Archive of Working Group on Versioning and Configuration Management of World Wide Web Content: RE: Seiwald Q & A RE: Seiwald Q & A Yaron Goland (yarong@microsoft.com) Thu, 29 Aug 1996 12:42:07 -0700 Messages sorted by: [ date ][ thread ][ subject ][ author ] Next message: Jim Whitehead: "Initial Dist. Auth. Requirements" Previous message: David G. Durand: "Re: Seiwald Q & A -- "GET for EDIT" cookies" >1.  A fundamental component of "GET for EDIT" has to be a cookie that
+>represents any stored context in the document server that needs to be
+>reunited with the document on checkin.  Most, if not all, SCM systems
+>are aware of their users' activity and use this awareness to keep users
+>from stomping on each other's work.
+
+I think it is reasonable for us to assume that the versioning server is 
+fully aware of the user's activity. This is especially true because of the 
+need for a "Currently Checked Out" function that tells a user who has the 
+document checked out.
+
+>2.  "GET for EDIT" also, mind you, has to be able to GET something other
+>than the head ("tip") revision of the document.  Not everybody wants to
+>start their edits with the most current rev.  And I assume we both agree
+>that "GET for EDIT" means get the source, not any derived version.
+
+The question of 'derived' entity is truly ugly. Different systems have 
+different needs in this regard, especially when the 'derived' chain is more 
+than one long. We normally think of 'derived' as being an HTML document and 
+the source including things like server side includes. However I have seen 
+longer and uglier chains. Rather than building in any assumption I am in 
+favor of an arbitrary linking system where links have attributes. The 
+attributes will then explain relationships.
+
+>4.  For new documents, I think rather than a blind, out of the blue PUT
+>there should be something analogous to "GET for EDIT" -- e.g. a "fake GET
+>for ADD".  The primary reason for this is to support item #1 above --
+>to let the document server/SCM system know what the user is up to.
+
+I think the Check Out semantics handles this problem. Note that I am a 
+proponent of having a locking system and a check out system. They are not 
+the same thing and I do not feel they should be treated in the same way.
+
+>5.  Versioning of directories is also non-sensical, for the same reason
+>as #3 above.  Supporting renaming is one thing, but buying into a 
+solution
+>that involves versioned directories is brainocide.
+
+As I pointed out in my document we really need to accept directories as 
+real entities. Just closing our eyes and repeating "URLS are a flat name 
+space" won't make the problem go away.
+
+>6.  I think locking can be punted.  Add it in the next rev.
+
+I would agree with Jim. From the Microsoft point of view we would rather 
+see versioning punted then locking.
+
+				Yaron
+ Next message: Jim Whitehead: "Initial Dist. Auth. Requirements" Previous message: David G. Durand: "Re: Seiwald Q & A -- "GET for EDIT" cookies"

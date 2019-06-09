@@ -1,0 +1,3 @@
+17140
+www.ics.uci.edu/~irus//bart/flyers/99/presentations/july99-neno/tsld004.htm
+Key Architectural Concepts Key Architectural Concepts Components � loci of computation and state Connectors � loci of interaction communication coordination mediation Architectural constraints structural vs. behavioral local vs. non-local vs. global Architectural style interaction constraints + topological constraints Previous slide Next slide Back to first slide View graphic version

@@ -1,0 +1,3 @@
+11636
+www.ics.uci.edu/~amrm/slides/os/protection-validation/tsld008.htm
+Operating System Usage Operating System Usage Basic User/Supervisor Mode Distinction Supervisor mode allows modification of protection data structures Special instructions used to modify these data structures check for privilege mode, trap otherwise Bootstrap to privilege mode, initial execution loophole must correctly setup these data structures => Most of the isolation is ensured indirectly through implicit instruction execution constraints Address checking in the translation lookaside buffer Mode checking based on instruction type Simple mechanisms in hardware, all conventions in software Previous slide Next slide Back to first slide View graphic version

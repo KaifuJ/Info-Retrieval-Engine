@@ -1,0 +1,3 @@
+19091
+www.ics.uci.edu/~pazzani/Slides/Hill/tsld003.htm
+Version Space Version Space + Description of all hypotheses consistent with data + Can determine when a single hypothesis is consistent � G (or S) set may grow exponentially with number of examples, for expressive hypothesis languages {<Sunny,Warm,?,Strong,?,?>} S: {<Sunny,?,?,?,?,?>, <?,Warm,?,?,?,?>} G: <Sunny,Warm,?,?,?,?> <Sunny,?,?,Strong,?,?> <?,Warm,?,Strong,?,?> Previous slide Next slide Back to first slide View graphic version

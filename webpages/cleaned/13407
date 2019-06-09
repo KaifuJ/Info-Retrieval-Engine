@@ -1,0 +1,5 @@
+13407
+www.ics.uci.edu/~dock/manuals/oechem/api/node197.html
+3.17.9 GetConf OEChem - API Manual Version 1.3.1 Previous: 3.17.8 NumConfs Up: 3.17 OEMCMolBaseT Next: 3.17.10 Delete Conformers 3.17.9 GetConf virtual OEConfBaseT<C,dim>*
+GetConf(const OESystem::OEUnaryPredicate<OEChem::OEConfBaseT<C,dim> >&) const
+ Returns the first conformer in the molecule for which the predicate passed in returns true. OEChem - API Manual Version 1.3.1 Previous: 3.17.8 NumConfs Up: 3.17 OEMCMolBaseT Next: 3.17.10 Delete Conformers Documentation released on July 30, 2004.

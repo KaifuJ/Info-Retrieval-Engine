@@ -1,0 +1,3 @@
+13138
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/Function_side_of_oriented_circle.html
+side_of_oriented_circle Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::side_of_oriented_circle Oriented_side side_of_oriented_circle ( Point_2<Kernel> p, Point_2<Kernel> q, Point_2<Kernel> r, Point_2<Kernel> test) returns the relative position of point test to the oriented circle defined by p , q and r . The order of the points p , q and r is important, since it determines the orientation of the implicitly constructed circle. Precondition: p, q and r are not collinear. See Also CGAL::side_of_bounded_circle Next: side_of_oriented_sphere Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

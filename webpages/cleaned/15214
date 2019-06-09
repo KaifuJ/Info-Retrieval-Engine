@@ -1,0 +1,3 @@
+15214
+www.ics.uci.edu/~ejw/authoring/paloalto/goland_slides/tsld003.htm
+How DAV Differs from Normal HTTP How DAV Differs from Normal HTTP Request Vs. Action GET/PUT/DELETE - Cause a Result COPY/MOVE/DAV DELETE/LOCK/CHECK IN/OUT/ETC. - Request a Result Multiple Actions - One Request Client to Server Communication not Server to Server (How does one copy a resource anyway?) Previous slide Next slide Back to first slide View graphic version

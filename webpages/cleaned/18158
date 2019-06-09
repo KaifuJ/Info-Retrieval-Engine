@@ -1,0 +1,3 @@
+18158
+www.ics.uci.edu/~magda/Courses/ics156/Ch1_files/slide0020.htm
+ICS 156: Networking Lab 1.6 Port Numbers nTCP and UDP use port numbers to identify the application. nThe port numbers are 16 bits. nServers are assigned well known port numbers, e.g., FTP is assigned TCP port number 21, telnet is assigned TCP port number 23. nThese port numbers are assigned by the Internet Assigned Numbers Authority (IANA). nPorts 1 to 1023 are all well known (listed in /etc/services). nClients are allocated ephemeral port numbers between 1024 and 5000. They are short lived.

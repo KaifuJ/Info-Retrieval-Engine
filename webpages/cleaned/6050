@@ -1,0 +1,3 @@
+6050
+ganglia.ics.uci.edu/graph_all_periods.php?c=virthost&h=adrian-monk.ics.uci.edu&r=hour&z=default&jr=&js=&st=1486974136&v=0&m=mem_shared&vl=KB&ti=Shared%20Memory&z=large
+Ganglia: Graph all periods Available Metric actions. Host/Cluster/Host Regex: adrian-monk.ics.uci.edu Metric/Graph/Metric Regex: mem_shared Hide/Show Events All GraphsTimeshift Overlay hour CSV JSON Inspect Hide/Show Events Timeshift 2hr CSV JSON Inspect Hide/Show Events Timeshift 4hr CSV JSON Inspect Hide/Show Events Timeshift day CSV JSON Inspect Hide/Show Events Timeshift week CSV JSON Inspect Hide/Show Events Timeshift month CSV JSON Inspect Hide/Show Events Timeshift year CSV JSON Inspect Hide/Show Events Timeshift

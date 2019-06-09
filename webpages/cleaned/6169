@@ -1,0 +1,5 @@
+6169
+grape.ics.uci.edu/wiki/public/attachment/wiki/cs122b-2017-winter-project3/employees.xml
+employees.xml on cs122b-2017-winter-project3 – Attachment
+     – Public
+    Login Preferences About Trac Context Navigation Back to cs122b-2017-winter-project3 cs122b-2017-winter-project3: employees.xml File employees.xml, 450 bytes (added by chenli, 2 years ago) Line 1 <?xml version="1.0" encoding="UTF-8"?> 2 3 <Personnel> 4 5 <Employee type="permanent"> 6 <Name>Seagull</Name> 7 <Id>3674</Id> 8 <Age>34</Age> 9 </Employee> 10 11 <Employee type="contract"> 12 <Name>Robin</Name> 13 <Id>3675</Id> 14 <Age>25</Age> 15 </Employee> 16 17 <Employee type="permanent"> 18 19 <Name>Crow</Name> 20 <Id>3676</Id> 21 <Age>28</Age> 22 </Employee> 23 24 </Personnel> 25 Download in other formats: Original Format Powered by Trac 1.0.13 By Edgewall Software. Visit the Trac open source project at http://trac.edgewall.org/

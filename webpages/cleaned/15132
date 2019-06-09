@@ -1,0 +1,3 @@
+15132
+www.ics.uci.edu/~ejw/authoring/orem/properties/tsld012.htm
+DAV Property XML Elements (cont�d) DAV Property XML Elements (cont�d) Propname http://www.ietf.org/standards/dav/propname contains a URL, the name of the property. Propvalue http://www.ietf.org/standards/dav/propvalue contains an XML document which is the value of the property. Previous slide Next slide Back to first slide View graphic version

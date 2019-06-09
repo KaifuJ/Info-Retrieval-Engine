@@ -1,0 +1,3 @@
+13075
+www.ics.uci.edu/~dock/manuals/cgal_manual/IOstream_ref/Function_is_ascii.html
+is_ascii Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::is_ascii bool is_ascii ( std::ios& s) checks if the IO stream s is in ASCII mode. See AlsoCGAL::Mode CGAL::set_mode CGAL::set_ascii_mode CGAL::set_binary_mode CGAL::set_pretty_mode CGAL::get_mode CGAL::is_binary CGAL::is_pretty Next: is_binary Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

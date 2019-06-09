@@ -1,0 +1,3 @@
+13155
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_d_ref/FunctionObjectConcept_Kernel--Project_along_d_axis_d.html
+Kernel::Project_along_d_axis_d Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::Project_along_d_axis_d A model for this must provide: Kernel::Point_d fo ( Kernel::Point_d p) returns p projected along the d -axis onto the hyperspace spanned by the first d-1 standard base vectors. Next: Kernel::Side_of_bounded_sphere_d Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

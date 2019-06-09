@@ -1,0 +1,5 @@
+13987
+www.ics.uci.edu/~dock/manuals/oechem/api/node970.html
+14.3 OEGeom2DCopy OEChem - API Manual Version 1.3.1 Previous: 14.2 OEGeom2DAngle Up: 14. OEMath Template Functions Next: 14.4 OEGeom2DDistance 14.3 OEGeom2DCopy template<class T>
+static void OEGeom2DCopy(T *x, const T *p)
+ Two dimensional vector assignment. The vector x is assigned the value of p. OEChem - API Manual Version 1.3.1 Previous: 14.2 OEGeom2DAngle Up: 14. OEMath Template Functions Next: 14.4 OEGeom2DDistance Documentation released on July 30, 2004.

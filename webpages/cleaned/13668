@@ -1,0 +1,9 @@
+13668
+www.ics.uci.edu/~dock/manuals/oechem/api/node519.html
+4.139 OETranslate OEChem - API Manual Version 1.3.1 Previous: 4.138 OETheFunctionFormerlyKnownAsStripSalts Up: 4. OEChem Functions Next: 4.140 OETriposAtomNames 4.139 OETranslate void OETranslate(OEMolBase &mol, const double *v)
+void OETranslate(OEMolBase &mol, const float *v)
+void OETranslate(OEConfBaseT<float,3> &conf, const double *v)
+void OETranslate(OEConfBaseT<float,3> &conf, const float *v)
+void OETranslate(OEMCMolBaseT<float,3> &mcmol, const double *v)
+void OETranslate(OEMCMolBaseT<float,3> &mcmol, const float *v)
+ Translates the molecule by the vector passed as the argument v. The vector v must be of size three and contains the Cartesian translation vector. The overloads for OEConfBaseT and OEMCMolBaseT are for efficiency. OEChem - API Manual Version 1.3.1 Previous: 4.138 OETheFunctionFormerlyKnownAsStripSalts Up: 4. OEChem Functions Next: 4.140 OETriposAtomNames Documentation released on July 30, 2004.

@@ -1,0 +1,3 @@
+20427
+www.ics.uci.edu/~theory/269/050107.html
+Theory Seminar, 7 Jan 2005 ICS 269, Spring 2005: Theory Seminar 7 Jan 2005: The Maximized Average Tree Pruning Problem Presented by Josiah Carlson Abstract: In this talk we will define the maximized average tree pruning problem, we will describe the pitfalls in solving the problem, and we will finally describe our algorithm which has worst-case O(n log2n) running time. This is a joint work of Josiah Carlson and David Eppstein.

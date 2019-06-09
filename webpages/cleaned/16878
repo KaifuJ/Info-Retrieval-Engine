@@ -1,0 +1,3 @@
+16878
+www.ics.uci.edu/~ics143/syllabus.html
+Lecture Notes Syllabus Week Topic Subtopics 1 Introduction Operating Systems, Computer System Structures, Operating System Structures 2 Process Management Processes and Threads, CPU Scheduling 3 Process Management CPU Scheduling, Process Synchronization 4 Process Management Process Synchronization 5 Process Management Process Synchronization, Deadlocks 6 Deadlocks, Storage Management Deadlocks, Midterm revision, exam 7 Storage Management Memory Management, Paging, Segmentation 8 Storage Management Virtual Memory 9 FileSystems Virtual Memory, FileSystems Interface and Implementation 10 I/O Subsystems Filesystems, I/O, course revision and summary

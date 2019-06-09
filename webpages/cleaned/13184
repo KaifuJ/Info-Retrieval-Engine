@@ -1,0 +1,3 @@
+13184
+www.ics.uci.edu/~dock/manuals/cgal_manual/NumberTypeSupport_ref/Function_max.html
+max Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::max Definition The function max returns the larger of two values. #include <CGAL/number_utils.h> NT max ( NT ntval1, NT ntval2) Next: min Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

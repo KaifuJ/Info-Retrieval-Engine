@@ -1,0 +1,3 @@
+13128
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--Vector_3.html
+Kernel::Vector_3 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::Vector_3 Definition A type representing vectors in three dimensions. Refines CopyConstructible, Assignable, DefaultConstructible See AlsoCGAL::Vector_3<Kernel> Kernel::ConstructCrossProductVector_3 Kernel::ConstructDirection_3 Kernel::ConstructOppositeVector_3 Kernel::ConstructOrthogonalVector_3 Kernel::ConstructScaledVector_3 Kernel::ConstructVector_3 Kernel::Equal_2 Next: Tag_false Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

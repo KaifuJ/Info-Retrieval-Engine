@@ -1,0 +1,3 @@
+13087
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/Concept_Kernel--IsoCuboid_3.html
+Kernel::IsoCuboid_3 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::IsoCuboid_3 A type representing isocuboids in three dimensions. Refines CopyConstructible, Assignable, DefaultConstructible See AlsoCGAL::Iso_cuboid_3<Kernel> Kernel::BoundedSide_3 Kernel::ComputeVolume_3 Kernel::ConstructIsoCuboid_3 Kernel::ConstructVertex_3 Kernel::Equal_2 Kernel::HasOnBoundary_3 Kernel::HasOnBoundedSide_3 Kernel::HasOnUnboundedSide_3 Kernel::IsDegenerate_3 Next: Kernel::IsoRectangle_2 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

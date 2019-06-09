@@ -1,0 +1,3 @@
+20614
+www.ics.uci.edu/~theory/269/130426.html
+Theory Seminar, April 26, 2012 CS 269S, Spring 2013: Theory Seminar Bren Hall, Room 1423, 1pm April 26, 2013: Popularity vs maximum cardinality in the stable marriage setting by Telikepalli Kavitha Presented by Pawel Pszona In the stable marriage setting, the notion of pupularity of a matching is introduced. I will present a new algorithm for computing a maximum cardinality popular matching. Generalized version of this algorithm utilizes an interesting tradeoff between cardinality and popularity of a matching. Appeared in SODA 2012

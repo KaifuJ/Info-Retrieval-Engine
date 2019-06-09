@@ -1,0 +1,3 @@
+15066
+www.ics.uci.edu/~ejw/authoring/orem/namespace/tsld022.htm
+COPY for Properties COPY for Properties Live properties SHOULD be duplicated as identically behaving live properties on the destination resource. Properties named in the Enforce-Live-Properties header MUST be live on the destination resource, or the method must fail. Previous slide Next slide Back to first slide View graphic version

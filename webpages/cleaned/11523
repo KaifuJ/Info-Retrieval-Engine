@@ -1,0 +1,3 @@
+11523
+www.ics.uci.edu/~amrm/slides/amrm_structure/pta/tsld025.htm
+Where to Implement Adaptivity? Where to Implement Adaptivity? In Software: compiler and/or OS (Static) Knowledge of program behavior Factored into optimization and scheduling Extra code, overhead Lack of dynamic run-time information Rate of adaptivity Requires recompilation, OS changes Previous slide Next slide Back to first slide View graphic version

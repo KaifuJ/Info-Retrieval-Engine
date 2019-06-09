@@ -1,0 +1,4 @@
+13925
+www.ics.uci.edu/~dock/manuals/oechem/api/node90.html
+3.3.1 reset OEChem - API Manual Version 1.3.1 Previous: 3.3 OECartesianToInternal Up: 3.3 OECartesianToInternal Next: 3.3.2 update 3.3.1 reset void reset()
+ Reset the OECartesianToInternal class to its initial state. OEChem - API Manual Version 1.3.1 Previous: 3.3 OECartesianToInternal Up: 3.3 OECartesianToInternal Next: 3.3.2 update Documentation released on July 30, 2004.

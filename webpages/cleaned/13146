@@ -1,0 +1,3 @@
+13146
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_d_ref/FunctionObjectConcept_Kernel--Center_of_sphere_d.html
+Kernel::Center_of_sphere_d Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::Center_of_sphere_d A model for this must provide: template <class ForwardIterator> Kernel::Point_d fo ( ForwardIterator first, ForwardIterator last) computes the affine rank of the points in A = tuple [first,last). Precondition: The objects are of the same dimension. Requirement: The value type of ForwardIterator is Kernel::Point_d. Next: Kernel::Compare_lexicographically_d Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

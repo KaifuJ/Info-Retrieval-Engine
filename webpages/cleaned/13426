@@ -1,0 +1,4 @@
+13426
+www.ics.uci.edu/~dock/manuals/oechem/api/node219.html
+3.22.8 GetPattern OEChem - API Manual Version 1.3.1 Previous: 3.22.7 GetMinAtoms Up: 3.22 OEMCSSearch Next: 3.22.9 GetSaveRange 3.22.8 GetPattern const OEQMolBase &GetPattern() const
+ A read-only reference to the query molecule contained in an instance of OEMCSSearch can be obtained with this method. Const OEQMolBase methods can be used to interrogate the returned OEQMolBase reference. If the instance of OEMCSSearch has not been initialized, a reference to an empty molecule will be returned. OEChem - API Manual Version 1.3.1 Previous: 3.22.7 GetMinAtoms Up: 3.22 OEMCSSearch Next: 3.22.9 GetSaveRange Documentation released on July 30, 2004.

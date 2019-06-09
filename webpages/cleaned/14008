@@ -1,0 +1,9 @@
+14008
+www.ics.uci.edu/~dock/manuals/oechem/api/node999.html
+14.32 OEGeom3DEulerToRotMatrix OEChem - API Manual Version 1.3.1 Previous: 14.31 OEGeom3DTetraCoord Up: 14. OEMath Template Functions Next: 14.33 OEGeomQuaternionMultiply 14.32 OEGeom3DEulerToRotMatrix template<class T>
+static void OEGeom3DEulerToRotMatrix(T *RMat, double phi,
+                                     double theta, double psi)
+template<class T>
+static void OEGeom3DEulerToRotMatrix(T *RMat,
+                                     const double *angles)
+ OEChem - API Manual Version 1.3.1 Previous: 14.31 OEGeom3DTetraCoord Up: 14. OEMath Template Functions Next: 14.33 OEGeomQuaternionMultiply Documentation released on July 30, 2004.

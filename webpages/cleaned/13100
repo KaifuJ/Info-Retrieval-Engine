@@ -1,0 +1,3 @@
+13100
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--ComputeSquaredLength_2.html
+Kernel::ComputeSquaredLength_2 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::ComputeSquaredLength_2 A model for this must provide: Kernel::FT fo.operator() ( Kernel::Vector_2 v) returns the squared length of v . Kernel::FT fo.operator() ( Kernel::Segment_2 s) returns the squared length of s . RefinesAdaptableFunctor (with one argument) See AlsoCGAL::Vector_2<Kernel> CGAL::Segment_2<Kernel> Next: Kernel::ComputeSquaredLength_3 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

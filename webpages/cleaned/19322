@@ -1,0 +1,3 @@
+19322
+www.ics.uci.edu/~peymano/papers/iwpse98/slides/tsld002.htm
+The problem The problem Developer�s dilemma: �90% of the functionality requested by our customer is available from existing off-the-shelf applications, but the missing 10% is vital. Unfortunately, we cannot customize or adapt the existing application to meet our customer�s needs�we must build a solution from scratch.� Numerous techniques for designing evolvable software Few techniques for preserving flexibility into software deployment Previous slide Next slide Back to first slide View graphic version

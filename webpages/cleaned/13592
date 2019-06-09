@@ -1,0 +1,4 @@
+13592
+www.ics.uci.edu/~dock/manuals/oechem/api/node420.html
+4.43 OEExactGraphMatch OEChem - API Manual Version 1.3.1 Previous: 4.42 OEEulerRotate Up: 4. OEChem Functions Next: 4.44 OEExpandSuperAtoms 4.43 OEExactGraphMatch bool OEExactGraphMatch(const OEMolBase &x, const OEMolBase &y)
+ Determine whether two molecules, x and y, have exactly the same graph. This function effectively compares the absolute canonical SMILES of both molecules, using string equality. OEChem - API Manual Version 1.3.1 Previous: 4.42 OEEulerRotate Up: 4. OEChem Functions Next: 4.44 OEExpandSuperAtoms Documentation released on July 30, 2004.

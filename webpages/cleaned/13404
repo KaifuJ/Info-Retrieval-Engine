@@ -1,0 +1,5 @@
+13404
+www.ics.uci.edu/~dock/manuals/oechem/api/node192.html
+3.17.4 operator= OEChem - API Manual Version 1.3.1 Previous: 3.17.3 Constructors Up: 3.17 OEMCMolBaseT Next: 3.17.5 Active Conformer 3.17.4 operator= OEMCMolBaseT<C,dim>& operator= (const OEMCMolBaseT<C,dim> &rhs)
+OEMCMolBaseT<C,dim>& operator= (const OEConfBaseT<C,dim> &rhs)
+ Appropriate assignment of multi-conformer molecules via this abstract base class is possible using the virtual Copy function. OEChem - API Manual Version 1.3.1 Previous: 3.17.3 Constructors Up: 3.17 OEMCMolBaseT Next: 3.17.5 Active Conformer Documentation released on July 30, 2004.

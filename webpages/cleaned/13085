@@ -1,0 +1,3 @@
+13085
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/Class_Scaling.html
+Scaling Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::Scaling #include <CGAL/aff_transformation_tags.h> Definition Tag class for affine transformations. See AlsoCGAL::Aff_transformation_2<Kernel> CGAL::Aff_transformation_3<Kernel> CGAL::Identity_transformation CGAL::Reflection CGAL::Rotation CGAL::Translation Next: Translation Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

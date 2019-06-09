@@ -1,0 +1,3 @@
+11538
+www.ics.uci.edu/~amrm/slides/amrm_structure/pta/tsld040.htm
+Adaptivity via compiler Adaptivity via compiler Give software control over configuration setting Provide feedback via same parameters as used by hardware: stall time, miss rate, etc Have the compiler select program points to change configuration set parametrs based on hardware feedback use compile-time knowledge as well Previous slide Next slide Back to first slide View graphic version

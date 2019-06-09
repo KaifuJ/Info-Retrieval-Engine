@@ -1,0 +1,3 @@
+11589
+www.ics.uci.edu/~amrm/slides/compiler/compiler/tsld003.htm
+Compiler for Morph Machines Flow Compiler for Morph Machines Flow Algorithm specification C implementation + ADDS High Level IR code Cost estimation (mem,...) Performance estimation Reconfigurability and Statistics data Coarse-grain & alg transformations ILP Compiler Target Code Reconfiguration instructions Cache Proc ASIC On-chip Memory Main Memory Previous slide Next slide Back to first slide View graphic version

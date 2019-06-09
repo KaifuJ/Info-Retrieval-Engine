@@ -1,0 +1,3 @@
+19096
+www.ics.uci.edu/~pazzani/Slides/Hill/tsld008.htm
+Hill Climbing for Parameter Tuning Hill Climbing for Parameter Tuning Problem Description: PA Examples: Troubleshooting Records (21 attributes) Background Knowledge: Parameterized Max Rules Hypothesis Language: Vector of 14 Numeric Parameters I Initial state: Vector of Numeric Parameter O Operators Add 2.5% of parameter value to each parameter Subtract 2.5% of parameter value to each parameter E Cost of Misclassification If there's an X > *Y* Class 1. If distance from station > *Z* Class 2. If distance from station <= *Z* and there's no X <= *A* Class 3. Previous slide Next slide Back to first slide View graphic version

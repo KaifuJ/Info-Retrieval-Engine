@@ -1,0 +1,4 @@
+11362
+www.ics.uci.edu/~alspaugh/cls/shr/javadoc/allclasses-frame.html
+All Classes (formula package)
+ All Classes Conjunction Conjunction Disjunction Disjunction Environment Environment Factory Formula Formula LogicalConstant LogicalConstant LogicalVariable LogicalVariable Named Named Negation Negation Visitor VisitorEvaluate VisitorToString

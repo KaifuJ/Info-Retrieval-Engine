@@ -1,0 +1,3 @@
+13111
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--ConstructOppositeSphere_3.html
+Kernel::ConstructOppositeSphere_3 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::ConstructOppositeSphere_3 A model for this must provide: Kernel::Sphere_3 fo.operator() ( Kernel::Sphere_3 s) returns the sphere with the same center and squared radius as s , but with opposite orientation. RefinesAdaptableFunctor (with one argument) See AlsoCGAL::Sphere_3<Kernel> Next: Kernel::ConstructOppositeTriangle_2 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

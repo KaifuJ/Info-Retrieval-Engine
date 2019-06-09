@@ -1,0 +1,4 @@
+13719
+www.ics.uci.edu/~dock/manuals/oechem/api/node592.html
+5.18 OEIsOxygen OEChem - API Manual Version 1.3.1 Previous: 5.17.2 operator() Up: 5. OEChem Functors Next: 5.18.1 Constructor 5.18 OEIsOxygen struct OEIsOxygen : public OESystem::OEUnaryPredicate<OEChem::OEAtomBase>
+ Functor which returns true if the atom is an oxygen. Subsections 5.18.1 Constructor 5.18.2 operator() OEChem - API Manual Version 1.3.1 Previous: 5.17.2 operator() Up: 5. OEChem Functors Next: 5.18.1 Constructor Documentation released on July 30, 2004.

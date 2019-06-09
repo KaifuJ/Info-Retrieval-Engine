@@ -1,0 +1,3 @@
+11548
+www.ics.uci.edu/~amrm/slides/amrm_structure/pta/tsld050.htm
+Miss Stride Buffer Miss Stride Buffer Mainly used to eliminate conflict miss Prediction: if a memory address miss again after N other misses, the memory address is likely to miss again after N other misses Scenario for the prediction to be useful multiple loop nests some variables or array elements are reused across iterations Previous slide Next slide Back to first slide View graphic version

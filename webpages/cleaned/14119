@@ -1,0 +1,3 @@
+14119
+www.ics.uci.edu/~dock/manuals/oechem/cplusprog/node243.html
+29.1 SMARTS Syntax OEChem - C++ Theory Manual Version 1.3.1 Previous: 29. SMARTS Pattern Matching Up: 29. SMARTS Pattern Matching Next: 29.1.1 Atom Primitives 29.1 SMARTS Syntax SMARTS is line notation developed by Daylight Chemical Information Systems for compactly representing molecular substructure queries. Subsections 29.1.1 Atom Primitives 29.1.2 Bond Primitives 29.1.3 Logical Operators OEChem - C++ Theory Manual Version 1.3.1 Previous: 29. SMARTS Pattern Matching Up: 29. SMARTS Pattern Matching Next: 29.1.1 Atom Primitives Documentation released on July 30, 2004.

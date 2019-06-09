@@ -1,0 +1,3 @@
+13183
+www.ics.uci.edu/~dock/manuals/cgal_manual/NumberTypeSupport_ref/Function_compare.html
+compare Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::compare Definition The function compare compares two numbers to see which is larger or smaller or if they are equal. #include <CGAL/number_utils.h> template <class NT1, class NT2> Comparison_result compare ( NT1 n1, NT2 n2) returns LARGER iff n1>n2 , SMALLER iff n1<n2 , and EQUAL otherwise. Next: Compare<NT> Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

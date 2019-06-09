@@ -1,0 +1,3 @@
+14995
+www.ics.uci.edu/~ejw/authoring/munich/issues/tsld006.htm
+Retrieving properties (cont�d) Retrieving properties (cont�d) Recommended solution change name of SEARCH to PROPGET (or GETPROP or FINDPROP), reserving SEARCH for a more full-powered search facility limit the capabilities of PROPGET to retrieving only named properties support only a wildcard �*� so that all properties on a resource are retrieved helpful if the client doesn�t know the name of all properties defined on the resource A separate WG will address full-featured search Previous slide Next slide Back to first slide View graphic version

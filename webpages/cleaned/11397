@@ -1,0 +1,4 @@
+11397
+www.ics.uci.edu/~alspaugh/cls/shr/javadoc/formulaVisited/package-frame.html
+formulaVisited (formula package)
+ formulaVisited Interfaces Formula Visitor Classes Conjunction Disjunction Environment Factory LogicalConstant LogicalVariable Named Negation VisitorEvaluate VisitorToString

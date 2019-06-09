@@ -1,0 +1,5 @@
+13662
+www.ics.uci.edu/~dock/manuals/oechem/api/node511.html
+4.131 OESet3DHydrogenGeom OEChem - API Manual Version 1.3.1 Previous: 4.130 OEScrambleMolecule Up: 4. OEChem Functions Next: 4.132 OESetDimensionFromCoords 4.131 OESet3DHydrogenGeom bool OESet3DHydrogenGeom(OEMolBase &mol)
+bool OESet3DHydrogenGeom(OEMolBase &mol, const OEAtomBase *hatom);
+ These functions assign approximate 3D co-ordinates to explicit hydrogen atoms. For the first form of this function, that operates on an entire molecule, only explicit hydrogen atoms with identical co-ordinates to their parent atoms are updated. The second form of this function only affects the specified hydrogen atom, which should initially have the same co-ordinates as its `parent'. OEChem - API Manual Version 1.3.1 Previous: 4.130 OEScrambleMolecule Up: 4. OEChem Functions Next: 4.132 OESetDimensionFromCoords Documentation released on July 30, 2004.

@@ -1,0 +1,6 @@
+13998
+www.ics.uci.edu/~dock/manuals/oechem/api/node987.html
+14.20 OEGeom3DEulerRotate OEChem - API Manual Version 1.3.1 Previous: 14.19 OEGeom3DDotProd Up: 14. OEMath Template Functions Next: 14.21 OEGeom3DMidpoint 14.20 OEGeom3DEulerRotate template<class T>
+static void OEGeom3DEulerRotate(T *xyz, const double *angles,
+                                unsigned int ncoord)
+ OEChem - API Manual Version 1.3.1 Previous: 14.19 OEGeom3DDotProd Up: 14. OEMath Template Functions Next: 14.21 OEGeom3DMidpoint Documentation released on July 30, 2004.

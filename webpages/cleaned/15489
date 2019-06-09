@@ -1,0 +1,3 @@
+15489
+www.ics.uci.edu/~ejw/authoring/www6/tsld024.htm
+Copy Requirements Copy Requirements Copy. It must be possible to duplicate a resource without a client loading, then resaving the resource. After the copy operation, the content of the destination resource must be octet for octet identical to the content of the source resource. A modification to either resource must not cause a modification to the other. The copy operation should leave an audit trail. Previous slide Next slide Back to first slide View graphic version

@@ -1,0 +1,3 @@
+15378
+www.ics.uci.edu/~ejw/authoring/versioning/dt_oct98/kaler/tsld012.htm
+Mapping (I) Mapping (I) Allows clients to create a hierarchical collection of referential resources to a specific configuration doesn�t require the Configuration-Id header Allows clients to create a hierarchical collection of referential resources to a resource�s version history doesn�t require the Configuration-Id or Version-Id header clients can navigate the version graph using PROPFIND on the mapped collection Previous slide Next slide Back to first slide View graphic version

@@ -1,0 +1,3 @@
+15196
+www.ics.uci.edu/~ejw/authoring/orem/versioning/tsld023.htm
+Summary Summary Benefits: Versioning information is kept in collection, so resources may easily belong to more than one versioned collection (add/remove using ADDREF/DELREF) Only need to define one new method, CREATE Can be mapped toRCS version repository (others?) Meets requirements Previous slide Next slide Back to first slide View graphic version

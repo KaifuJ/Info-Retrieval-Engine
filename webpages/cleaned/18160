@@ -1,0 +1,3 @@
+18160
+www.ics.uci.edu/~magda/Courses/ics156/Ch1_files/slide0033.htm
+ICS 156: Networking Lab 1.8.4 Types of CSMA/CD nWhen channel is sensed busy, stations wait till it becomes idle and then schedule their transmission. If length of busy period is long, several stations could become active during that period and a collision becomes inevitable when the channel becomes idle again. This is called persistent CSMA/CD.� (IEEE 802.3 and Ethernet) nNon persistent CSMA/CD has stations wait a random period whenever the channel is sensed busy, i.e, not grab it immediately it becomes available. Non persistent gives better throughput under heavy loading, persistent gives better throughput under light loads.

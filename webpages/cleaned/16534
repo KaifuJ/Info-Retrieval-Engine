@@ -1,0 +1,3 @@
+16534
+www.ics.uci.edu/~eppstein/pubs/p-latdim
+David Eppstein - Publications David Eppstein - Publications The lattice dimension of a graph. D. Eppstein. arXiv:cs.DS/0402028. Eur. J. Combinatorics 26 (6): 585–592, 2005. Describes a polynomial time algorithm for isometrically embedding graphs into an integer lattice of the smallest possible dimension. The technique involves maximum matching in an auxiliary graph derived from a partial cube representation of the input. (BibTeX – Citations) Publications – David Eppstein – Theory Group – Inf. & Comp. Sci. – UC Irvine Semi-automatically filtered from a common source file.

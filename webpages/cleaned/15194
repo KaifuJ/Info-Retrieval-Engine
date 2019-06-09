@@ -1,0 +1,3 @@
+15194
+www.ics.uci.edu/~ejw/authoring/orem/versioning/tsld021.htm
+Start Working on New Version (cont�d) Start Working on New Version (cont�d) GET /users/jdoe/report.html/report.html-1.0 HTTP/1.1 Host: webdav.sb.aol.com HTTP/1.1 200 OK Content-Type: text/html Content-Length: xxx <HTML> <HEAD> <TITLE>Important Report</TITLE> </HEAD> ... Previous slide Next slide Back to first slide View graphic version

@@ -1,0 +1,3 @@
+20699
+www.ics.uci.edu/~theory/269/960223.html
+Theory Seminar, 23 Feb 1996 ICS 269, Winter 1996: Theory Seminar 23 February 1996: Thrackles Mike Dillencourt, ICS, UC Irvine A thrackle is a graph that can be drawn in the plane so that its edges are represented by simple curves; and any two distinct edges either meet at a single common endpoint or cross at exactly one point, interior to both curves. Thirty years ago, Conway conjectured that an n-vertex thrackle has at most n edges. Lovász, Pach and Szegedy recently made major progress towards resolving this conjecture, by proving that an n-vertex thrackle has at most 2n edges. In this talk, I will present their proof.

@@ -1,0 +1,4 @@
+13716
+www.ics.uci.edu/~dock/manuals/oechem/api/node589.html
+5.17 OEIsNitrogen OEChem - API Manual Version 1.3.1 Previous: 5.16.2 operator() Up: 5. OEChem Functors Next: 5.17.1 Constructor 5.17 OEIsNitrogen struct OEIsNitrogen : public OESystem::OEUnaryPredicate<OEChem::OEAtomBase>
+ Functor which returns true if the atom is a nitrogen Subsections 5.17.1 Constructor 5.17.2 operator() OEChem - API Manual Version 1.3.1 Previous: 5.16.2 operator() Up: 5. OEChem Functors Next: 5.17.1 Constructor Documentation released on July 30, 2004.

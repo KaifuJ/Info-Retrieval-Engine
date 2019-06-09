@@ -1,0 +1,4 @@
+13928
+www.ics.uci.edu/~dock/manuals/oechem/api/node903.html
+10.13 OEStringSimplifyWhiteSpace OEChem - API Manual Version 1.3.1 Previous: 10.12 OEStringMatch Up: 10. OESystem Functions Next: 10.14 OEStringStripWhiteSpace 10.13 OEStringSimplifyWhiteSpace std::string OEStringSimplifyWhiteSpace(const std::string &str)
+ Returns a copy of the specified string parameter (str) which has had all contiguous whitespace characters converted to a single ' '. OEChem - API Manual Version 1.3.1 Previous: 10.12 OEStringMatch Up: 10. OESystem Functions Next: 10.14 OEStringStripWhiteSpace Documentation released on July 30, 2004.

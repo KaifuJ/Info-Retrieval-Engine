@@ -1,0 +1,4 @@
+13650
+www.ics.uci.edu/~dock/manuals/oechem/api/node499.html
+4.122 OEReadOldBinary OEChem - API Manual Version 1.3.1 Previous: 4.121 OEReadMOPACFile Up: 4. OEChem Functions Next: 4.123 OEReadPDBFile 4.122 OEReadOldBinary bool OEReadOldBinary(oemolistream &ifs, OEMCMolBase &mol)
+ OEChem - API Manual Version 1.3.1 Previous: 4.121 OEReadMOPACFile Up: 4. OEChem Functions Next: 4.123 OEReadPDBFile Documentation released on July 30, 2004.

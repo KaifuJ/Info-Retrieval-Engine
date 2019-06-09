@@ -1,0 +1,3 @@
+6048
+ganglia.ics.uci.edu/cluster_legend.html
+Ganglia Cluster Toolkit:: Cluster Image Legend Ganglia Cluster Image Legend Cluster Image Meaning Red Over 100% Utilization. Utilization is: (1 min load) / (number of CPUs in cluster) * 100%. Orange 75-100% Yellow 50-74% Green 25-49% Blue 0-24% Grey A private cluster. Back

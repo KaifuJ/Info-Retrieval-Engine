@@ -1,0 +1,3 @@
+14192
+www.ics.uci.edu/~dock/manuals/oechem/cplusprog/node90.html
+7.1.2 Aromatic OEChem - C++ Theory Manual Version 1.3.1 Previous: 7.1.1 Order Up: 7.1 Stored Properties of Next: 7.1.3 InRing 7.1.2 Aromatic The ``aromatic'' property of a bond is a boolean used to denote whether the bond has been determined to be a member of an aromatic ring/cycle. The default value is false. OEChem - C++ Theory Manual Version 1.3.1 Previous: 7.1.1 Order Up: 7.1 Stored Properties of Next: 7.1.3 InRing Documentation released on July 30, 2004.

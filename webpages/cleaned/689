@@ -1,0 +1,46 @@
+689
+cbcl.ics.uci.edu/doku.php/software/arem?do=edit&rev=1361487755
+✎ software:arem – Machine Learning and Bioinformatics Lab  Machine Learning and Bioinformatics Lab Search ⚙ Show pageOld revisionsBacklinks ⚒ Recent ChangesSitemapLog In CBCL Lab @ UCI Publications Software Data People Teaching Contact Internal Projects This page is read only. You can view the source, but not change it. Ask your administrator if you think this is wrong. 
+
+<h3>AREM</h3>
+<div class="level3">
+
+<p>
+AREM: Aligning ChIP-seq reads by Expectation-Maximization.
+</p>
+
+</div>
+
+<h5>Description</h5>
+<div class="level5">
+
+<p>
+AREM takes the classic peak calling algorithm used in MACS 1.4 (including an empirically optimal tag shift and a locally-adjusted poissonian statistical model for tag enrichment) and adds a component for realigning ambigously mapping reads.  A probabilistic model assigns reads to regions that are more likely to be peaks (having higher enrichment).
+</p>
+
+</div>
+
+<h5>Paper</h5>
+<div class="level5">
+
+<p>
+For additional information, see our paper in RECOMB 2011 (D Newkirk, J Biesinger, A Chon, K Yokomori, X Xie, 2011) or download a copy <a href="http://www.ics.uci.edu/~xhx/publications/arem_recomb.pdf" class="urlextern" title="http://www.ics.uci.edu/~xhx/publications/arem_recomb.pdf" rel="nofollow">here</a>.
+</p>
+
+</div>
+
+<h5>Code</h5>
+<div class="level5">
+
+<p>
+Regular releases of the software are pushed to the sourceforge page:
+<a href="http://sourceforge.net/projects/arem/" class="urlextern" title="http://sourceforge.net/projects/arem/" rel="nofollow">http://sourceforge.net/projects/arem/</a>
+</p>
+
+<p>
+The development version of the code is available at:
+<a href="https://github.com/jakebiesinger/AREM" class="urlextern" title="https://github.com/jakebiesinger/AREM" rel="nofollow">https://github.com/jakebiesinger/AREM</a>
+</p>
+
+</div>
+ You are here: startsoftwarearem

@@ -1,0 +1,4 @@
+13291
+www.ics.uci.edu/~dock/manuals/oechem/api/node1053.html
+15.9 OEMutex OEChem - API Manual Version 1.3.1 Previous: 15.8.4 stream Up: 15. OEPlatform Classes and Next: 15.9.1 Acquire 15.9 OEMutex struct OEMutex
+ The OEMutex class provides a portable MUTual EXclusion device, that is useful for protecting shared data structures fom concurrent modification. Subsections 15.9.1 Acquire 15.9.2 Release OEChem - API Manual Version 1.3.1 Previous: 15.8.4 stream Up: 15. OEPlatform Classes and Next: 15.9.1 Acquire Documentation released on July 30, 2004.

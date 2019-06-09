@@ -1,0 +1,3 @@
+17306
+www.ics.uci.edu/~irus//css/98/mini-tutorial/tsld056.htm
+Scenario: Web Portfolio Manager Scenario: Web Portfolio Manager Latency: Observation = ~0 (triggered by update 15 mins after stock prices change), Delivery = HTTP connection Intermediation: Portfolio Server computes total portfolio value before sending information to the client Initiator: Portfolio Server receives �pushed� quotes from Stock Server, does recalculation, then initiates with client Delivery Constraints: Reliable Connection Notification Management: Client subscription request enumerates current holdings Previous slide Next slide Back to first slide View graphic version

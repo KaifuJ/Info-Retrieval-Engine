@@ -1,0 +1,35 @@
+21026
+www.ics.uci.edu/~vitus/ics1c/doc/ClientServe.html
+Web Client-Server Interaction
+ Web Client-Server Interaction Normal (Static) Document Retrieval +---------+ (1)Request    +--------+           +--------+
+|         |-------------->|        |           | Server |
+|   Web   |               |  Web   |-----------|  File  |
+| Browser |               | Server |(2)Retrieve| System |
+|         |<--------------|        |           +--------+
++---------+  (3)Reply     +--------+
+ Dynamic Document Creation +---------+ (1)Request    +--------+ (2)Input  +---------+
+|         |-------------->|        |---------->|         |
+|   Web   |               |  Web   |           | A "CGI" |
+| Browser |               | Server |           | Program |
+|         |<--------------|        |<----------|         |
++---------+  (4)Reply     +--------+ (3)Output +---------+
+                                                    |
+                                                    |
+                                                +--------+
+                                                | Server |
+                                                |  File  |
+                                                | System |
+                                                +--------+
+ Document and Service Delivery Combined +---------+ (1)Request    +--------+ (2)Input  +---------+
+|         |-------------->|        |---------->|         |
+|   Web   |               |  Web   |           | A "CGI" |
+| Browser |               | Server |           | Program |
+|         |<--------------|        |<----------|         |
++---------+  (4)Reply     +--------+ (3)Output +---------+
+                              |                     |
+                              |         +--------+  |
+                              |         | Server |  |
+                              +---------|  File  |--+
+                          (2,3)Retrieve | System |
+                                        +--------+
+ An Illustrative Example ICS 1C, Summer 1996

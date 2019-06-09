@@ -1,0 +1,4 @@
+13654
+www.ics.uci.edu/~dock/manuals/oechem/api/node502.html
+4.125 OEResidueHydrogens OEChem - API Manual Version 1.3.1 Previous: 4.124 OEReadXYZFile Up: 4. OEChem Functions Next: 4.126 OERMSD 4.125 OEResidueHydrogens void OEResidueHydrogens(OEMolBase &mol)
+ This function sets the residue information associated with each explicit hydrogen in a molecule, from the residue information of its parent. OEChem - API Manual Version 1.3.1 Previous: 4.124 OEReadXYZFile Up: 4. OEChem Functions Next: 4.126 OERMSD Documentation released on July 30, 2004.

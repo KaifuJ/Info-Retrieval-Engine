@@ -1,0 +1,3 @@
+20016
+www.ics.uci.edu/~rohit/web-of-trust/tsld024.htm
+Pragmatics: Codifying Policies Pragmatics: Codifying Policies Web�s �trust problems� are too varied to compile in PICS filtering, applet authorization; soon payment method selection and privacy policy negotiation Externalized policy evaluators More flexible to put in a general-purpose TM Engine Possible to compose policies written in several languages and styles Example: REFEREE can load in policy interpreters as well as policies, rather than PICSRulz alone Previous slide Next slide Back to first slide View graphic version

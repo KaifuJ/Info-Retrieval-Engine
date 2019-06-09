@@ -1,0 +1,24 @@
+15744
+www.ics.uci.edu/~ejw/versioning/arch/0137.html
+Archive of Working Group on Versioning and Configuration Management of World Wide Web Content: Re: Seiwald Q & A -- "GET for EDIT" cookies Re: Seiwald Q & A -- "GET for EDIT" cookies Dave Long (dave@sb.aol.com) Mon, 02 Sep 1996 06:48:09 -0700 Messages sorted by: [ date ][ thread ][ subject ][ author ] Next message: Roy T. Fielding: "Re: Cookies! What are they and do we need them?" Previous message: Dave Long: "locking (taxonomy p.2)" >Certainly the document itself could carry information
+>along with it, in a META tag or on any tag that we can
+>legitimately propose. This would allow arbitrary 
+>authoring tools to have access to whatever information
+>the RCS provides -- without having to inspect any cookies
+>that might be associated with the document. I am including 
+>Notepad in my definition of arbitrary authoring tools.
+>For debugging purposes, I think that it will be useful
+>to carry info in the document. 
+
+Sounds good, but do we ask that the versioning system be
+able to place this information in PNG files and Word
+documents as well as HTML files?  It might be more
+consistent to have this information available for all
+media types through a browser query.
+
+Embedding the checkout info in the document does have
+the great benefit that any authoring tool (not just the
+original) could be used to check it back in.
+
+-Dave
+ Next message: Roy T. Fielding: "Re: Cookies! What are they and do we need them?" Previous message: Dave Long: "locking (taxonomy p.2)"

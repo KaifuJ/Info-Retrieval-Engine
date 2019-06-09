@@ -1,0 +1,8 @@
+13949
+www.ics.uci.edu/~dock/manuals/oechem/api/node93.html
+3.4.1 Constructors OEChem - API Manual Version 1.3.1 Previous: 3.4 OECliqueSearch Up: 3.4 OECliqueSearch Next: 3.4.2 AddConstraint 3.4.1 Constructors OECliqueSearch()
+OECliqueSearch(const char *c)
+OECliqueSearch(const OEQMolBase &qmol)
+OECliqueSearch(const OEMolBase &mol, unsigned int a, unsigned int b)
+OECliqueSearch(const OECliqueSearch &cs)
+ OEChem - API Manual Version 1.3.1 Previous: 3.4 OECliqueSearch Up: 3.4 OECliqueSearch Next: 3.4.2 AddConstraint Documentation released on July 30, 2004.

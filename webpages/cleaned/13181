@@ -1,0 +1,3 @@
+13181
+www.ics.uci.edu/~dock/manuals/cgal_manual/NumberTypeSupport_ref/FunctionObjectClass_Sqrt.html
+Sqrt<NT> Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::Sqrt<NT> Definition The function object class Sqrt<NT> computes the square root of a number. #include <CGAL/number_utils.h> Is Model for the ConceptAdaptableFunctor NT f ( NT ntval) returns the square root of ntval. Next: Square<NT> Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

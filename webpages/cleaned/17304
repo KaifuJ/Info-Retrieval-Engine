@@ -1,0 +1,3 @@
+17304
+www.ics.uci.edu/~irus//css/98/mini-tutorial/tsld054.htm
+Taxonomy of Design Decisions Taxonomy of Design Decisions Latency Min and max bounds, for event observation & delivery Intermediation (end-to-end or relayed) Initiation (by sources or by sinks) Delivery Constraints Guarantees, transport choices, retry policies Notification Management Event filtering, aggregating, and queueing (Un)Subscription, access control, group management Previous slide Next slide Back to first slide View graphic version

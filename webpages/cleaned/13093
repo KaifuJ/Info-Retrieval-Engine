@@ -1,0 +1,3 @@
+13093
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/Enum_Orientation.html
+Orientation Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::Orientation #include <CGAL/enum.h> typedef Sign Orientation; See AlsoCGAL::LEFT_TURN CGAL::RIGHT_TURN CGAL::COLLINEAR CGAL::CLOCKWISE CGAL::COUNTERCLOCKWISE CGAL::COPLANAR Next: Oriented_side Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

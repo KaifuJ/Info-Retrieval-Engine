@@ -1,0 +1,9 @@
+20050
+www.ics.uci.edu/~schark/simulator/javadoc/GlobalClockEventGenerator.html
+Class GlobalClockEventGenerator
+ Class GlobalClockEventGenerator java.lang.Object
+   |
+   +----GlobalClockEventGenerator
+ public class GlobalClockEventGenerator extends Object implements EventGenerator Generates a global clock GlobalClockEventGenerator(Network) eventProcessed(SimEvent) initializeGenerator(Simulator) GlobalClockEventGenerator  public GlobalClockEventGenerator(Network network)
+ eventProcessed  public void eventProcessed(SimEvent e)
+ initializeGenerator  public void initializeGenerator(Simulator sim)

@@ -1,0 +1,3 @@
+12341
+www.ics.uci.edu/~dechter/publications/r191.html
+Dr. Rina Dechter @ UCI [an error occurred while processing this directive] Publications & Technical Reports R191 | Advances in Distributed Branch and Bound Lars Otten and Rina Dechter Abstract We describe a distributed version of an advanced branch and bound algorithm over graphical models. The crucial issue of load balancing is addressed by estimating subproblem complexity through learning, yielding impressive speedups on various hard problems using hundreds of parallel CPUs. [pdf] School of Information and Computer Science University of California, Irvine, CA 92697-3435 Dr. Rina Dechter dechter at ics.uci.edu

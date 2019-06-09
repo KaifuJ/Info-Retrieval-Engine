@@ -1,0 +1,6 @@
+13281
+www.ics.uci.edu/~dock/manuals/oechem/api/node1038.html
+15.7.4 get OEChem - API Manual Version 1.3.1 Previous: 15.7.3 close Up: 15.7 oeistream Next: 15.7.5 getbyte 15.7.4 get bool get(char          &c)
+bool get(signed char   &c)
+bool get(unsigned char &c)
+ Gets the next byte off of the stream and assigns its value to the parameter c. Returns whether or not the byte read equals EOF. OEChem - API Manual Version 1.3.1 Previous: 15.7.3 close Up: 15.7 oeistream Next: 15.7.5 getbyte Documentation released on July 30, 2004.

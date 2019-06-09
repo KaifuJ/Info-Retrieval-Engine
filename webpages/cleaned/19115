@@ -1,0 +1,3 @@
+19115
+www.ics.uci.edu/~pazzani/Slides/Hill/tsld030.htm
+Theory Revision  Theory Revision Differs from FOCL Emulate Human Modifying Domain Theory Preserve abstractions in domain theory Minimal Change to domain theory Evaluating Theory Revision Accuracy Edit Distance (Wogulis & Pazzani, 1993) Hill climbing approaches Either (Ourston & Mooney, 1990) Forte (Richards & Mooney, 1992) A3 (Wogulis & Pazzani, 1993) Tangkitvanich, 1993 Operators: Add/delete literal/clause Evaluation function: Accuracy Previous slide Next slide Back to first slide View graphic version

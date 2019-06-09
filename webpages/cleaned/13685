@@ -1,0 +1,4 @@
+13685
+www.ics.uci.edu/~dock/manuals/oechem/api/node541.html
+5.1.2 operator() OEChem - API Manual Version 1.3.1 Previous: 5.1.1 Constructor Up: 5.1 OEHasIdx Next: 5.1.3 Typedefs 5.1.2 operator() bool operator() (const Arg &arg) const
+ Returns true if the function Arg.GetIdx() is equivalent to the constructed value. OEChem - API Manual Version 1.3.1 Previous: 5.1.1 Constructor Up: 5.1 OEHasIdx Next: 5.1.3 Typedefs Documentation released on July 30, 2004.

@@ -1,0 +1,9 @@
+14089
+www.ics.uci.edu/~dock/manuals/oechem/cplusprog/node202.html
+23.7.2 OEWriteFASTAFile OEChem - C++ Theory Manual Version 1.3.1 Previous: 23.7.1 OEReadFASTAFile Up: 23.7 FASTA Sequence File Next: 24. I/O Utilities 23.7.2 OEWriteFASTAFile void MyWriteFASTAMolecule(oemolostream &ofs, OEMolBase &mol)
+{
+  if (!OEHasResidues(mol))
+    OEPerceiveResidues(mol);
+  OEWriteFASTAFile(ofs, mol);
+}
+ OEChem - C++ Theory Manual Version 1.3.1 Previous: 23.7.1 OEReadFASTAFile Up: 23.7 FASTA Sequence File Next: 24. I/O Utilities Documentation released on July 30, 2004.

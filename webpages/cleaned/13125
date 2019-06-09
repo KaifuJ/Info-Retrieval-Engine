@@ -1,0 +1,3 @@
+13125
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--Orientation_2.html
+Kernel::Orientation_2 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::Orientation_2 A model for this must provide: Orientation fo.operator() ( Kernel::Point_2 p, Kernel::Point_2 q, Kernel::Point_2 r) returns LEFT_TURN, if r lies to the left of the oriented line l defined by p and q , returns RIGHT_TURN if r lies to the right of l , and returns COLLINEAR if r lies on l . RefinesAdaptableFunctor (with three arguments) See AlsoCGAL::orientation Next: Kernel::Orientation_3 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

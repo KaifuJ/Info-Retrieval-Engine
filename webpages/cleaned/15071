@@ -1,0 +1,3 @@
+15071
+www.ics.uci.edu/~ejw/authoring/orem/namespace/tsld036.htm
+RFC 2068 Methods on Collections (cont�d) RFC 2068 Methods on Collections (cont�d) DELETE for Collections (cont�d) Depth header does not apply to the DELETE method. If present, it MUST be ignored. DELETE deletes all properties on a resource A server MAY remove the URI of the deleted resource from collections within its namespace Previous slide Next slide Back to first slide View graphic version

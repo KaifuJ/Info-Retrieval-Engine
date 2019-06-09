@@ -1,0 +1,3 @@
+13098
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/FunctionObjectConcept_Kernel--CompareSlope_2.html
+Kernel::CompareSlope_2 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::CompareSlope_2 A model for this must provide: Comparison_result fo.operator() ( Kernel::Line_2 l1, Kernel::Line_2 l2) compares the slopes of the lines l1 and l2 Comparison_result fo.operator() ( Kernel::Segment_2 s1, Kernel::Segment_2 s2) compares the slopes of the segments s1 and s2 RefinesAdaptableFunctor (with two arguments) See Also CGAL::compare_slopes Next: Kernel::CompareXAtY_2 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

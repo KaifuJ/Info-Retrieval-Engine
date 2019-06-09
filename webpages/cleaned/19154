@@ -1,0 +1,3 @@
+19154
+www.ics.uci.edu/~pazzani/Slides/MLC94/tsld006.htm
+Decision Tree Test Selection Metrics Decision Tree Test Selection Metrics I-GAIN (ID3) GINI (CART) GINI + Altered Priors (CART) Use altered probability that an example belongs to a class Select test with minimum misclassification cost of partitions Previous slide Next slide Back to first slide View graphic version

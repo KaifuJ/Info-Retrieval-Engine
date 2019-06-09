@@ -1,0 +1,3 @@
+18181
+www.ics.uci.edu/~magda/Courses/ics156/Ch3_files/slide0089.htm
+ICS 156: Networking Lab 3.9 RIP (4/4) nThe IP routing table is used by the router when forwarding a packet. This constitutes the actual routing function within a router. nThe IP address is then looked up in the NIC ARP table for the physical address.

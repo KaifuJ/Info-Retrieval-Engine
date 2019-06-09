@@ -1,0 +1,3 @@
+13090
+www.ics.uci.edu/~dock/manuals/cgal_manual/Kernel_23_ref/Concept_Kernel--Triangle_3.html
+Kernel::Triangle_3 Navigation: Up, Table of Contents, Bibliography, Index, Title Page Kernel::Triangle_3 A type representing triangles in three dimensions. Refines CopyConstructible, Assignable, DefaultConstructible See AlsoCGAL::Triangle_3<Kernel> Kernel::ComputeSquaredArea_3 Kernel::ConstructSupportingPlane_3 Kernel::ConstructTriangle_3 Kernel::ConstructVertex_3 Kernel::DoIntersect_3 Kernel::Equal_3 Kernel::HasOn_3 Kernel::IsDegenerate_3 Next: Kernel::Vector_2 Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

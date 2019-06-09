@@ -1,0 +1,3 @@
+13185
+www.ics.uci.edu/~dock/manuals/cgal_manual/NumberTypeSupport_ref/Function_square.html
+square Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::square Definition The function square returns the square of a number. #include <CGAL/number_utils.h> NT square ( NT ntval) Next: Sgn<NT> Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .

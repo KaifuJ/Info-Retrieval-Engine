@@ -1,0 +1,3 @@
+13182
+www.ics.uci.edu/~dock/manuals/cgal_manual/NumberTypeSupport_ref/FunctionObjectClass_To_interval.html
+To_interval<NT> Navigation: Up, Table of Contents, Bibliography, Index, Title Page CGAL::To_interval<NT> Definition The function To_interval<NT> computes an enclosing interval of a number. #include <CGAL/number_utils_classes.h> Is Model for the ConceptAdaptableFunctor std::pair<double, double> f ( NT ntval) returns an enclosing interval of ntval Next: to_rational Navigation: Table of Contents, Bibliography, Index, Title Page The CGAL Project . Tue, December 21, 2004 .
