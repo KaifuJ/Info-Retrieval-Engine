@@ -851,7 +851,6 @@ public class InvertedIndexManager {
         return res.iterator();
     }
 
-
     /**
      * Returns the number of documents containing the token within the given segment.
      * The token should be already analyzed by the analyzer. The analyzer shouldn't be applied again.

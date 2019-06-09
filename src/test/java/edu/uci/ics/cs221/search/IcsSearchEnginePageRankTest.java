@@ -48,7 +48,7 @@ public class IcsSearchEnginePageRankTest {
         invertedIndexManager = InvertedIndexManager.createOrOpen(indexPath.toString(), analyzer);
         icsSearchEngine = IcsSearchEngine.createSearchEngine(webPagesPath, invertedIndexManager);
 
-//        icsSearchEngine.computePageRank(100);
+        icsSearchEngine.computePageRank(100);
 
         idUrlMap = HashBiMap.create();
         Files.readAllLines(webPagesPath.resolve("url.tsv")).stream().map(line -> line.split("\\s")).forEach(line -> {
